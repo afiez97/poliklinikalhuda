@@ -1,0 +1,237 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.8 chose css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-chose{
+    &-cpr{
+        &-chart{
+            margin-top: -120px;
+            @media #{$md,$sm,$xs} {
+                margin-top: 0;
+            }
+        }
+        &-content{
+            @media #{$xl} {
+                margin-left: 50px;
+            }
+            @media #{$lg,$md,$sm,$xs} {
+                margin-left: 0;
+            }
+        }
+        &-big{
+            &-text{
+                right: -62px;
+                bottom: -55px;
+                @media #{$sm,$xs} {
+                    margin-bottom: -60px;
+                    position: inherit;
+                }
+                & img{
+                    margin-bottom: -118px;
+                    position: relative;
+                    margin-left: -66px;                
+                }
+                & h2{
+                    font-size: 260px;
+                    color: #f3f5f9;
+                    line-height: 1;
+                    @media #{$xl,$lg,$md,$sm,$xs} {
+                        font-size: 180px;
+                    }
+                    @media #{$xs} {
+                        font-size: 140px;
+                    }
+                }
+            }
+        }
+        &-content{
+            & .tp-about-progress .progress-bar {
+                background: linear-gradient(90deg, #aa3fff 0%, #f3513c 100%);
+            }
+            & .tp-about-progress {
+                background: #f3f5f9;
+                margin-bottom: 60px;
+            }
+            & .tp-about-cpr-feature-list ul li span {
+                background: none;
+                box-shadow: none;
+            }
+            & .tp-about-cpr-feature-list ul li:not(:last-child) {
+                margin-bottom: 9px;
+            }
+        }
+    }
+    &-med{
+        &-thumb{
+            @media #{$xs} {
+                margin-right: 0;
+            }
+            & .thumb{
+                box-shadow: 0 10px 60px -10px rgba(43, 35, 121, 0.3);
+                background: #d9d9d9;
+            }
+            & .tp-expert-video {
+                left: -80px;
+            }
+        }
+        &-shape{
+            top: -50px;
+            right: 120px;
+        }
+        &-content{
+            & .tp-about-cpr-feature-list ul li {
+                font-family: var(--tp-ff-poppins);
+                font-weight: 500;
+                font-size: 18px;
+                color: var(--tp-common-black-4);
+                & span{
+                    background: #f9f9ff;
+                    color: var(--tp-theme-1);
+                    box-shadow: 0 1px 2px 0 rgba(197, 188, 237, 0.6);
+                    line-height: 20px;
+                }
+            }
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-right: 0;
+            }
+            @media #{$lg,$md,$sm,$xs} {
+                margin-left: 0;
+            }
+        }
+    }
+    &-pizza{
+        &-content{
+            @media #{$md,$sm,$xs} {
+                margin-top: 40px;
+            }
+            & .tp-service-pizza-item{
+                &:hover{
+                    & .icon{
+                        background: var(--tp-common-black-2);
+                        color: var(--tp-common-white);
+                    }
+                }
+            }
+            & .icon{
+                background: var(--tp-common-white);
+                box-shadow: 0 0 15px 0 rgba(21, 23, 52, 0.06);
+                line-height: 76px;
+                -webkit-transition: all 350ms cubic-bezier(.165,.84,.44,1.7);
+                transition: all 350ms cubic-bezier(.165,.84,.44,1.7);
+                flex: 0 0 auto;
+            }
+        }
+        &-thumb{
+            @media #{$lg,$sm,$xs} {
+                margin-right: 0;
+            }
+            &-2{
+                margin-top: -200px;
+                position: relative;
+                z-index: 1;
+                @media #{$xs} {
+                    margin-top: 30px;
+                }
+            }
+            & .tp-hero-pizza-round-text {
+                width: 160px;
+                height: 160px;
+                border-radius: 100%;
+                background: #febf00;
+                box-shadow: 10px 10px 40px 0 rgba(44, 44, 23, 0.3);
+                & span{
+                    @media #{$lg,$md,$sm,$xs} {
+                        margin-top: 46px;
+                    }
+                }
+            }
+            & .tp-hero-pizza-round-text::before {
+                width: 140px;
+                height: 140px;
+                border-color: var(--tp-theme-5);
+                top: 7%;
+            }
+            .tp-hero-pizza-round {
+                top: 11%;
+                left: auto;
+                right: 64px;
+                @media #{$xs} {
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+        &-shape{
+            bottom: 112px;
+            left: 0;
+            width: 9%;
+            &-2{
+                bottom: -27%;
+                left: 38px;
+            }
+        }
+        &-2{
+            &-wrap{
+                & .tp-about-pizza-content{
+                    margin-left: -30px;
+                    @media #{$lg,$md,$sm,$xs} {
+                        margin-left: 0;
+                    }
+                    @media #{$md,$sm,$xs} {
+                        margin-top: 40px;
+                    }
+                }
+            }
+        }
+        &-slider{
+            & .tp-testimonial-lwr-navigation {
+                position: inherit;
+                & span{
+                    background: #f8f8f2;
+                    border: 7px solid #f8f8f2;
+                }
+            }
+            & .tp-hero-pizza-round {
+                top: 6%;
+                right: 3px;
+            }
+            & .pizza{
+                -webkit-animation: rotate-infinite-2 60s linear infinite;
+                animation: rotate-infinite-2 60s linear infinite;
+            }
+            & .tometo{
+                left: -15px;
+                top: 80px;
+            }
+            & .chili{
+                bottom: 120px;
+                left: -180px;
+            }
+            & .leaf{
+                bottom: 38px;
+                right: 238px;
+                @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+                    bottom: 0;
+                    right: 0;
+                }
+            }
+            & .big-title{
+                font-size: 300px;
+                color: #f8f8f2;
+                position: absolute;
+                bottom: 70px;
+                left: -230px;
+                @media #{$xl,$lg,$md,$sm,$xs} {
+                    font-size: 200px;
+                    bottom: 0;
+                }
+                @media #{$md,$sm,$xs} {
+                    bottom: 150px;
+                }
+            }
+        }
+    }
+}

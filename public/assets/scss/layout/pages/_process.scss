@@ -1,0 +1,260 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.25 process css
+/*----------------------------------------*/
+
+.#{$theme-prifix}-process{
+    &-number{
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 50%;
+      @include tp-transition();
+      display: inline-block;
+      &::before{
+          position: absolute;
+          content: "";
+          border: 1px solid transparent;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -60%);
+          width: 64px;
+          height: 64px;
+          line-height: 64px;
+          text-align: center;
+          border-radius: 50%;
+          @include tp-transition();
+      }
+      &.one{
+        background: var(--tp-common-mint);
+        &::before{
+            border-color:  var(--tp-common-mint);
+        }
+      }
+      &.two{
+        background: #d6c8ff;
+        &::before{
+            border-color:  #d6c8ff;
+        }
+      }
+      &.three{
+        background: #ffe0c2;
+        &::before{
+            border-color:  #ffe0c2;
+        }
+      }
+      &.four{
+        background: #c8f7fd;
+        &::before{
+            border-color:  #c8f7fd;
+        }
+      }
+    }
+    &-border{
+      right: -70px;
+      top: 10px;
+    }
+    &-item{
+      &:hover{
+        & .tp-process-number::before {
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    &-cpr{
+      &-step{
+        & ul{
+          & li{
+            list-style: none;
+            position: relative;
+            &:not(:last-child){
+              &::before{
+                position: absolute;
+                content: "";
+                width: 1px;
+                height: 100%;
+                background: rgba(36, 46, 69, 0.15);
+                left: 24px;
+                top: 0;
+              }
+            }
+            &:hover{
+              & span{
+                color: var(--tp-common-white);
+                border-color: transparent;
+                &::before{
+                  opacity: 1;
+                  transform: scale(1);
+                }
+              }
+            }
+            & span{
+              width: 48px;
+              height: 48px;
+              text-align: center;
+              line-height: 48px;
+              position: relative;
+              z-index: 1;
+              border: 1px solid rgba(36, 46, 69, 0.15);
+              transition: all .5s ease;
+              &::before{
+                position: absolute;
+                content: "";
+                background: linear-gradient(90deg, #aa3fff 0%, #f3513c 100%);
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                opacity: 0;
+                transform: scale(0);
+                z-index: -1;
+                transition: all .5s ease;
+              }
+            }
+          }
+        }
+      }
+      &-thumb{
+        @media #{$lg,$md,$sm,$xs} {
+          padding-left: 0;
+        }  
+      }
+      &-item{
+        @media #{$lg,$sm,$xs} {
+          padding: 20px 35px;
+          box-shadow: 0 0 60px 0 rgba(20, 23, 40, 0.08);
+        }  
+      }
+      &-count{
+        bottom: 30px;
+        left: 0;
+        @media #{$xs} {
+          position: inherit!important;
+        }
+      }
+    }
+    &-med{
+      &-thumb{
+        @media #{$lg,$md,$sm,$xs} {
+          margin-right: 0;
+        }
+        & .thumb{
+          box-shadow: 0 10px 40px -5px rgba(177, 174, 182, 0.6);
+          background: linear-gradient(180deg, rgba(43, 38, 93, 0.8) 9.57%, rgba(43, 38, 93, 0.8) 100%);
+        }
+        & .patients{
+          bottom: 36px;
+          right: 46px;
+        }
+      }
+      &-content{
+        @media #{$lg,$md,$sm,$xs} {
+          margin-right: 0;
+        }
+      }
+      &-border{
+        border-top: 1px solid rgba(43, 38, 93, 0.15);
+      }
+    }
+    &-salon{
+      &-thumb{
+        & .patients{
+          right: auto;
+          left: 46px;
+        }
+      }
+    }
+    &-it{
+      &-step{
+        & ul li span::before {
+          background: var(--tp-theme-4);
+        }
+      }
+      &-bigtext{
+        font-size: 220px;
+        letter-spacing: -0.06em;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.3);
+        transform: rotate(-90deg);
+        position: absolute;
+        right: -272px;
+        bottom: 199px;
+        @media #{$lg,$md,$sm,$xs} {
+          font-size: 190px;
+          right: -226px;
+        }
+      }
+      &-2{
+        &-item{
+          & p{
+            @media #{$lg,$md,$sm,$xs} {
+              & br{
+                display: none;
+              }
+            }
+          }
+          &::before{
+            content: "";
+            height: 1px;
+            display: inline-block;
+            width: calc(100% + 30px);
+            transform: translateY(60px);
+            background: rgba(0, 0, 0, 0.1);
+            @media #{$xs} {
+              width: 100%;
+            }
+          }
+          & span{
+            display: inline-block;
+            margin-bottom: 27px;
+            padding-bottom: 32px;
+            position: relative;
+            &::before{
+              position: absolute;
+              content: "";
+              bottom: 0;
+              left: 0;
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              background-color: var(--tp-theme-primary);
+              animation: animate-pulse-2 3s linear infinite;
+            }
+          }
+        }
+      }
+    }
+    &-pizza{
+      & .icon{
+        box-shadow: 0 0 20px 0 rgba(29, 27, 49, 0.06);
+        background: var(--tp-common-white);
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        & .count{
+          position: absolute;
+          background: #f8f8f2;
+          width: 30px;
+          height: 30px;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 50%;
+          top: 0;
+          right: -5px;
+        }
+      }
+      &:hover{
+        & .icon{
+          background: var(--tp-theme-5);
+          color: var(--tp-common-white);
+          transition: all .5s ease;
+          & .count{
+            background: var(--tp-common-white);
+          }
+        }
+      }
+    }
+  }

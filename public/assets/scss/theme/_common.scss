@@ -1,0 +1,409 @@
+@use '../utils' as *;
+/*---------------------------------
+    1.1 Common Classes
+---------------------------------*/
+
+.shape-image-animation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+}
+.shape-image-animation svg {
+    height: 100%;
+    width: 100%;
+}
+.shape-image-animation svg path {
+    width: 100%;
+}
+.tp-social-icon-style{
+    & a{
+		-webkit-transition: .3s cubic-bezier(.12,0,.39,0);
+		transition: .3s cubic-bezier(.12,0,.39,0);
+		z-index: 1;
+		&:hover{
+			color: var(--tp-common-white);
+			& span{
+				-webkit-transform: scale(1);
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+		& span{
+			display: block;
+			border-radius: 100%;
+			height: 100%;
+			width: 100%;
+			top: -1px;
+			left: -1px;
+			padding: 1px;
+			box-sizing: content-box;
+			margin: 0;
+			position: absolute;
+			-webkit-transform: scale(1.2);
+			transform: scale(1.2);
+			opacity: 0;
+			-webkit-transition: .5s cubic-bezier(.12,0,.39,0);
+			transition: .5s cubic-bezier(.12,0,.39,0);
+			pointer-events: none;
+			z-index: -1;
+			background-color: var(--tp-theme-4);
+		}
+	}
+}
+
+.w-img{
+	& img{
+		width: 100%;
+	}
+}
+.m-img{
+	& img{
+		max-width: 100%;
+	}
+}
+.fix {
+    overflow:hidden
+}
+.clear{
+    clear: both;
+}
+
+.z-index-1{
+	z-index: 1;
+}
+.z-index-2{
+	z-index: 2;
+}
+.z-index-3{
+	z-index: 3;
+}
+.z-index-4{
+	z-index: 4;
+}
+.z-index-5{
+	z-index: 5;
+}
+.z-index-6{
+	z-index: 6;
+}
+.z-index-7{
+	z-index: 7;
+}
+.z-index-8{
+	z-index: 8;
+}
+.z-index-9{
+	z-index: 9;
+}
+.z-index-10{
+	z-index: 10;
+}
+.z-index-m-1{
+	z-index: -1;
+}
+.gx-10{
+	--bs-gutter-x: 10px;
+}
+.gx-14{
+	--bs-gutter-x: 14px;
+}
+.gx-20{
+	--bs-gutter-x: 20px;
+}
+.gx-24{
+	--bs-gutter-x: 24px;
+}
+.gx-30{
+	--bs-gutter-x: 30px;
+}
+.gx-40{
+	--bs-gutter-x: 40px;
+}
+.gx-45{
+	--bs-gutter-x: 45px;
+}
+.gx-48{
+	--bs-gutter-x: 48px;
+}
+.gx-60{
+	--bs-gutter-x: 60px;
+}
+.gx-70{
+	--bs-gutter-x: 70px;
+}
+.gx-80{
+	--bs-gutter-x: 80px;
+}
+.gx-90{
+	--bs-gutter-x: 90px;
+}
+.gx-100{
+	--bs-gutter-x: 100px;
+}
+.border-1px{
+	border: 1px solid transparent;
+}
+.overflow-y-visible{
+	overflow-x: hidden;
+	overflow-y: visible;
+}
+.p-relative{
+	position: relative;
+}
+.p-absolute{
+	position: absolute;
+}
+.p-inherit{
+	position: inherit!important;
+}
+.bg-position{
+	@include tp-background();
+}
+.text-italic{
+	font-style: italic;
+}
+
+/* dropcap */
+.tp-dropcap{
+	&::first-letter{
+		float: left;
+		width: 65px;
+		height: 85px;
+		font-size: 90px;
+		line-height: .8;
+		font-weight: 500;
+		margin-right: 5px;
+		text-align: center;
+		line-height: inherit;
+		text-transform: capitalize;
+		color: var(--tp-common-white);
+		font-family: var(--tp-ff-body);
+	}
+}
+.slide-transtion {
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+}
+.hover-text-black{
+	&:hover{
+		color: var(--tp-common-black);
+	}
+}
+.hover-text-white{
+	&:hover{
+		color: var(--tp-common-white)!important;
+	}
+}
+.hover-text-primary{
+	&:hover{
+		color: var(--tp-theme-primary);
+	}
+}
+.hover-text-theme-1{
+	&:hover{
+		color: var(--tp-theme-1);
+	}
+}
+.hover-text-theme-3{
+	&:hover{
+		color: var(--tp-theme-3);
+	}
+}
+.hover-bg-theme-3{
+	&:hover{
+		background: var(--tp-theme-3);
+	}
+}
+.hover-text-theme-4{
+	&:hover{
+		color: var(--tp-theme-4)!important;
+	}
+}
+.hover-bg-theme-4{
+	&:hover{
+		background: var(--tp-theme-4);
+	}
+}
+.hover-bg-white{
+	&:hover{
+		background: var(--tp-common-white);
+		border-color: transparent
+	}
+}
+.hover-bg-yellow{
+	&:hover{
+		background: var(--tp-common-yellow);
+		border-color: transparent
+	}
+}
+.underline-black{
+	@include bgborder(#072032, 0,0);
+	@include tp-transition(all .4s ease);
+	&:hover{
+			@include bgborder(#072032, 0,100%);
+			@include tp-transition(all .4s ease);
+	}
+}
+.underline-white{
+	@include bgborder(#fff, 0,0);
+	@include tp-transition(all .4s ease);
+	&:hover{
+			@include bgborder(#fff, 0,100%);
+			@include tp-transition(all .4s ease);
+	}
+}
+.underline-lwr{
+	@include bgborder(#185757, 0,0);
+	@include tp-transition(all .4s ease);
+	&:hover{
+			@include bgborder(#185757, 0,100%);
+			@include tp-transition(all .4s ease);
+	}
+}
+.underline-salon{
+	@include bgborder(#541f5c, 0,0);
+	@include tp-transition(all .4s ease);
+	&:hover{
+			@include bgborder(#541f5c, 0,100%);
+			@include tp-transition(all .4s ease);
+	}
+}
+.underline-crt{
+	@include bgborder(#02a95c, 0,0);
+	@include tp-transition(all .4s ease);
+	&:hover{
+			@include bgborder(#02a95c, 0,100%);
+			@include tp-transition(all .4s ease);
+	}
+}
+
+.tp-transfrom{
+	transform: translateY(-1px)!important;
+}
+.tp-transfrom-2{
+	transform: translateY(-2px);
+}
+.tp-transfrom-3{
+	transform: translateY(-3px);
+}
+.tp-transfrom-4{
+	transform: translateY(-4px);
+}
+// border-redius
+.tp-round-4{
+	border-radius: 4px;
+}
+.tp-round-5{
+	border-radius: 5px;
+}
+.tp-round-6{
+	border-radius: 6px;
+}
+.tp-round-10{
+  border-radius: 10px;
+}
+.tp-round-17{
+	border-radius: 17px;
+}
+.tp-round-20{
+	border-radius: 20px;
+}
+.tp-round-25{
+	border-radius: 25px;
+}
+.tp-round-30{
+	border-radius: 30px;
+}
+.tp-round-35{
+	border-radius: 35px;
+}
+.tp-round-100{
+  border-radius: 100px;
+}
+
+// border-redius
+.lh-0{
+	line-height: 0;
+}
+.lh-16{
+	line-height: 16px;
+}
+.lh-17{
+	line-height: 17px;
+}
+.lh-18{
+	line-height: 18px;
+}
+.lh-20{
+	line-height: 20px;
+}
+.lh-22{
+	line-height: 22px;
+}
+.lh-24{
+	line-height: 24px;
+}
+.lh-26{
+	line-height: 26px;
+}
+.lh-28{
+	line-height: 28px;
+}
+.lh-30{
+	line-height: 30px;
+}
+.lh-32{
+	line-height: 32px;
+}
+.lh-36{
+	line-height: 36px;
+}
+.lh-110-per{
+	line-height: 1.1;
+}
+.lh-117-per{
+	line-height: 1.17;
+}
+.lh-125-per{
+	line-height: 1.25;
+}
+.lh-147-per{
+	line-height: 1.47;
+}
+
+// latter-spacing
+.ls-0{
+	letter-spacing: 0;
+}
+.ls-1{
+	letter-spacing: 0.01em;
+}
+.ls-2{
+	letter-spacing: 0.02em;
+}
+.ls-3{
+	letter-spacing: 0.03em;
+}
+.ls-4{
+	letter-spacing: 0.04em;
+}
+.ls-6{
+	letter-spacing: 0.06em;
+}
+// latter-spacing-meinus
+.ls-m-1{
+	letter-spacing: -0.01em;
+}
+.ls-m-2{
+	letter-spacing: -0.02em;
+}
+.ls-m-4{
+	letter-spacing: -0.04em;
+}
+.ls-m-5{
+	letter-spacing: -0.05em;
+}
+.ls-m-6{
+	letter-spacing: -0.06em;
+}

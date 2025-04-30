@@ -1,0 +1,247 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  2.14 feature
+/*----------------------------------------*/
+
+.#{$theme-prifix}-feature{
+    &-med{
+        &-wrap{
+            padding: 50px 50px 20px 50px;
+            border: 1px solid rgba(43, 38, 93, 0.1);
+            @media #{$xs} {
+                padding: 0; 
+                border: none;
+            }
+        }
+        &-bg{
+            background: linear-gradient(180deg, #f1f1ff 0%, rgba(241, 241, 255, 0) 100%);
+        }
+        &-content{
+            @media #{$xs} {
+                margin-right: 0;
+            }
+            & .icon{
+                box-shadow: 0 4px 10px 0 #e6e5f3;
+                width: 90px;
+                height: 90px;
+                line-height: 90px;
+                @include tp-transition();
+                flex: 0 0 auto;
+                @media #{$xs} {
+                    width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                }
+            }
+            &:hover{
+                & .icon{
+                    background: var(--tp-theme-1);
+                    color: var(--tp-common-white);
+                }
+            }
+            &-2{
+                border: 1px solid rgba(43, 38, 93, 0.15);
+                padding: 50px 35px 42px 35px;
+                transition: all .4s ease;
+                &:hover{
+                    box-shadow: 0 10px 60px -10px rgba(43, 35, 121, 0.2);
+                    border-color: var(--tp-common-white);
+                }
+            }
+        }
+        &-title{
+            &-wrap{
+                & .badge{
+                    padding: 4px 7px;
+                }
+            }
+        }
+    }
+    &-salon{
+        &-border{
+            & > div{
+                border-bottom: 1px solid rgba(84, 31, 92, 0.1);
+                &:not(:last-child){
+                    border-right: 1px solid rgba(84, 31, 92, 0.1);
+                    @media #{$md,$sm,$xs} {
+                        border-right: 0;
+                    }
+                }
+            }
+        }
+        &-2{
+            &-item{
+                padding: 45px 40px 25px 40px;
+                transition: all .4s ease;
+                &:hover{
+                    background: var(--tp-common-white);
+                    box-shadow: 0 10px 40px -10px rgba(22, 21, 43, 0.1);
+                    & .tp-feature-salon-2-shape{
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+                & .icon{
+                    border-bottom: 1px solid rgba(84, 31, 92, 0.15);
+                    & svg{
+                        width: 60px;
+                        height: 40px;
+                    }
+                }
+            }
+            &-shape{
+                bottom: 17px;
+                right: 50px;
+                opacity: 0;
+                visibility: visible;
+                transition: all .4s ease;
+            }
+        }
+    }
+    &-crt{
+        &-icon{
+            top: 30%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transition: all 350ms cubic-bezier(0.37, 0, 0.63, 1);
+        }
+        &-item{
+            &:hover{
+                & .tp-feature-crt-icon{
+                    color: var(--tp-common-yellow);
+                    animation: icon-bounce 0.8s 1;
+                }
+            }
+        }
+        &-shape{
+            right: 0;
+            top: -50px;
+            z-index: -1;
+            width: 14%;
+        }
+    }
+    &-pizza{
+        &-item{
+            -webkit-transition: all .4s cubic-bezier(.165,.84,.44,1);
+            transition: all .4s cubic-bezier(.165,.84,.44,1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            &:hover{
+                -webkit-transform: translate3d(0,-7px,0);
+                transform: translate3d(0,-7px,0);
+                & .tp-feature-pizza-count{
+                    opacity: 1;
+                    visibility: visible;
+                    transform: scale(1);
+                }
+                .title{
+                    color: rgba(35, 35, 35, 0.16);
+                }
+            }
+        }
+        &-count{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            top: -5px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0);
+            transition: all .4s ease;
+        }
+    }
+    &-cpc{
+        &-item{
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 60px 35px 60px;
+            @media #{$lg,$md,$sm,$xs} {
+                padding: 30px 30px 15px 30px;
+            }
+            &:hover{
+                & .tp-feature-cpc-shape{
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+        &-shape{
+            top: 0;
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+            &-2{
+                position: absolute;
+                background: rgba(192, 177, 255, 0.6);
+                width: 400px;
+                height: 500px;
+                filter: blur(250px);
+                right: -150px;
+                top: -300px;
+            }
+        }
+        &-border{
+            position: absolute;
+            content: "";
+            width: 700px;
+            height: 654px;
+            border-radius: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            right: -420px;
+            top: -349px;
+            @media #{$xl} {
+                width: 600px;
+            }
+            @media #{$lg,$md,$sm,$xs} {
+                width: 540px;
+            }
+        }
+        &-coin{
+            right: 205px;
+            top: -40px;
+            @media #{$xl} {
+                right: 120px;
+            }
+            @media #{$lg,$md,$sm,$xs} {
+                right:60px;
+            }
+            &.apps{
+                top: 150px;
+                right: 143px;
+            }
+        }
+        &-big{
+            &-text{
+                font-size: 200px;
+                background: linear-gradient(180deg, rgba(3, 7, 28, 0.9) 0%, #1a1341 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                @media #{$xxl,$xl} {
+                    font-size: 120px;
+                }
+                @media #{$lg} {
+                    font-size: 90px;
+                }
+                @media #{$md,$sm,$xs} {
+                    font-size: 70px;
+                }
+                @media #{$xs} {
+                    font-size: 35px;
+                }
+            }
+        }
+        &-chart{
+            &-img{
+                & img{
+                    mix-blend-mode: luminosity;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,149 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.11 search
+/*----------------------------------------*/
+
+
+.search{
+  $self:&;
+  &__popup{
+    padding-top: 70px; 
+    padding-bottom: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 380px;
+    background-color: var(--tp-common-white);
+    z-index: 9999;
+    @include tp-transform(translateY(calc(-100% - 80px)));
+    transition: transform 0.6s ease-in-out, opacity .6s ease-in-out;
+    transition-delay: .4s;
+      &.active{
+        @include tp-transform(translateY(0%));
+        transition-delay: 0s;
+        #{$self}{
+            &__input{
+                @include tp-transform(translateY(0px));
+                opacity: 1;
+                transition-delay: .3s;
+                &::after{
+                    width: 100%;
+                    transition-delay: .5s;
+                }
+            }
+        }
+    }
+  }
+  &-form{
+    &-toggle{
+      &.active{
+        & .search__input {
+          transform: translateY(0px);
+          opacity: 1;
+          transition-delay: 0.3s;
+          &::after {
+            width: 100%;
+            transition-delay: 0.5s;
+          }
+        }
+      }
+    }
+    &-cpr{
+      & .search__input .search-input-field ~ .search-focus-border {
+        background-color: var(--tp-common-pisces);
+      }
+      & .search__close-btn:hover {
+        color: var(--tp-common-pisces);
+      }
+      & .search__input button:hover {
+        color: var(--tp-common-pisces);
+      }
+    }
+  }
+  &__input{
+    position: relative;
+    height: 80px;
+    @include tp-transform(translateY(-40px));
+    transition: transform 0.6s ease-in-out, opacity .6s ease-in-out;
+    transition-delay: .4s;
+    opacity: 0;
+    &::after{
+      position: absolute;
+      content: '';
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background-color: rgb(66 51 51 / 30%);
+      transition: transform 0.6s ease-in-out, opacity .6s ease-in-out;
+      transition-delay: .4s;
+    }
+    & input{
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+      color: var(--tp-common-black);
+      border-bottom: 1px solid transparent;
+      padding: 0;
+      padding-right: 30px;
+      font-size: 24px;
+      font-weight: 500;
+      font-family: var(--tp-ff-jakarta);
+      @include tp-placeholder{
+        color: var(--tp-common-black);
+        font-size: 24px;
+        font-weight: 500;
+        font-family: var(--tp-ff-jakarta);
+      }
+    }
+    & button{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        @include tp-transform(translateY(-50%));
+        font-size: 18px;
+        color: var(--tp-common-black);
+        &:hover{
+          color: var(--tp-theme-primary);
+        }
+    }
+    @at-root{
+      & .search-input-field{
+      
+          &  ~ .search-focus-border{
+              position: absolute;
+              bottom: 0;
+              left: auto;
+              right: 0;
+              width: 0;
+              height: 2px;
+              background-color: var(--tp-theme-primary);
+              transition: all .15s ease;
+              @include tp-transition(.5s);
+          }
+
+          &:focus ~ .search-focus-border{
+              width: 100%;
+              left: 0;
+              right: auto;
+              transition: all .15s ease;
+              @include tp-transition(.5s);
+          }
+      }
+  } 
+  }
+    &__close{
+    &-btn{
+        font-size: 25px;
+        color: var(--tp-common-black);
+      &:hover{
+          color: var(--tp-theme-primary);
+      }
+    }
+  }
+}

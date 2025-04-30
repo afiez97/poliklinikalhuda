@@ -1,0 +1,26 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  2.7 capabili
+/*----------------------------------------*/
+
+.#{$theme-prifix}-capabili{
+    &-border{
+        background: rgba(36, 46, 69, 0.15);
+        height: 1px;
+        width: 100%;
+    }
+    &-content{
+        @media #{$lg,$md,$sm,$xs} {
+            margin-right: 0;
+        }
+        @media #{$xs} {
+            margin-bottom: 50px;
+        }
+        & p{
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-right: 0;
+            }
+        }
+    }
+}

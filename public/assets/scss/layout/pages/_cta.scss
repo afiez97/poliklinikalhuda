@@ -1,0 +1,131 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.11 cta css
+/*----------------------------------------*/
+
+.#{$theme-prifix}-cta{
+    &-digi{
+        &-space{
+            padding: 60px 60px 40px 60px;
+            @media #{$xs} {
+                padding: 20px 20px 20px 20px;
+            }
+        }
+        &-mail{
+            @media #{$xs} {
+                margin-left: 0;
+            }
+        }
+        &-shape{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: -1;
+        }
+        &-info{
+            @media #{$md,$sm,$xs} {
+                margin-left: 0;
+            }
+            @media #{$xs} {
+                flex-direction: column;
+                align-items: flex-start!important;
+            }
+            & .message{
+                width: 90px;
+                height: 90px;
+                line-height: 90px;
+                flex: 0 0 auto;
+                @media #{$xs} {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+    &-cpr{
+        &-btn{
+            @media #{$md,$sm,$xs} {
+                text-align: left;
+             }
+        }
+    }
+    &-transparent{
+        &-bg{
+            height: 110px;
+            width: 100%;
+            display: block;
+            margin-top: -110px;
+            border-radius: 60px 60px 0 0;
+        }
+    }
+    &-lwr{
+        &-title{
+            padding: 88px 20px 88px 70px;
+            @media #{$md,$sm,$xs} {
+                padding: 30px 20px 30px 20px;
+                & br{
+                    display: none;
+                }
+            }
+        }
+        &-spacing{
+            margin-bottom: -145px;
+            position: relative;
+            z-index: 1;
+            @media #{$md,$sm,$xs} {
+                margin-bottom: -84px;
+            }
+        }
+        &-shape{
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        &-thumb{
+            right: 0;
+            bottom: 0;
+            height: 100%;
+        }
+    }
+    &-med{
+        &-info{
+            & .icon{
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+            }
+        }
+    }
+    &-salon{
+        &-border{
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        &-shape{
+            @media #{$xs} {
+                flex-direction: column;
+               & h3{
+                margin-top: 20px;
+               }
+            }
+        }
+        &-btn{
+            text-align: right;
+            @media #{$md,$sm,$xs} {
+                text-align: start!important;
+            }
+        }
+        &-shape{
+            & .tg-shape{
+                flex: 0 0 auto;
+            }
+        }
+    }
+    &-it{
+        &-border{
+            border-bottom: 8px solid #252840;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+}

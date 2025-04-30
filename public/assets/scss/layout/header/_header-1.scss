@@ -1,0 +1,342 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  3.1 Header Style 1
+/*----------------------------------------*/
+
+.#{$theme-prifix}-header{
+  &-transparent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 13;
+    width: 100%;
+  }
+  &-digi{
+    &-social{
+      padding: 4px 0px 4px 22px;
+      border-left: 1px solid var(--tp-border-1);
+      margin-left: 22px;
+      & a {
+        font-size: 16px;
+        color: var(--tp-grey-1);
+        &:not(:last-child) {
+          margin-right: 12px;
+        }
+        &:hover {
+          color: var(--tp-common-black);
+           & svg {
+              fill: var(--tp-common-black);
+           }
+        }
+        & svg {
+          width: 16px;
+          fill: var(--tp-grey-1);
+          transform: translateY(-2px);
+          @include tp-transition();
+        }
+     }
+    }
+    &-top{
+      padding: 13px 0px;
+    }
+    &-wrapper{
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(0px);
+      box-shadow: 0 10px 30px 0 rgba(1, 15, 28, 0.04);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0 15px;
+      @media #{$xs} {
+        padding: 10px!important;
+        border-radius: 0;
+      }
+    }
+    &-white{
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px 0 rgba(1, 15, 28, 0.06);
+      background: var(--tp-common-white);
+    }
+  }
+  &-lang {
+    padding: 4px 28px;
+    padding-right: 0;
+    position: relative;
+    z-index: 99;
+    display: inline-block;
+    &-selected {
+      background-color: transparent;
+      cursor: pointer;
+      &::after {
+        position: absolute;
+        content: "\f107";
+        right: 0;
+        top: 56%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        color: var(--tp-common-black);
+        font-size: 16px;
+        font-family: var(--tp-ff-fontawesome);
+      }
+    }
+    &-list {
+      position: absolute;
+      top: 120%;
+      right: 0;
+      background-color: var(--tp-common-black);
+      z-index: 11;
+      padding: 15px 15px;
+      min-width: 100px;
+      visibility: hidden;
+      opacity: 0;
+      & li {
+         list-style: none;
+         color: var(--tp-common-white);
+         text-align: left;
+         list-style: none;
+         font-weight: 400;
+         font-size: 14px;
+         line-height: 1.2;
+         &:not(:last-child) {
+          margin-bottom: 10px
+        }
+      }
+      @include tp-transition();
+      &.tp-lang-list-open {
+        visibility: visible;
+        opacity: 1;
+        top: 100%;
+      }
+    }
+  }
+  &-bar{
+    height: 44px;
+    width: 44px;
+    transition: 0.3s;
+    line-height: 44px;
+    text-align: center;
+    color: var(--tp-common-black);
+    background: var(--tp-theme-primary);
+    border-radius: 6px;
+    & svg{
+      margin-right: 1px;
+    }
+    &:hover{
+      background: var(--tp-common-black);
+      color: var(--tp-common-white);
+    }
+    &-med{
+      background: var(--tp-theme-1);
+      color: var(--tp-common-white);
+    }
+    &-it{
+      background: var(--tp-theme-4);
+      color: var(--tp-common-white);
+    }
+    &-pizza{
+      background: var(--tp-theme-5);
+      color: var(--tp-common-white);
+    }
+    &-port{
+      padding: 0;
+      background: var(--tp-common-white);
+    }
+    &-cpr{
+      background: var(--tp-common-pisces );
+      color: var(--tp-common-white);
+    }
+  }
+  &-md{
+    &-space{
+      @media #{$lg,$md,$sm,$xs} {
+        padding: 10px 20px;
+      }
+      @media #{$xs} {
+        padding: 10px 0;
+      }
+      &-2{
+        @media #{$lg,$md,$sm,$xs} {
+          padding: 10px 0;
+        }
+      }
+    }
+  }
+  &-lwr{
+    &-btn{
+      & .tp-header-bar{
+        background: var(--tp-theme-2);
+        color: var(--tp-common-white);
+      }
+      & .tp-btn-lwr-lg{
+        @media #{$xl} {
+          margin-left: 7px;
+        }
+      }
+    }
+  }
+  &-med{
+    &-btn{
+      & .icon{
+        transform: translateY(-1px);
+      }
+    }
+  }
+  &-salon{
+    &-bar{
+      color: var(--tp-common-sky);
+      background: var(--tp-common-white);
+    }
+    &-border{
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+  }
+  &-crt{
+    &-btn{
+      & .tp-btn-salon-lg{
+        padding: 11px 35px;
+      }
+    }
+    &-bar{
+      background: var(--tp-theme-4);
+      color: var(--tp-common-white);
+      &:hover{
+        background: var(--tp-common-yellow);
+      }
+    }
+    &-top{
+      padding-top: 12px;
+      padding-bottom: 2px;
+    }
+    &-social{
+      display: flex;
+      & a{
+        color: var(--tp-common-white);
+        font-size: 14px;
+        margin-right: 15px;
+        & svg{
+          width: 12px;
+          transform: translateY(-2px);
+        }
+        &:hover{
+          color: var(--tp-common-yellow);
+        }
+      }
+    }
+  }
+  &-pizza{
+    &-btn{
+      & .pizza{
+        @media #{$xl,$lg,$md,$sm,$xs} {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  &-cpc{
+    &-btn{
+      & .tp-header-bar{
+        background: var(--tp-common-white);
+        &:hover{
+          color: var(--tp-common-black);
+        }
+      }
+    }
+  }
+  &-sticky{
+    position: fixed;
+    left: 0;
+    margin: auto;
+    top: 0;
+    width: 100%;
+    z-index: 991;
+    animation: 0.95s ease 0s normal forwards 1 running headerSlideDown;
+    border-radius: 0;
+    backdrop-filter: blur(15px);
+    &.salon-sticky-bg{
+      -webkit-box-shadow: 0px 4px 10px rgba(7, 37, 68, 0.1);
+      box-shadow: 0px 4px 10px rgba(7, 37, 68, 0.1);
+      background: var(--tp-common-sky);
+      border: none;
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+    &.chr-sticky-bg{
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+    &.salon-sticky-bg{
+      background: rgba(84, 31, 92, 0.7);
+      box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+    &.cpr-sticky-bg{
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+      &-2{
+        background: rgba(7, 32, 50, 0.9);
+        & .tp-main-menu nav > ul > li > a {
+          padding: 20px 0px;
+        }
+      }
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+    &.digi-sticky-bg{
+      backdrop-filter: blur(0);
+      & .tp-header-digi-wrapper {
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+        backdrop-filter: blur(15px);
+      }
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+    &.it-sticky-bg{
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+      &-2{
+        background: rgba(7, 32, 50, 0.9);
+        box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+        & .tp-main-menu nav > ul > li > a {
+          padding: 20px 0px;
+        }
+      }
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+    &.lwr-sticky-bg{
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+        color: #2b3342;
+      }
+    }
+    &.med-sticky-bg{
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+      &-2{
+        background: rgba(244, 59, 0, 0.8);
+        box-shadow: 0 2px 4px rgba(7, 37, 68, 0.1);
+        & .tp-main-menu nav > ul > li > a {
+          padding: 20px 0px;
+        }
+      }
+      & .tp-main-menu nav > ul > li > a {
+        padding: 20px 0px;
+      }
+    }
+  }
+}

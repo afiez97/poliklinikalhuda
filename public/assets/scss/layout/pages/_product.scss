@@ -1,0 +1,62 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.26 product css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-product{
+    &-pizza{
+        &-item{
+            border: 1px solid rgba(35, 35, 35, 0.15);
+            padding: 50px 20px 40px 20px;
+            transition: all .4s ease;
+            &:hover{
+                box-shadow: 0 12px 20px 0 rgba(1, 15, 28, 0.06);
+                background: var(--tp-common-white);
+                border-color: var(--tp-common-white);
+                .thumb{
+                    transform: rotate(-10deg);
+                }
+            }
+            .thumb{
+                -webkit-transition: all 0.4s cubic-bezier(0.37, 0, 0.63, 1);
+                transition: all 0.4s cubic-bezier(0.37, 0, 0.63, 1);
+            }
+        }
+        &-ratings{
+            background: #f8f8f2;
+            display: inline-block;
+            padding-left: 5px;
+            & span{
+                border-radius: 0 2px 2px 0;
+                width: 32px;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+        &-shape{
+            right: 100px;
+            top: 70px;
+            @media #{$lg,$md,$sm,$xs} {
+                right: 0;
+            }
+            &-2{
+                left: 140px;
+                top: 113px;
+                @media #{$lg,$md,$sm,$xs} {
+                    left: 0;
+                }
+            }
+            &-3{
+                font-family: var(--tp-ff-staat);
+                font-weight: 400;
+                font-size: 220px;
+                letter-spacing: 0.02em;
+                color: var(--tp-common-white);
+                bottom: 0;
+                left: -20px;
+            }
+        }
+    }
+}

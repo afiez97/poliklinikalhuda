@@ -1,0 +1,115 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.12 expert css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-expert{
+    &-lwr{
+        &-progress{
+            &-wrapper{
+                & .tp-about-progress {
+                    background: #f9f3ef;
+                    height: 6px;
+                }
+                & .tp-about-progress .progress-bar {
+                    background-color: var(--tp-common-apricot);
+                }
+                & .tp-about-progress .progress-bar span {
+                    transform: translateY(-80%);
+                    box-shadow: none;
+                    border: none;
+                    border-radius: 0;
+                    background: none;
+                    letter-spacing: -0.02em;
+                    color: #898d95;
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+            }
+        }
+        &-brand{
+            @media #{$lg,$md,$sm,$xs} {
+                margin-left: 0;
+            }
+            &-wrap{
+                display: flex;
+                flex-wrap: nowrap;
+                @media #{$xs} {
+                    & img{
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+    &-video{
+        width: 160px;
+        box-shadow: -10px 6px 60px -10px rgba(117, 117, 126, 0.15);
+        position: absolute;
+        top: 60px;
+        left: -90px;
+        @media #{$md,$sm} {
+            left: 20px;
+        }
+        @media #{$xs} {
+            left: auto;
+            right: 0;
+            top: 0;
+        }
+        &-thumb{
+            box-shadow: 0 10px 40px -10px rgba(4, 29, 29, 0.4);
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-left: 100px;
+            }
+            @media #{$md,$sm,$xs} {
+                margin-left: 0;
+            }
+            &::before{
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(180deg, rgba(28, 78, 78, 0) 52.39%, #1c4e4e 100%);
+                border-radius: 10px;
+            }
+        }
+        & .tp-btn-video {
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            background: var(--tp-common-white);
+        }
+    }
+    &-play{
+        &-video{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transform: translateY(-50%);
+        }
+    }
+    &-expreance{
+        bottom: 15px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        @media #{$xs} {
+            bottom: 0;   
+        }
+        & p{
+            margin-bottom: -15px;
+        }
+        & span{
+            width: 56px;
+            height: 56px;
+            text-align: center;
+            line-height: 56px;
+        }
+    }
+}

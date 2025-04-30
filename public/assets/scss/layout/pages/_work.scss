@@ -1,0 +1,176 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.35 work css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-work{
+    $self: &;
+    &-lwr{
+        &-title{
+            &-wrap{
+                @media #{$md,$sm,$xs} {
+                    & br{
+                        display: none;
+                    }
+                }
+            }
+        }
+        &-item{
+            padding: 30px 30px;
+            border: 1px solid rgba(28, 78, 78, 0.1);
+            margin-right: -1px;
+            border-bottom: 0;
+            padding-bottom: 15px;
+            border-radius: 10px 10px 0px 0px;
+            & .lwr-shadow{
+                transition: all .5s ease;
+            }
+            &:hover{
+                & .lwr-shadow{
+                    box-shadow: 0 10px 40px -10px #5e5e95;
+                }
+            }
+        }
+    }
+    &-med{
+        &-btn{
+            text-decoration: underline;
+            text-decoration-color: var(--tp-theme-1);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            &:hover{
+                text-decoration: underline;
+                text-decoration-color: var(--tp-common-black-4);
+                color: var(--tp-common-black-4);;
+            }
+            &-wrap{
+                @media #{$md,$sm,$xs} {
+                    text-align: left!important;
+                }
+            }
+        }
+        &-shape{
+            bottom: 0;
+            left: 0;
+            width: 12%;
+        }
+    }
+    &-crt{
+        &-item{
+            &:hover{
+                & .tp-work-crt-count{
+                    color: var(--tp-theme-4);
+                }
+            }
+            & p{
+                @media #{$lg,$md,$sm,$xs} {
+                   & br{
+                    display: none;
+                   }
+                }
+            }
+        }
+        &-count{
+            color: #edf9f3;
+            font-size: 120px;
+            transition: all .4s ease;
+        }
+        &-border{
+            width: 100%;
+            height: 1px;
+            background: #edf9f3;
+            top: 27.3%;
+            left: 0;
+            z-index: 1;
+        }
+        &-banner{
+            &-content{
+                padding: 30px 0px;
+                @media #{$lg,$md,$sm,$xs} {
+                    margin-right: 15px;
+                }
+                @media #{$md,$sm,$xs} {
+                   padding: 30px 30px;
+                }
+                @media #{$xs} {
+                    margin-right: 0;
+                 }
+            }
+            &-wrap{
+                box-shadow: 0 20px 60px 0 rgba(173, 169, 191, 0.4);
+                margin-top: -320px;
+                position: relative;
+            }
+        }
+        &-btn{
+            & .tp-btn-salon-lg {
+                padding: 11px 36px;
+            }
+        }
+        &-icon{
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+        }
+        &-transparent{
+            &-text{
+                font-size: 200px;
+                color: rgba(255, 255, 255, 0.1);
+                position: absolute;
+                right: -579px;
+                bottom: -171px;
+                line-height: 1;
+                @media #{$lg} {
+                    bottom: -110px;
+                }
+                @media #{$md,$sm,$xs} {
+                    font-size: 100px;
+                    bottom: -20px;
+                    right: -200px;
+                }
+            }
+        }
+        &-valu{
+            left: 40px;
+            bottom: 100px;
+            @media #{$lg,$md,$sm,$xs} {
+                bottom: 40px;
+            }
+            @media #{$xs} {
+                bottom: -15px;
+                left: 0;
+            }
+            & .crt-text-position{
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0;
+                right: 0;
+                text-align: center;
+            }
+        }
+        &-bg{
+            position: relative;
+            z-index: -1;
+            &-shape{
+                position: absolute;
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                &-2{
+                    position: absolute;
+                    right: 0;
+                    z-index: 1;
+                    top: 18%;
+                    width: 15%;
+                }
+            }
+        }
+        &-content{
+            &-bg{
+                padding-bottom: 455px;
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.10 counter css
+/*----------------------------------------*/
+.#{$theme-prifix}-counter{
+    &-lwr{
+        &-item{
+            @media #{$xs} {
+                margin-left: 0;
+                text-align: center;
+            }
+        }
+    }
+    &-med{
+        &-item{
+            & .tp-funfact-digi-border {
+                position: absolute;
+                width: 0;
+                height: 14px;
+                background: #c3bcff;
+                bottom: 17px;
+                left: auto;
+                right: 0;
+            }
+            &:hover{
+                & .tp-funfact-digi-border {
+                    width: 100%;
+                    left: 0;
+                    right: auto;
+                }
+            }
+        }
+    }
+    &-it{
+        &-content{
+            @media #{$md,$sm,$xs} {
+                margin-left: 0;
+            }
+            @media #{$xs} {
+                text-align: center;
+            }
+            & .count{
+                line-height: .8;
+            }
+            & .odometer {
+                transform: translateY(-5px);
+            }
+        }
+    }
+}
+.counter-style{
+    &-01{
+        & .vertical-counter-number ul {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            will-change: transform;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            position: relative;
+            z-index: 999;
+        }
+        & .vertical-counter-number {
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+        }
+        & .vertical-counter:after {
+            content: attr(data-text);
+            display: inline-block;
+            margin-left: 3px;
+            word-break: normal;
+        }
+    }
+}

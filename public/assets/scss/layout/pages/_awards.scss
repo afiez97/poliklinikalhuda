@@ -1,0 +1,52 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.4 awards css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-awards{
+    &-crt{
+        &-counter{
+            font-size: 140px;
+            & .vertical-counter-number {
+                letter-spacing: -13px;
+            }
+        }
+        &-plus{
+            top: 5px;
+            right: -12px;
+        }
+        &-map{
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            right: 80px;
+            z-index: -1;
+            @media #{$xs} {
+                width: 100%;
+                left: 0;
+                right: 0;
+             }
+        }
+        &-item{
+            border-top: 1px solid rgba(24, 87, 87, 0.1);
+            border-bottom: 1px solid rgba(24, 87, 87, 0.1);
+            border-right: 1px solid rgba(24, 87, 87, 0.1);
+            margin-right: -1px;
+            margin-top: -1px;
+            margin-top: 2px;
+            padding: 28px 0px 20px 0px;
+            @media #{$sm,$xs} {
+                margin-top: -1px;
+             }
+        }
+        &-right{
+            &-content{
+                @media #{$md,$sm,$xs} {
+                    padding-top: 0px;
+                }
+            }
+        }
+    }
+}

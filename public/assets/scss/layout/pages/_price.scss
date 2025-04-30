@@ -1,0 +1,333 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.24 price css
+/*----------------------------------------*/
+
+.#{$theme-prifix}-price{
+    $self: &;
+    &-digi{
+        &-space{
+            margin-top: -215px;
+            z-index: 1;
+            position: relative;
+        }
+        &-item{
+            border: 1px solid var(--tp-border-2);
+            padding: 50px 50px 50px 50px;
+            -webkit-transition: all .3s ease-in-out;
+			transition: all .3s ease-in-out;
+            @media #{$xs} {
+                padding: 50px 30px 50px 30px;
+            }
+            &:hover{
+                box-shadow: 0 10px 60px -10px rgba(1, 16, 61, 0.08);
+                background: #fefefe;
+                -webkit-transform: translate3d(0, -2px, 0);
+				transform: translate3d(0, -2px, 0);
+            }
+        }
+        &-head{
+            & .mt-meinus{
+                transform: translateY(-16px);
+                margin-right: -4px;
+            }
+            & h5{
+                background: #c8f7fd;
+                padding: 9px 15px;
+                &.price-standard{
+                    background: #c8fddd;
+                }
+                &.price-premium{
+                    background: #d6c8ff;
+                }
+            }
+        }
+        &-list{
+            & ul{
+                & li{
+                    display: flex;
+                    align-items: center;
+                    list-style: none;
+                    font-weight: 500;
+                    font-size: 15px;
+                    letter-spacing: -0.02em;
+                    color: var(--tp-grey-1);
+                    &:not(:last-child){
+                        margin-bottom: 14px;
+                    }
+                    & .icon{
+                        font-size: 12px;
+                        background: #e2ffd0;
+                        box-shadow: 0 1px 2px 0 rgba(6, 138, 75, 0.3);
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50px;
+                        display: inline-block;
+                        text-align: center;
+                        line-height: 20px;
+                        font-weight: 700;
+                        margin-right: 13px;
+                    }
+                    &.disable{
+                        opacity: 0.2;
+                    }
+                }
+            }
+        }
+    }
+    &-cpr{
+        &-title{
+            & .tp-cpr-section-subtitle {
+                background: linear-gradient(90deg, #F5F4F4 -314%, rgba(255, 255, 255, 0) 90%);
+            }
+        }
+        &-icon{
+            width: 45px;
+        }
+        &-item{
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 50px 50px 50px 50px;
+            @media #{$xl,$md,$sm,$xs} {
+                padding: 30px 30px 30px 30px;
+            }
+            &-main{
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.03);
+                & .tp-price-cpr-list {
+                    background: #242e45;
+                }
+            }
+        }
+        &-list{
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px 10px 30px 30px;
+            & ul{
+                & li{
+                    font-size: 17px;
+                    font-weight: 400;
+                    font-family: var(--tp-ff-jakarta);
+                    color: var(--tp-common-white);
+                    & .icon{
+                        background: var(--tp-common-pisces);
+                        color: var(--tp-common-white);
+                    }
+                }
+            }
+        }
+        &-shape{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 29%;
+        }
+        &-2{
+            &-item{
+                border: 1px solid rgba(36, 46, 69, 0.1);
+                & .tp-about-cpr-btn a{
+                    border: 1px solid rgba(36, 46, 69, 0.1);
+                }
+                & .tp-price-cpr-list ul li {
+                    color: var(--tp-grey-3);
+                }
+                & .tp-price-cpr-list {
+                    background: #fbfcff;
+                }
+                &-main{
+                    background: var(--tp-common-white);
+                    & .tp-price-cpr-list {
+                        background: #f3f5f9;
+                    }
+                    & .tp-price-cpr-list ul li {
+                        color: #878898;
+                    }
+                }
+            }
+        }
+    }
+    &-salon{
+        &-wrap{
+            @media #{$md,$sm,$xs} {
+                margin-right: 0;
+            }
+            &:hover{
+                & .title{
+                    color: var(--tp-theme-3);
+                }
+                & .price{
+                    color: var(--tp-common-sky);
+                }
+            }
+        }
+        &-border{
+            & > div{
+                border-bottom: 1px solid rgba(84, 31, 92, 0.1);
+                border-right: 1px solid rgba(84, 31, 92, 0.1);
+                @media #{$md,$sm,$xs} {
+                    border-right: 0;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                }
+                &:nth-child(2){
+                    padding-left: 60px;
+                    border-right: 0;
+                    @media #{$md,$sm,$xs} {
+                        padding-left: 0;
+                    }
+                }
+                &:nth-child(4){
+                    padding-left: 60px;
+                    border-right: 0;
+                    @media #{$md,$sm,$xs} {
+                        padding-left: 0;
+                    }
+                }
+                &:nth-child(5){
+                    border-bottom: 0;
+                    @media #{$md,$sm,$xs} {
+                        border-bottom: 1px solid rgba(84, 31, 92, 0.1);
+                    }
+                }
+                &:nth-child(6){
+                    padding-left: 60px;
+                    border-right: 0;
+                    border-bottom: 0;
+                    @media #{$md,$sm,$xs} {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+        &-shape{
+            right: 0;
+            top: -180px;
+            width: 4%;
+            &-4{
+                top: 170px;
+            }
+        }
+    }
+    &-pizza{
+        &-discount{
+            padding: 55px 10px 23px 10px;
+            @media #{$md,$sm,$xs} {
+                margin-right: 0;
+            }
+        }
+        &-item{
+            width: 140px;
+            height: 140px;
+            background: #f8f8f2;
+            border-radius: 3px;
+            line-height: 140px;
+            text-align: center;
+            @media #{$md,$sm,$xs} {
+                width: 120px;
+                height: 120px;
+                line-height: 120px;
+            }
+            & img{
+                transition: all .4s ease;
+            }
+            & span{
+                padding: 2px 6px;
+                line-height: 1;
+                padding-top: 4px;
+                left: 10px;
+                top: 10px;
+                border-radius: 3px;
+            }
+        }
+        &-content{
+            &-wrap{
+                border: 1px solid rgba(1, 15, 28, 0.1);
+                padding: 12px;
+                &:hover{
+                    border-color: transparent;
+                    box-shadow: 0 4px 30px -6px rgba(30, 19, 46, 0.08);
+                    & .tp-price-pizza-item{
+                        & img{
+                            transform: rotate(-5deg);
+                        }
+                    }
+                }
+            }
+            & .ratings{
+                & span{
+                    color: var(--tp-common-yellow);
+                    font-size: 14px;
+                    &:last-child{
+                        color: #bfc5ca;
+                    }
+                }
+            }
+        }
+    }
+    &-cpc{
+        &-table{
+            & thead{
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                & th{
+                    padding-bottom: 40px;
+                    padding-left: 30px;
+                    @media #{$lg,$md,$sm,$xs} {
+                        padding-left: 10px;
+                    }
+                }
+            }
+            & tbody{
+                & tr{
+                    transition: all .4s ease;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                    vertical-align: middle;
+                    height: 70px;
+                    & td{
+                        padding-left: 30px;
+                        @media #{$lg,$md,$sm,$xs} {
+                            padding-left: 10px;
+                        }
+                    }
+                }
+            }
+            & .tp-cpc-btn{
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 8px 20px;
+                transition: all .4s ease;
+                background: transparent;
+                position: relative;
+                z-index: 1;
+                &::before{
+                    position: absolute;
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background: linear-gradient(90deg, #5b49f5 0%, #885efe 35%, #61ce70 100%);
+                    transition: all .4s ease;
+                    opacity: 0;
+                    visibility: hidden;
+                    border-radius: 4px;
+                    z-index: -1;
+                }
+            }
+            & tbody{
+                & tr{
+                    &:hover{
+                        background: rgba(255, 255, 255, 0.08);
+                        & .tp-cpc-btn{
+                            border: 1px solid transparent;
+                            color: var(--tp-common-white);
+                            &::before{
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

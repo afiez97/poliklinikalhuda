@@ -1,0 +1,63 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.30 success css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-success{
+    $self: &;
+    &-digi{
+        &-item{
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            &:hover{
+                #{$self}{
+                    &-digi{
+                        &-icon{
+                            background: var(--tp-theme-primary);
+                        }
+                    }
+                }
+            }
+        }
+        &-icon{
+            width: 90px;
+            height: 90px;
+            border-radius: 100%;
+            background: #f8faf5;
+            display: inline-block;
+            text-align: center;
+            line-height: 90px;
+            @include tp-transition();
+        }
+        &-title{
+            &-para{
+                & p{
+                    @media #{$md,$sm,$xs} {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+    &-cpr{
+        &-item{
+            &:hover{
+                & .tp-success-digi-icon {
+                    background-color: var(--tp-common-black-3);
+                    color: var(--tp-common-white);
+                }
+            }
+            & .tp-success-digi-icon {
+                box-shadow: 0 4px 16px 0 rgba(29, 27, 49, 0.05);
+                background: var(--tp-common-white);
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+            }
+        }
+    }
+}

@@ -1,0 +1,189 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.33 timetable css
+/*----------------------------------------*/
+
+/* Event style 02 */ 
+.time-schedule.alt-font.event-style-02 {
+    margin-top: -1px;
+    margin-bottom: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+.time-table {
+    display: -webkit-box; 
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal; 
+    flex-flow: row nowrap;
+    -webkit-box-align: stretch; 
+    align-items: stretch;
+    -webkit-box-flex: 1; 
+    flex: 1 0;
+    +.time-table {
+        .time-table-box {
+            border-top-width: 0 !important;
+        }
+    }
+}
+.time-schedule-scroll {
+    @media #{$lg,$md,$sm,$xs} {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+}
+.time-schedule-min-width {
+    @media #{$lg,$md,$sm,$xs} {
+        min-width: 1250px;
+    }
+  }
+.time-table-box {
+    -webkit-box-align: stretch; 
+    align-items: stretch;
+    text-align: center; 
+    flex-basis: 12.5%;
+    padding: 30px 20px;
+    padding-bottom: 20px;
+    position: relative; 
+    display: -webkit-box;  
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal; 
+    flex-direction: column;
+    -webkit-box-pack: center; 
+    justify-content: center;
+    min-height: 100px;
+    transition: all .5s ease;
+    @media #{$xl} {
+        padding: 20px 10px;  
+    }
+    &:hover{
+        background: var(--tp-theme-1);
+        border-color: var(--tp-theme-1)!important;
+        &  .inner-box {
+            & span{
+                color: var(--tp-common-white);
+            }
+            & > div{
+                color: rgba(255, 255, 255, 0.75);
+            }
+        }
+    }
+    .inner-box {
+        display: -webkit-box; 
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal; 
+        flex-direction: column;
+        -webkit-box-pack: center; 
+        justify-content: center;
+        -webkit-box-flex: 1; 
+        flex: 1 auto;
+        z-index: 9;
+        align-items: flex-start;
+        & img{
+            width: 30px;
+            margin-bottom: 4px;
+        }
+        > div {
+            line-height: initial;
+            margin-top: 7px;
+        }
+    }
+    +.time-table-box {
+        border-left-width: 0 !important;
+        &.name-box {
+            &:before {
+                position: absolute;
+                content: "";
+                transition: opacity .3s;
+                opacity: 0;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: var(--base-color);
+            }
+            &:hover {
+                &:before {
+                    opacity: 1;
+                }
+                .hover-detail {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &.day {
+        padding: 15px 10px;
+        min-height: 1px;
+    }
+    .hover-detail {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        padding: 20px 20px;
+        padding-bottom: 15px;
+        border-radius: 10px;
+        width: 220px;
+        z-index: 111;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        box-shadow: 0 0 60px 0 rgba(27, 23, 55, 0.12);
+        &:after {
+            content: '';
+            top: -21px;
+            left: 50%;
+            height: 0;
+            width: 0;
+            z-index: 9;
+            margin-left: -14px;
+            position: absolute;
+            pointer-events: none;
+            border: solid transparent;
+            border-width: 11px;
+            border-bottom-color: var(--tp-common-white);
+        }
+        &.hover-detail-left {
+            left: auto;
+            right: 0;
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none;
+            &:after {
+                right: 60px;
+                left: auto;
+            }
+        }
+        &.hover-detail-top {
+            top: auto;
+            bottom: 100%;
+            &:after {
+                top: auto;
+                bottom: -21px;
+                border-top-color: var(--tp-common-white);
+                border-bottom-color: transparent;
+            }
+        }
+    }
+}    
+.name-box {
+    span {  
+        line-height: 26px;
+        transition: 0.2s;
+    }
+    div {
+        line-height: 26px;
+        transition: 0.2s;
+    }
+}  
+
+.border-color-gray{
+    border: 1px solid rgba(43, 38, 93, 0.1)!important;
+}

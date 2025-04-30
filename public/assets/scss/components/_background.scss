@@ -1,0 +1,60 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.2 Background
+/*----------------------------------------*/
+.tp-whitest-bg {
+	background-color: var(--tp-common-whitest);
+}
+.tp-whitest-bg-2 {
+	background: #f2f2f2;
+}
+.tp-gradient-bg {
+	background: linear-gradient(135deg, #f1eff8 0%, #f8f0ee 100%);
+}
+.tp-gradient-bg-2 {
+	background: linear-gradient(90deg, #aa3fff 0%, #f3513c 100%);
+}
+.tp-gradient-bg-3 {
+	background: linear-gradient(133deg, #185757 0%, #b17856 100%);
+}
+.tp-gradient-it-bg {
+	background: linear-gradient(180deg, #dff3fc 0%, #fefefe 100%);
+}
+.tp-black-it-bg {
+	background: #252840;
+}
+.tp-it-bg-2{
+	background: linear-gradient(0deg, #dff3fc 0%, rgba(254, 254, 254, 0.5) 100%);
+}
+.tp-it-bg-3{
+	background: linear-gradient(0deg, rgba(223, 243, 252, 0.4) 0%, rgba(254, 254, 254, 0.4) 100%);
+}
+.tp-currency-bg{
+	background: #03071C;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[data-bg-color = "footer-bg-grey"] {
+	background-color: var(--tp-footer-grey-1);
+}
+[data-bg-color = "footer-bg-white"] {
+	background-color : var(--tp-common-white);
+}

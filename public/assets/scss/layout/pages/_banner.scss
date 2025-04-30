@@ -1,0 +1,51 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  2.5 banner
+/*----------------------------------------*/
+
+.#{$theme-prifix}-banner{
+    &-med{
+        &-left{
+            padding: 34px 40px 12px 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 30px 50px 0 rgba(1, 6, 20, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin: 70px 30px 70px 40px;
+            }
+            @media #{$lg} {
+                margin: 70px 0 70px 40px;
+            }
+            @media #{$md,$sm,$xs} {
+                margin: 30px 30px 30px 30px;
+            }
+        }
+        &-experience{
+            & h2{
+                background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 240px;
+                line-height: 200px;
+            }
+            & span{
+                color: rgba(255, 255, 255, 0.65);
+                display: inline-block;
+                transform: translateY(-29px);
+            }
+        }
+        &-para{
+           & p{
+            color: rgba(255, 255, 255, 0.65);
+           }
+            & a{
+
+                text-decoration: underline;
+                text-decoration-skip-ink: none;
+            }
+        }
+    }
+}
+

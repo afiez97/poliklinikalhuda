@@ -1,0 +1,60 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  2.21 order
+/*----------------------------------------*/
+
+.#{$theme-prifix}-order{
+    &-pizza{
+        &-item{
+            padding: 67px 0px 70px 50px;
+            @media #{$xs} {
+                padding: 67px 0px 70px 15px;
+            }
+        }
+        &-shape{
+            top: 0;
+            right: 0;
+            width: 59%;
+            @media #{$xs} {
+                width: 50%;
+            }
+        }
+        &-2{
+            &-content{
+                padding: 67px 20px 70px 0px;
+                @media #{$xs} {
+                    padding: 37px 30px 30px 15px;
+                }
+                & .tp-btn-pizza-lg{
+                    box-shadow: 0 0 6px 0 rgba(47, 47, 24, 0.08);
+                }
+            }
+            &-thumb{
+                & .tp-hero-pizza-round-text {
+                    box-shadow: 10px 10px 40px 0 rgba(44, 44, 23, 0);
+                    width: 100px;
+                    height: 100px;
+                    & span{
+                        @media #{$lg,$md,$sm,$xs} {
+                            margin-top: 4px;
+                        }
+                    }
+                }
+                & .tp-hero-pizza-round-text::before {
+                    width: 80px;
+                    height: 80px;
+                    border: 2px dashed var(--tp-theme-5);
+                    @media #{$lg,$md,$sm,$xs} {
+                        margin-top: 4px;
+                    }
+                }
+                & .tp-hero-pizza-round {
+                    top: 9%;
+                    left: auto;
+                    right: 18px;
+                }
+            }
+        }
+    }
+}

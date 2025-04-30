@@ -1,0 +1,58 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.12 Section Title
+/*----------------------------------------*/
+
+.tp-digi{
+    &-section{
+        &-subtitle{
+            border-radius: 22px;
+            letter-spacing: -0.02em;
+            padding: 4px 17px;
+            display: inline-block;
+            background: linear-gradient(90deg, #c8fddd 0%, rgba(235, 254, 178, 0) 100%);
+        }
+    }
+}
+
+.tp-cpr{
+    &-section{
+        &-subtitle{
+            background: linear-gradient(90deg, #f5f4ff 0%, rgba(255, 255, 255, 0) 100%);
+            padding: 5px 15px;
+        }
+    }
+}
+.tp-crt-section-title{
+    & br{
+        @media #{$sm,$xs} {
+           display: none;
+        }
+    }
+}
+.tp-section-it-para{
+    @media #{$lg,$md,$sm,$xs} {
+        margin-left: 0;
+    }
+}
+.tp-pizza-title-wrap{
+    & p{
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            & br{
+                display: none;
+            }
+        }
+    }
+    & h2{
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            & br{
+                display: none;
+            }
+        }
+    }
+}
+.tp-section-cpc-subtitle{
+    background: #1c1d34;
+    padding: 3px 11px;
+}

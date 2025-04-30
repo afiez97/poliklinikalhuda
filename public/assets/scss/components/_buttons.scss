@@ -1,0 +1,231 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.5 Buttons
+/*----------------------------------------*/
+
+.tp-btn{
+	letter-spacing: 0.02em;
+	padding: 11px 34px;
+	-webkit-transition: all .4s cubic-bezier(.37,0,.63,1);
+	transition: all .4s cubic-bezier(.37,0,.63,1); 
+	&:hover{
+		background: var(--tp-common-black);
+		color: var(--tp-common-white);
+	}
+	&-digi{
+		&-sm{
+			padding: 10px 21px;
+		}
+	}
+	&-lg{
+		letter-spacing: -0.01em;
+		padding: 21px 40px;
+		line-height: 0%;
+		&:hover{
+			color: var(--tp-common-black);
+		}
+		&-border{
+			border: 1px solid var(--tp-border-2);
+			&:hover{
+				color: var(--tp-common-black);
+			}
+		}
+	}
+	&-switch{
+		&-animation{
+			-webkit-transition: all .3s ease-in-out;
+			transition: all .3s ease-in-out;
+			& .btn-text{
+				margin-left: -13px;
+				position: relative;
+				z-index: 3;
+				transition: transform .6s 125ms cubic-bezier(.1,.75,.25,1);
+			}
+			& .btn-icon{
+				margin-left: 6px;
+				position: relative;
+				transition: opacity .4s .25s, transform .6s .25s;
+				transition-timing-function: cubic-bezier(.1,.75,.25,1);
+				line-height: 0;
+				z-index: 3;
+			}
+			& .btn-icon+.btn-icon {
+				order: -2;
+				opacity: 0;
+				transition-delay: 0s;
+				margin-left: 0;
+				-webkit-transform: translateX(-10px);
+				transform: translateX(-10px);
+			}
+			&:hover{
+				& .btn-text {
+					transition-delay: .1s;
+					transform: translateX(23px);
+				}
+				& .btn-icon {
+					transition-delay: 0s;
+					transform: translateX(10px);
+					opacity: 0;
+				}
+				& .btn-icon+.btn-icon {
+					opacity: 1;
+					transform: translateX(0);
+					transition-delay: 225ms;
+				}
+			}  
+		}
+		&-text{
+			& > span{
+				display: inline-flex;
+				align-items: center;
+				position: relative;
+				overflow: hidden;
+			}
+			&.btn-lg{
+				& > span{
+					padding: 15px 31px;
+				}
+			}
+			& .btn-double-text{
+				transition: opacity .65s, transform .85s;
+				transition-timing-function: cubic-bezier(.15,.85,.31,1);
+				position: relative;
+				&::before{
+					content: attr(data-text);
+					display: inline-block;
+					position: absolute;
+					white-space: nowrap;
+					top: 50%;
+					opacity: 0;
+					left: 50%;
+					transform: translate(-50%, 100%);
+					transition: opacity .5s, transform .8s;
+					transition-timing-function: cubic-bezier(.15,.85,.31,1);
+				}
+			}
+			&:hover{
+				&.bg-hover-black{
+					background: var(--tp-common-black-4);
+				}
+				&.bg-hover-theme-1{
+					background: var(--tp-theme-1);
+				}
+				& .btn-double-text{
+					transform: translateY(-200%);
+					&::before{
+						transform: translate(-50%, 150%);
+						opacity: 1;
+					}
+				}
+			}
+		}  
+	}
+	&-gradient{
+		background-size: 200% auto;
+		background-image: linear-gradient(to right, #aa3fff, #f3513c, #aa3fff);
+		display: inline-block;
+		&:hover{
+			background-position: right center;
+		}
+		&-cpc{
+			background-image: linear-gradient(to right, #61ce70, #885efe, #61ce70);
+		}
+	}
+	&-video {
+		height: 70px;
+		width: 70px;
+		line-height: 70px;
+		border-radius: 50%;
+		transition: 0.3s;
+		background-image: linear-gradient(90deg, #aa3fff 0%, #f3513c 100%);
+	}
+	&-lwr{
+		&-lg{
+			padding: 16px 32px;
+		}
+		&-xl{
+			padding: 19px 42px;
+		}
+	}
+	&-med{
+		&-border{
+			border: 1px solid rgba(43, 38, 93, 0.15);
+		}
+		&-md{
+			padding: 9px 15px;
+		}
+	}
+	&-salon{
+		&-lg{
+			padding: 15px 36px;
+			display: inline-block;
+		}
+	}
+	&-it{
+		&-border{
+			border: 1px solid #e5e6e9;
+			&:hover{
+				border-color: var(--tp-theme-4);
+			}
+			&-2{
+				border: 1px solid rgba(37, 40, 64, 0.15);
+				&:hover{
+					border-color: var(--tp-theme-4);
+				}
+			}
+			&-3{
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				&:hover{
+					border-color: var(--tp-theme-4);
+				}
+			}
+		}
+		&-md{
+			padding: 12px 39px;
+		}
+		&-lg{
+			padding: 17px 50px;
+		}
+		&-xl{
+			padding: 17px 42px;
+		}
+	}
+	&-pizza{
+		&-lg{
+			padding: 17px 31px;
+		}
+		&-xl{
+			padding: 21px 40px;
+		}
+		&-border{
+			border: 1px solid #232323;
+		}
+	}
+	&-cpc{
+		&-lg{
+			padding: 15px 41px;
+		}
+	}
+}
+.tp-btn-cpr{
+	&-border{
+		border: 1px solid var(--tp-border-3);
+		padding: 12px 22px;
+		&.border-4{
+			border: 1px solid rgba(255, 255, 255, 0.25);
+		}
+		&-2{
+			border: 1px solid rgba(36, 46, 69, 0.1);
+			padding: 20px 20px;
+			line-height: 1;
+		}
+		&-3{
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			padding: 16px 20px;
+		}
+	}
+}
+.med-btn-shadow{
+	box-shadow: 0 10px 40px -10px #86777c;
+}

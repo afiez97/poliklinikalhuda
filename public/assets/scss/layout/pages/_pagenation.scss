@@ -1,0 +1,99 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.22 pagenation css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-pagenation{
+    & nav{
+        & ul{
+            & li{
+                list-style: none;
+                display: inline-block;
+                margin-right: 6px;
+                & a{
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 22px;
+                    box-shadow: 0 1px 3px 0 rgba(3, 4, 28, 0.1);
+                    background: var(--tp-common-white);
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 44px;
+                    font-family: var(--tp-ff-jakarta);
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: var(--tp-common-black-3);
+                    transition: all .4s ease;
+                    &:hover{
+                        background: var(--tp-common-pisces);
+                        color: var(--tp-common-white);
+                    }
+                }
+                &.next{
+                    & a{
+                        width: auto;
+                        height: auto;
+                        font-family: var(--tp-ff-jakarta);
+                        font-weight: 700;
+                        font-size: 16px;
+                        color: var(--tp-common-white);
+                        box-shadow: 0 1px 2px 0 rgba(3, 4, 28, 0.1);
+                        background: var(--tp-common-pisces);
+                        border-radius: 10px;
+                        padding: 0px 19px;
+                        & i{
+                            margin-left: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-lwr{
+        & nav{
+            & ul{
+                & li{
+                    & a{
+                        &:hover{
+                            background: var(--tp-common-apricot);
+                        }
+                    }
+                    &.next{
+                        & a{
+                            background: var(--tp-common-apricot);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-it{
+        & nav{
+            & ul{
+                & li{
+                    & a{
+                        font-family: var(--tp-ff-grotesk);
+                        border: 1px solid rgba(37, 40, 64, 0.15);
+                        background: none;
+                        box-shadow: none;
+                        &:hover{
+                            background: var(--tp-common-white);
+                            color: var(--tp-common-black);
+                            border-color: var(--tp-common-white);
+                            box-shadow: 0 1px 3px 0 rgba(3, 4, 28, 0.2);
+                        }
+                    }
+                    &.next{
+                        & a{
+                            background: var(--tp-theme-4);
+                            border-color: var(--tp-theme-4);
+                            color: var(--tp-common-white);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

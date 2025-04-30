@@ -1,0 +1,134 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.19 maps css
+/*----------------------------------------*/
+
+
+.#{$theme-prifix}-map{
+    &-box{
+        line-height: 0;
+        & iframe{
+            width: 100%;
+            height: 600px;
+            @media #{$md,$sm} {
+                height: 400px;
+            }
+            @media #{$xs} {
+                height: 300px;
+            }
+        }
+    }
+    &-lwr{
+        &-box{
+            & iframe{
+                height: 462px;
+                filter: saturate(0);
+                @media #{$md,$sm} {
+                    height: 400px;
+                }
+                @media #{$xs} {
+                    height: 300px;
+                }
+            }
+        }
+    }
+    &-salon{
+        &-box{
+            & iframe{
+                height: 640px;
+                filter: saturate(0);
+                @media #{$md,$sm} {
+                    height: 500px;
+                }
+                @media #{$xs} {
+                    height: 400px;
+                }
+            }
+        }
+        &-spacing{
+            @media #{$md,$sm,$xs} {
+                padding-top: 0;
+            }
+        }
+        &-location{
+            &-info{
+                width: 400px;
+                box-shadow: 0 10px 40px 0 rgba(214, 206, 206, 0.8);
+                padding: 33px 60px 33px 60px;
+                position: absolute;
+                left: 300px;
+                top: 40px;
+                line-height: 1;
+                @media #{$md,$sm,$xs} {
+                    margin: 50px auto;
+                    position: inherit;
+                }
+                @media #{$xs} {
+                    width: 100%;
+                    padding: 23px 30px 23px 30px;
+                }
+                &-2{
+                    top: 0;
+                    box-shadow: 0 10px 40px 0 rgba(214, 206, 206, 0.8);
+                }
+            }
+        }
+        &-time{
+            & .block{
+                padding: 5px 6px 3px 6px;
+            }
+            &-wrap{
+                & > div{
+                    &:not(:last-child){
+                        border-bottom: 1px solid #541f5c;
+                        padding-bottom: 15px;
+                        margin-bottom: 15px;                    
+                    }
+                }
+            }
+        }
+    }
+    &-crt{
+        &-box{
+            line-height: 0;
+            & iframe{
+                height: 640px;
+                width: 100%;
+                line-height: 1;
+                filter: saturate(0);
+                @media #{$md,$sm} {
+                    height: 400px;
+                }
+                @media #{$xs} {
+                    height: 300px;
+                }
+            }
+        }
+    }
+    &-pizza{
+        width: 588px;
+        position: absolute;
+        right: 0;
+        top: 100px;
+        @media #{$md,$sm,$xs} {
+            width: 100%;
+            position: inherit;
+            margin-top: 40px;
+        }
+        & iframe{
+            height: 644px;
+            width: 100%;
+            line-height: 1;
+            border-radius: 6px;
+            @media #{$lg,$md,$sm,$xs} {
+                height: 450px;
+            }
+        }
+        &-area{
+            @media #{$md,$sm,$xs} {
+                padding-bottom: 70px;
+            }
+        }
+    }
+}
