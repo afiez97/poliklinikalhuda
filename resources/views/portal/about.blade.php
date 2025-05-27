@@ -6,7 +6,7 @@
 
       <!-- breadcrumb-area-start -->
       <div class="tp-breadcrumb-area tp-breadcrumb-med-spacing tp-breadcrumb-med-bg p-relative">
-        <img class="tp-breadcrumb-med-shape p-absolute" data-parallax='{"y": 100, "smoothness": 20}' src="../assets/img/medical/bradcrumb/shape.png" alt="shape">
+        <img class="tp-breadcrumb-med-shape p-absolute" data-parallax='{"y": 100, "smoothness": 20}' src="../assets-portal/img/medical/bradcrumb/shape.png" alt="shape">
         <div class="container container-1230">
            <div class="row gx-24">
               <div class="col-12">
@@ -26,7 +26,7 @@
               <div class="row gx-24">
                  <div class="col-lg-6">
                     <div class="tp-about-med-2-thumb p-relative h-100">
-                       <img class="w-100 thumb" src="../assets/img/medical/about/about.jpg" alt="thumb">
+                       <img class="w-100 thumb" src="../assets-portal/img/medical/about/about.jpg" alt="thumb">
                        <div class="tp-about-med-2-shape p-absolute d-flex align-items-center tp-bg-common-white tp-round-10 updown">
                           <span class="tp-bg-grey-10 text-center d-inline-block rounded-circle mr-10">
                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -223,7 +223,7 @@
                  </div>
                  <div class="col-lg-5">
                     <div class="tp-banner-med-right h-100 mr-30">
-                       <img class="w-100" data-parallax='{"y": 100, "smoothness": 20}' src="../assets/img/medical/vison/thumb.png" alt="">
+                       <img class="w-100" data-parallax='{"y": 100, "smoothness": 20}' src="../assets-portal/img/medical/vison/thumb.png" alt="">
                     </div>
                  </div>
               </div>
@@ -239,10 +239,10 @@
               <div class="col-xxl-7 col-xxl-6 col-lg-6">
                  <div class="tp-about-med-3-left mb-30">
                     <div class="tp-about-med-3-thumb">
-                       <img class="tp-round-6 w-100" data-parallax='{"y": 20, "smoothness": 20}' src="../assets/img/medical/about/details/about.jpg" alt="">
+                       <img class="tp-round-6 w-100" data-parallax='{"y": 20, "smoothness": 20}' src="../assets-portal/img/medical/about/details/about.jpg" alt="">
                     </div>
                     <div class="tp-about-med-3-thumb-2">
-                       <img class="tp-round-4 w-100" data-parallax='{"y": -50, "smoothness": 20}' src="../assets/img/medical/about/details/about-2.jpg" alt="">
+                       <img class="tp-round-4 w-100" data-parallax='{"y": -50, "smoothness": 20}' src="../assets-portal/img/medical/about/details/about-2.jpg" alt="">
                     </div>
                  </div>
               </div>
@@ -322,7 +322,7 @@
                           <p class="lh-30 tp-ff-roboto mb-25 tp-text-grey-9">Diagnosy  always help to provide proper treatment for most of get the proper cure  and healty life which is the cooperate  focus thing for us patient our
                              main proprity services  cooperate  focus thing</p>
                           <div class="d-flex align-items-center">
-                             <img class="rounded-circle mr-15" src="../assets/img/digital/testimoial/testimonial.png" alt="">
+                             <img class="rounded-circle mr-15" src="../assets-portal/img/digital/testimoial/testimonial.png" alt="">
                              <div class="info">
                                 <h5 class="tp-ff-poppins tp-text-common-black-4 fw-500 ls-m-2 fs-20 lh-1 mb-5">Jennifer Catlin</h5>
                                 <span class="tp-ff-roboto tp-text-grey-9 fs-16">Neurologist</span>
@@ -346,7 +346,7 @@
                           <p class="lh-30 tp-ff-roboto mb-25 tp-text-grey-9">Diagnosy  always help to provide proper treatment for most of get the proper cure  and healty life which is the cooperate  focus thing for us patient our
                              main proprity services  cooperate  focus thing</p>
                           <div class="d-flex align-items-center">
-                             <img class="rounded-circle mr-15" src="../assets/img/digital/testimoial/testimonial-2.png" alt="">
+                             <img class="rounded-circle mr-15" src="../assets-portal/img/digital/testimoial/testimonial-2.png" alt="">
                              <div class="info">
                                 <h5 class="tp-ff-poppins tp-text-common-black-4 fw-500 ls-m-2 fs-20 lh-1 mb-5">Richard Vanman</h5>
                                 <span class="tp-ff-roboto tp-text-grey-9 fs-16">Neurologist</span>
@@ -370,7 +370,7 @@
                           <p class="lh-30 tp-ff-roboto mb-25 tp-text-grey-9">Diagnosy  always help to provide proper treatment for most of get the proper cure  and healty life which is the cooperate  focus thing for us patient our
                              main proprity services  cooperate  focus thing</p>
                           <div class="d-flex align-items-center">
-                             <img class="rounded-circle mr-15" src="../assets/img/digital/testimoial/testimonial-3.png" alt="">
+                             <img class="rounded-circle mr-15" src="../assets-portal/img/digital/testimoial/testimonial-3.png" alt="">
                              <div class="info">
                                 <h5 class="tp-ff-poppins tp-text-common-black-4 fw-500 ls-m-2 fs-20 lh-1 mb-5">Allison George</h5>
                                 <span class="tp-ff-roboto tp-text-grey-9 fs-16">Neurologist</span>
@@ -394,7 +394,7 @@
                           <p class="lh-30 tp-ff-roboto mb-25 tp-text-grey-9">Diagnosy  always help to provide proper treatment for most of get the proper cure  and healty life which is the cooperate  focus thing for us patient our
                              main proprity services  cooperate  focus thing</p>
                           <div class="d-flex align-items-center">
-                             <img class="rounded-circle mr-15" src="../assets/img/digital/testimoial/testimonial-4.png" alt="">
+                             <img class="rounded-circle mr-15" src="../assets-portal/img/digital/testimoial/testimonial-4.png" alt="">
                              <div class="info">
                                 <h5 class="tp-ff-poppins tp-text-common-black-4 fw-500 ls-m-2 fs-20 lh-1 mb-5">Harshal Mitra</h5>
                                 <span class="tp-ff-roboto tp-text-grey-9 fs-16">Neurologist</span>

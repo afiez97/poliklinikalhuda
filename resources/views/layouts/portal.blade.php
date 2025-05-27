@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/medical/logo/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets-portal/img/medical/logo/favicon.png">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/css/swiper-bundle.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/font-awesome-pro.css">
-    <link rel="stylesheet" href="../assets/css/spacing.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets-portal/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets-portal/css/swiper-bundle.css">
+    <link rel="stylesheet" href="../assets-portal/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets-portal/css/font-awesome-pro.css">
+    <link rel="stylesheet" href="../assets-portal/css/spacing.css">
+    <link rel="stylesheet" href="../assets-portal/css/main.css">
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
 </head>
@@ -47,7 +47,7 @@
             <div class="tp-offcanvas-top d-flex align-items-center justify-content-between">
                 <div class="tp-offcanvas-logo">
                     <a href="index.html">
-                        <img data-width="110" src="../assets/img/medical/logo/logo.png" alt="">
+                        <img data-width="110" src="../assets-portal/img/medical/logo/logo.png" alt="">
                     </a>
                 </div>
                 <div class="tp-offcanvas-close">
@@ -158,7 +158,7 @@
                 <div class="row align-items-center p-relative">
                     <div class="col-xl-2 col-5">
                         <div class="tp-header-logo lh-1">
-                            <a href="index.html"><img data-width="110" src="../assets/img/medical/logo/logo.png"
+                            <a href="index.html"><img data-width="110" src="../assets-portal/img/medical/logo/logo.png"
                                     alt="logo"></a>
                         </div>
                     </div>
@@ -218,7 +218,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="tp-footer-med-widget mr-75 mb-50">
                             <a class="mb-35 d-inline-block" href="index.html"><img data-width="108"
-                                    src="../assets/img/medical/logo/logo-white.png" alt=""></a>
+                                    src="../assets-portal/img/medical/logo/logo-white.png" alt=""></a>
                             <p class="tp-text-rgba-3 tp-ff-roboto fw-500 mb-20 lh-30">We are committed to helping you
                                 succeed
                                 will work with you every step of the.</p>
@@ -296,23 +296,23 @@
 
 
     <!-- JS here -->
-    <script src="../assets/js/vendor/jquery.js"></script>
-    <script src="../assets/js/jquery.appear.js"></script>
-    <script src="../assets/js/bootstrap-bundle.js"></script>
-    <script src="../assets/js/swiper-bundle.js"></script>
-    <script src="../assets/js/magnific-popup.js"></script>
-    <script src="../assets/js/nice-select.js"></script>
-    <script src="../assets/js/isotope-pkgd.js"></script>
-    <script src="../assets/js/imagesloaded-pkgd.js"></script>
-    <script src="../assets/js/ajax-form.js"></script>
-    <script src="../assets/js/anime.min.js"></script>
-    <script src="../assets/js/parallax.js"></script>
-    <script src="../assets/js/parallax-scrool.js"></script>
-    <script src="../assets/js/Jarallax.js"></script>
-    <script src="../assets/js/atropos.js"></script>
-    <script src="../assets/js/pie-chart.js"></script>
-    <script src="../assets/js/slider-init.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets-portal/js/vendor/jquery.js"></script>
+    <script src="../assets-portal/js/jquery.appear.js"></script>
+    <script src="../assets-portal/js/bootstrap-bundle.js"></script>
+    <script src="../assets-portal/js/swiper-bundle.js"></script>
+    <script src="../assets-portal/js/magnific-popup.js"></script>
+    <script src="../assets-portal/js/nice-select.js"></script>
+    <script src="../assets-portal/js/isotope-pkgd.js"></script>
+    <script src="../assets-portal/js/imagesloaded-pkgd.js"></script>
+    <script src="../assets-portal/js/ajax-form.js"></script>
+    <script src="../assets-portal/js/anime.min.js"></script>
+    <script src="../assets-portal/js/parallax.js"></script>
+    <script src="../assets-portal/js/parallax-scrool.js"></script>
+    <script src="../assets-portal/js/Jarallax.js"></script>
+    <script src="../assets-portal/js/atropos.js"></script>
+    <script src="../assets-portal/js/pie-chart.js"></script>
+    <script src="../assets-portal/js/slider-init.js"></script>
+    <script src="../assets-portal/js/main.js"></script>
 
 </body>
 

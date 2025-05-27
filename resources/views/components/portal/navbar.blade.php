@@ -5,7 +5,7 @@
             <nav class="tp-mobile-menu-active">
                 <ul>
                     <li class="menu-static">
-                        <a class="active" href="index.html">Demo</a>
+                        <a class="active" href="{{ route('portal.home') }}">Demo</a>
                         <div class="tp-submenu submenu tp-main-mega-menu">
                             <div class="tp-menu-fullwidth">
                                 <div class="tp-homemenu-wrapper">
@@ -145,8 +145,8 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="treatments.html">Treatments</a></li>
+                    <li><a href="{{ route('portal.about') }}">About</a></li>
+                    <li><a href="{{ route('portal.treatments') }}">Treatments</a></li>
                     <li class="has-dropdown">
                         <a href="team.html">Doctors</a>
                         <ul class="tp-submenu submenu">
@@ -154,8 +154,8 @@
                             <li><a href="appointment.html">Appointment</a></li>
                         </ul>
                     </li>
-                    <li><a href="timetable.html">Timetable</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="{{ asset('medical/contact.html') }}">Timetable</a></li>
+                    <li><a href="{{ asset('medical/contact.html') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>

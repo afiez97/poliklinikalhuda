@@ -6,7 +6,7 @@
 
       <!-- tp-hero-med-area-start -->
       <div class="tp-hero-med-area bg-position fix p-relative" data-background="../assets/img/medical/hero/image.jpg">
-        <img class="tp-hero-med-shape p-absolute updown d-none d-md-block" src="../assets/img/medical/hero/shape-2.png" alt="">
+        <img class="tp-hero-med-shape p-absolute updown d-none d-md-block" src="../assets-portal/img/medical/hero/shape-2.png" alt="">
         <div class="container container-1230">
            <div class="row gx-24 align-items-end">
               <div class="col-xl-5 col-lg-6">
@@ -68,17 +68,17 @@
               </div>
               <div class="col-xl-7 col-lg-6">
                  <div class="tp-hero-med-right text-end p-relative">
-                    <img class="tp-hero-med-heart animate-pulse rounded-circle z-index-9" src="../assets/img/medical/hero/heart.png" alt="">
+                    <img class="tp-hero-med-heart animate-pulse rounded-circle z-index-9" src="../assets-portal/img/medical/hero/heart.png" alt="">
                     <div class="tp-hero-med-thumb">
-                       <img data-parallax='{"y": 300, "smoothness":15}' src="../assets/img/medical/hero/afiez.jpg" alt="doctor">
+                       <img data-parallax='{"y": 300, "smoothness":15}' src="../assets-portal/img/medical/hero/afiez.jpg" alt="doctor">
                     </div>
                     <div class="tp-hero-med-checkup d-flex align-items-center p-absolute updown">
                        <span class="fw-500 ls-m-2 tp-text-common-white"><i class="fa-sharp fa-solid fa-check mr-5 tp-bg-theme-1 tp-text-common-white text-center fs-14"></i> Regular checkup service</span>
                      </div>
                     <div class="tp-hero-med-thumb-shape tp-bg-theme-1 tp-round-25 text-center p-absolute d-none d-sm-block updown">
                       <div class="p-relative">
-                          <img class="tp-hero-med-plus" src="../assets/img/medical/hero/shape-1.png" alt="">
-                          <img class="tp-round-20" src="../assets/img/medical/hero/afiez.jpg" alt="">
+                          <img class="tp-hero-med-plus" src="../assets-portal/img/medical/hero/shape-1.png" alt="">
+                          <img class="tp-round-20" src="../assets-portal/img/medical/hero/afiez.jpg" alt="">
                           <span class="tp-ff-poppins tp-text-common-white fw-500 pt-10 d-inline-block pb-10">Dr. Stella</span>
                       </div>
                     </div>
@@ -140,17 +140,17 @@
                     <div class="row">
                        <div class="col-lg-6 col-md-6 col-sm-6">
                           <div class="tp-about-lwr-thumb mr-30">
-                             <img class="w-100 tp-round-10" data-parallax='{"y": -50, "smoothness": 20}' src="../assets/img/medical/about/afiez.jpg" alt="">
+                             <img class="w-100 tp-round-10" data-parallax='{"y": -50, "smoothness": 20}' src="../assets-portal/img/medical/about/afiez.jpg" alt="">
                           </div>
                        </div>
                        <div class="col-lg-6 col-md-6 col-sm-6">
                           <div class="tp-about-lwr-thumb ml-25 mt-70">
-                             <img class="w-100 tp-round-10" data-parallax='{"y": -50, "smoothness": 20}' src="../assets/img/medical/about/afiez.jpg" alt="">
+                             <img class="w-100 tp-round-10" data-parallax='{"y": -50, "smoothness": 20}' src="../assets-portal/img/medical/about/afiez.jpg" alt="">
                           </div>
                        </div>
                     </div>
                     <div class="tp-about-lwr-thumb-3 ml-125 mr-175">
-                       <img class="w-100 tp-round-10" data-parallax='{"y": 50, "smoothness": 20}' src="../assets/img/medical/about/afiez.jpg" alt="about">
+                       <img class="w-100 tp-round-10" data-parallax='{"y": 50, "smoothness": 20}' src="../assets-portal/img/medical/about/afiez.jpg" alt="about">
                     </div>
                  </div>
               </div>
@@ -216,7 +216,7 @@
 
      <!-- tp-work-area-start -->
      <div class="tp-work-area tp-bg-grey-10 pt-135 pb-120 z-index-1 p-relative">
-        <img class="tp-work-med-shape p-absolute z-index-m-1" src="../assets/img/medical/work/shape.png" alt="">
+        <img class="tp-work-med-shape p-absolute z-index-m-1" src="../assets-portal/img/medical/work/shape.png" alt="">
         <div class="container container-1230">
            <div class="row gx-24 align-items-end mb-30" data-anime='{ "el": "childs", "rotateZ": [5, 0], "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
               <div class="col-lg-8">
@@ -235,7 +235,7 @@
               <div class="col-lg-4 col-md-6">
                  <div class="tp-work-lwr-item tp-team-med-item tp-img-hover text-center mb-30">
                     <div class="fix lwr-shadow tp-round-6 mb-35  p-relative">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner-up" src="../assets/img/medical/work/afiez.jpg" alt="work">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner-up" src="../assets-portal/img/medical/work/afiez.jpg" alt="work">
                        <span class="tp-team-med-overly"></span>
                     </div>
                     <div class="tp-work-lwr-conent">
@@ -255,7 +255,7 @@
               <div class="col-lg-4 col-md-6">
                  <div class="tp-work-lwr-item tp-team-med-item tp-img-hover text-center mb-30">
                     <div class="fix lwr-shadow tp-round-6 mb-35 p-relative">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner-up" src="../assets/img/medical/work/afiez.jpg" alt="work">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner-up" src="../assets-portal/img/medical/work/afiez.jpg" alt="work">
                        <span class="tp-team-med-overly"></span>
                     </div>
                     <div class="tp-work-lwr-conent">
@@ -275,7 +275,7 @@
               <div class="col-lg-4 col-md-6">
                  <div class="tp-work-lwr-item  tp-team-med-item tp-img-hover text-center mb-30">
                     <div class="fix lwr-shadow tp-round-6 mb-35 p-relative">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner-up" src="../assets/img/medical/work/afiez.jpg" alt="work">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner-up" src="../assets-portal/img/medical/work/afiez.jpg" alt="work">
                        <span class="tp-team-med-overly"></span>
                     </div>
                     <div class="tp-work-lwr-conent">
@@ -299,15 +299,15 @@
 
      <!-- tp-chose-area-start -->
      <div class="tp-chose-area pt-135 pb-70 p-relative">
-        <img class="tp-chose-med-shape p-absolute z-index-10 updown" src="../assets/img/medical/chose/ballon.png" alt="">
+        <img class="tp-chose-med-shape p-absolute z-index-10 updown" src="../assets-portal/img/medical/chose/ballon.png" alt="">
         <div class="container-1230 container">
            <div class="row gx-24">
               <div class="col-lg-6">
                  <div class="tp-chose-med-thumb tp-round-10 p-relative ml-80 mr-20 mb-30">
-                    <img class="w-100 tp-round-10 thumb" src="../assets/img/medical/chose/afiez.jpg" alt="thumb">
+                    <img class="w-100 tp-round-10 thumb" src="../assets-portal/img/medical/chose/afiez.jpg" alt="thumb">
                     <div class="tp-expert-video tp-round-10 tp-bg-common-white text-center lh-125-per" data-parallax='{"y": 150, "smoothness": 20}'>
                        <div class="p-relative d-inline-block mb-20">
-                          <img class="w-100 tp-round-10" src="../assets/img/medical/chose/afiez.jpg" alt="thumb">
+                          <img class="w-100 tp-round-10" src="../assets-portal/img/medical/chose/afiez.jpg" alt="thumb">
                           <a class="tp-btn-video tp-expert-play-video popup-video d-inline-block text-center mr-15"
                              href="https://www.youtube.com/watch?v=go7QYaQR494">
                              <span class="tp-text-theme-1 fs-12"><i class="fa-sharp fa-solid fa-play"></i></span>
@@ -410,27 +410,27 @@
                        <div class="swiper-wrapper">
                           <div class="swiper-slide">
                              <div class="tp-contact-med-thumb tp-img-hover fix p-relative tp-round-10">
-                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets/img/medical/contact/afiez.jpg" alt="contact">
+                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets-portal/img/medical/contact/afiez.jpg" alt="contact">
                              </div>
                           </div>
                           <div class="swiper-slide">
                              <div class="tp-contact-med-thumb  tp-img-hover fix p-relative tp-round-10">
-                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets/img/medical/contact/afiez.jpg" alt="contact">
+                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets-portal/img/medical/contact/afiez.jpg" alt="contact">
                              </div>
                           </div>
                           <div class="swiper-slide">
                              <div class="tp-contact-med-thumb tp-img-hover fix p-relative tp-round-10">
-                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets/img/medical/contact/afiez.jpg" alt="contact">
+                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets-portal/img/medical/contact/afiez.jpg" alt="contact">
                              </div>
                           </div>
                           <div class="swiper-slide">
                              <div class="tp-contact-med-thumb tp-img-hover fix p-relative tp-round-10">
-                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets/img/medical/contact/afiez.jpg" alt="contact">
+                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets-portal/img/medical/contact/afiez.jpg" alt="contact">
                              </div>
                           </div>
                           <div class="swiper-slide">
                              <div class="tp-contact-med-thumb tp-img-hover fix p-relative tp-round-10">
-                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets/img/medical/contact/afiez.jpg" alt="contact">
+                                <img class="w-100 tp-round-10 tp-img-hover-inner" src="../assets-portal/img/medical/contact/afiez.jpg" alt="contact">
                              </div>
                           </div>
                        </div>
@@ -532,7 +532,7 @@
               <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                  <div class="tp-team-digi-item tp-team-med-item tp-img-hover text-center mb-30">
                     <div class="fix tp-round-6 p-relative mb-15">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets/img/medical/team/afiez.jpg" alt="team">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets-portal/img/medical/team/afiez.jpg" alt="team">
                        <span class="tp-team-med-overly"></span>
                        <div class="tp-team-digi-sicial d-flex tp-bg-common-white">
                           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -554,7 +554,7 @@
               <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                  <div class="tp-team-digi-item tp-team-med-item tp-img-hover text-center mb-30">
                     <div class="fix tp-round-6 p-relative mb-15">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets/img/medical/team/afiez.jpg" alt="team">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets-portal/img/medical/team/afiez.jpg" alt="team">
                        <span class="tp-team-med-overly"></span>
                        <div class="tp-team-digi-sicial d-flex tp-bg-common-white">
                           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -576,7 +576,7 @@
               <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                  <div class="tp-team-digi-item tp-img-hover tp-team-med-item text-center mb-30">
                     <div class="fix tp-round-6 p-relative mb-15">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets/img/medical/team/afiez.jpg" alt="team">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets-portal/img/medical/team/afiez.jpg" alt="team">
                        <span class="tp-team-med-overly"></span>
                        <div class="tp-team-digi-sicial d-flex tp-bg-common-white">
                           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -598,7 +598,7 @@
               <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                  <div class="tp-team-digi-item tp-team-med-item tp-img-hover text-center mb-30">
                     <div class="fix tp-round-6 p-relative mb-15">
-                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets/img/medical/team/afiez.jpg" alt="team">
+                       <img class="w-100 tp-round-6 tp-img-hover-inner" src="../assets-portal/img/medical/team/afiez.jpg" alt="team">
                        <span class="tp-team-med-overly"></span>
                        <div class="tp-team-digi-sicial d-flex tp-bg-common-white">
                           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>

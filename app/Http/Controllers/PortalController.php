@@ -17,9 +17,9 @@ class PortalController extends Controller
         return view('portal.about');
     }
 
-    public function services()
+    public function treatments()
     {
-        return view('portal.services');
+        return view('portal.treatments');
     }
 
     public function appointmentForm()
