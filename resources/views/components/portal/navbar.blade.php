@@ -14,7 +14,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../medical/index.html"><img
-                                                            src="../assets/img/menu/demo.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -27,7 +27,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../corporate/index.html"><img
-                                                            src="../assets/img/menu/demo-2.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-2.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -40,7 +40,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../beauti-salon/index.html"><img
-                                                            src="../assets/img/menu/demo-3.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-3.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -53,7 +53,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../pizza/index.html"><img
-                                                            src="../assets/img/menu/demo-4.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-4.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -66,7 +66,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../lawyer/index.html"><img
-                                                            src="../assets/img/menu/demo-5.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-5.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -79,7 +79,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../currency/index.html"><img
-                                                            src="../assets/img/menu/demo-6.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-6.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -92,7 +92,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../charity/index.html"><img
-                                                            src="../assets/img/menu/demo-7.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-7.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -105,7 +105,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../it-solution/index.html"><img
-                                                            src="../assets/img/menu/demo-8.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-8.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -118,7 +118,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../digital/index.html"><img
-                                                            src="../assets/img/menu/demo-9.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-9.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
@@ -131,7 +131,7 @@
                                             <div class="homemenu-thumb-wrap mb-20">
                                                 <div class="homemenu-thumb fix">
                                                     <a href="../portfolio-carousel/index.html"><img
-                                                            src="../assets/img/menu/demo-10.jpg" alt=""></a>
+                                                            src="../assets-portal/img/menu/demo-10.jpg" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="homemenu-content text-center">
