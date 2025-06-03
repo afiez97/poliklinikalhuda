@@ -18596,6 +18596,21 @@ p, li, span {
   background-color: #ec4a58 !important;
 }
 
+.bg-theme-light {
+  background-color: #FEF9E1 !important;
+}
+.bg-theme-light-2 {
+  background-color: #E5D0AC !important;
+}
+.bg-theme-danger {
+  background-color: #A31D1D !important;
+}
+.bg-theme-danger-2 {
+  background-color: #6D2323 !important;
+}
+
+
+
 label {
   text-transform: capitalize;
   display: inline-block;
