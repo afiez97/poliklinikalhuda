@@ -13,9 +13,21 @@ class AdminController extends Controller
 
     public function doLogin(Request $request)
     {
-        // Handle authentication here
-        // If success: return redirect()->route('admin.dashboard');
-        // If fail: return back()->withErrors([...]);
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        // dd($credentials);
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.dashboard');
+        }
+
+        return back()->withErrors([
+            'username' => 'Nama pengguna atau kata laluan tidak sah.',
+            'email' => 'Maklumat yang diberikan tidak sepadan dengan rekod kami.',
+        ]);
     }
 
     public function dashboard()
