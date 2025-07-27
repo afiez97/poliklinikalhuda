@@ -66,16 +66,16 @@ class PortalController extends Controller
             $user = User::where('google_id', $googleUser->getId())->first();
 
             if ($user) {
-                // User already exists, login
+                // User already exists with Google ID, login
                 Auth::login($user);
                 return redirect()->route('admin.dashboard')->with('success', __('auth.login_success'));
             }
 
-            // Check if user exists with same email
+            // Check if user exists with same email in database
             $existingUser = User::where('email', $googleUser->getEmail())->first();
 
             if ($existingUser) {
-                // Link Google account to existing user
+                // Link Google account to existing user (user must already exist in database)
                 $existingUser->update([
                     'google_id' => $googleUser->getId(),
                     'avatar' => $googleUser->getAvatar(),
@@ -85,17 +85,8 @@ class PortalController extends Controller
                 return redirect()->route('admin.dashboard')->with('success', __('auth.account_linked'));
             }
 
-            // Create new user
-            $newUser = User::create([
-                'name' => $googleUser->getName(),
-                'email' => $googleUser->getEmail(),
-                'google_id' => $googleUser->getId(),
-                'avatar' => $googleUser->getAvatar(),
-                'password' => bcrypt(str()->random(16)), // Random password for Google users
-            ]);
-
-            Auth::login($newUser);
-            return redirect()->route('admin.dashboard')->with('success', __('auth.registration_success'));
+            // User does not exist in database - access denied
+            return redirect()->route('admin.login')->with('error', __('auth.access_denied'));
 
         } catch (\Exception $e) {
             return redirect()->route('admin.login')->with('error', __('auth.google_login_failed'));
@@ -106,9 +97,20 @@ class PortalController extends Controller
      * Logout user
      */
     #[Post('/logout', name: 'logout')]
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+
+        // Invalidate the session and regenerate the CSRF token for security
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Check if the logout was from admin area and redirect accordingly
+        $referer = $request->headers->get('referer');
+        if ($referer && str_contains($referer, '/admin')) {
+            return redirect()->route('admin.login')->with('success', __('auth.logout_success'));
+        }
+
         return redirect()->route('portal.home')->with('success', __('auth.logout_success'));
     }
 }

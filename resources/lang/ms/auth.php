@@ -24,6 +24,7 @@ return [
     'google_login_failed' => 'Log masuk Google gagal. Sila cuba lagi.',
     'logout_success' => 'Anda telah log keluar dengan jayanya.',
     'google_login' => 'Log Masuk dengan Google',
+    'access_denied' => 'Akses ditolak. Akaun anda tidak dibenarkan untuk mengakses sistem ini.',
 
     'login' => [
         'title' => 'Log Masuk ke Akaun Anda',
@@ -34,6 +35,25 @@ return [
         'forgot_password' => 'Lupa Kata Laluan?',
         'no_account' => 'Tiada akaun?',
         'register_link' => 'Daftar di sini',
+    ],
+
+    'admin' => [
+        'welcome' => 'Selamat Datang',
+        'system_title' => 'Sistem Pengurusan Poliklinik Al-Huda',
+        'welcome_message' => 'Sila log masuk ke akaun pentadbir anda untuk mengakses dashboard.',
+        'login_title' => 'Log Masuk Pentadbir',
+        'login_subtitle' => 'Masukkan butiran log masuk anda',
+        'username' => 'Nama Pengguna',
+        'username_placeholder' => 'Masukkan nama pengguna',
+        'password' => 'Kata Laluan',
+        'password_placeholder' => 'Masukkan kata laluan',
+        'remember_me' => 'Ingat saya',
+        'login_button' => 'Log Masuk',
+        'or' => 'atau',
+        'google_login' => 'Log Masuk dengan Google',
+        'back_home' => 'Kembali ke Laman Utama',
+        'invalid_credentials' => 'Nama pengguna atau kata laluan tidak sah.',
+        'invalid_email' => 'Maklumat yang diberikan tidak sepadan dengan rekod kami.',
     ],
 
     'register' => [

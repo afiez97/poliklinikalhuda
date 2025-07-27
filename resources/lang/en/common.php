@@ -13,6 +13,11 @@ return [
     'profile' => 'Profile',
     'dashboard' => 'Dashboard',
 
+    // Alert Messages
+    'success' => 'Success',
+    'error' => 'Error',
+    'info' => 'Information',
+
     // General
     'welcome' => 'Welcome',
     'submit' => 'Submit',

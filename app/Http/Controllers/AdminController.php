@@ -34,8 +34,8 @@ class AdminController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'Nama pengguna atau kata laluan tidak sah.',
-            'email' => 'Maklumat yang diberikan tidak sepadan dengan rekod kami.',
+            'username' => __('auth.admin.invalid_credentials'),
+            'email' => __('auth.admin.invalid_email'),
         ]);
     }
 

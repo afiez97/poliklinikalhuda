@@ -13,6 +13,11 @@ return [
     'profile' => 'Profil',
     'dashboard' => 'Papan Pemuka',
 
+    // Alert Messages
+    'success' => 'Berjaya',
+    'error' => 'Ralat',
+    'info' => 'Maklumat',
+
     // General
     'welcome' => 'Selamat Datang',
     'submit' => 'Hantar',

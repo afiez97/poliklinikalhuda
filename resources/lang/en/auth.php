@@ -24,6 +24,7 @@ return [
     'google_login_failed' => 'Google login failed. Please try again.',
     'logout_success' => 'You have been logged out successfully.',
     'google_login' => 'Login with Google',
+    'access_denied' => 'Access denied. Your account is not authorized to access this system.',
 
     'login' => [
         'title' => 'Login to Your Account',
@@ -34,6 +35,25 @@ return [
         'forgot_password' => 'Forgot Your Password?',
         'no_account' => "Don't have an account?",
         'register_link' => 'Register here',
+    ],
+
+    'admin' => [
+        'welcome' => 'Welcome',
+        'system_title' => 'Poliklinik Al-Huda Management System',
+        'welcome_message' => 'Please login to your admin account to access the dashboard.',
+        'login_title' => 'Admin Login',
+        'login_subtitle' => 'Enter your login details',
+        'username' => 'Username',
+        'username_placeholder' => 'Enter username',
+        'password' => 'Password',
+        'password_placeholder' => 'Enter password',
+        'remember_me' => 'Remember me',
+        'login_button' => 'Login',
+        'or' => 'or',
+        'google_login' => 'Login with Google',
+        'back_home' => 'Back to Home',
+        'invalid_credentials' => 'Username or password is invalid.',
+        'invalid_email' => 'The information provided does not match our records.',
     ],
 
     'register' => [

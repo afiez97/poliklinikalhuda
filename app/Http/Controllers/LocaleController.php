@@ -28,6 +28,14 @@ class LocaleController extends Controller
             Cookie::queue('locale', $locale, 60 * 24 * 365); // 1 year
         }
 
+        // Check if there's a referer header
+        $referer = request()->headers->get('referer');
+
+        if ($referer) {
+            return redirect()->back();
+        }
+
+        // If no referer, redirect to home
         return redirect()->route('portal.home');
     }
 }
