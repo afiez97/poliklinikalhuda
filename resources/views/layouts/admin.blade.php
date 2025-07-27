@@ -24,6 +24,9 @@
     <!-- Ekka CSS -->
     <link id="ekka-css" href="{{ asset('assets-admin/css/ekka.css') }}" rel="stylesheet" />
 
+    <!-- Custom Theme CSS -->
+    <link href="{{ asset('assets-admin/css/custom-theme.css') }}" rel="stylesheet" />
+
     <!-- FAVICON -->
     <link href="{{ asset('assets-admin/img/favicon.png') }}" rel="shortcut icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
