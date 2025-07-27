@@ -1,20 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocaleController;
 
-use App\Http\Controllers\PortalController;
-use App\Http\Controllers\AdminController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now nice to have them all in
+| this web.php file but you can also use route attributes in controllers.
+|
+*/
 
+// Locale switching route
+Route::get('/locale/{locale}', [LocaleController::class, 'changeLocale'])->name('locale.change');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Routes are now defined using Spatie Route Attributes in controllers
+// Check app/Http/Controllers/PortalController.php and AdminController.php
 
-
-
-
-// afiez
-
+/*
+ * OLD ROUTES - Now using Route Attributes instead
+ *
 // ==== PORTAL ROUTES (public site) ====
 Route::get('/', [PortalController::class, 'home'])->name('portal.home');
 Route::get('/about', [PortalController::class, 'about'])->name('portal.about');
@@ -29,19 +38,7 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 
 // Protected admin routes (add middleware if needed)
 Route::prefix('admin')->middleware('auth')->group(function () {
-    // Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
     Route::get('/services', [AdminController::class, 'services'])->name('admin.services');
 });
-
-
-// ==== AUTHENTICATION ROUTES (login/register)====
-Route::middleware('auth')->group(function () {
-    Route::view('about', 'about')->name('about');
-
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-    Route::get('register', [AdminController::class, 'register'])->name('admin.register');
-
-    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
-    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
-});
+*/

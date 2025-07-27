@@ -2,6 +2,5 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<h1>Dashboard Admin</h1>
-<p>Selamat datang ke sistem pengurusan Klinik Alhuda.</p>
+{{-- Dashboard content sudah diintegrasikan ke dalam layout admin --}}
 @endsection
