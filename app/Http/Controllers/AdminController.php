@@ -10,6 +10,7 @@ use Spatie\RouteAttributes\Attributes\Prefix;
 use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Prefix('admin')]
+#[Middleware('web')]
 class AdminController extends Controller
 {
     #[Get('/login', name: 'admin.login')]

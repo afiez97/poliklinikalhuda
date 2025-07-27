@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | this web.php file but you can also use route attributes in controllers.
 |
 */
+
+// Locale switching route
+Route::get('/locale/{locale}', [LocaleController::class, 'changeLocale'])->name('locale.change');
 
 // Routes are now defined using Spatie Route Attributes in controllers
 // Check app/Http/Controllers/PortalController.php and AdminController.php

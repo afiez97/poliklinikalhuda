@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Uncut - The Multipurpose HTML5 Template</title>
-    <meta name="description" content="">
+    <title>@yield('title', __('medical.clinic') . ' - Poliklinik Al-Huda')</title>
+    <meta name="description" content="@yield('description', __('medical.clinic_description', ['name' => 'Poliklinik Al-Huda']))">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
@@ -64,14 +64,19 @@
             </div>
             <div class="tp-offcanvas-main">
                 <div class="tp-offcanvas-content">
-                    <h3 class="tp-offcanvas-title">Hello There!</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
+                    <h3 class="tp-offcanvas-title">{{ __('common.welcome') }}!</h3>
+                    <p>{{ __('medical.clinic_description', ['name' => 'Poliklinik Al-Huda']) }}</p>
+
+                    <!-- Language Switcher for Mobile -->
+                    <div class="tp-offcanvas-language mt-3">
+                        <x-language-switcher />
+                    </div>
                 </div>
                 <div class="tp-offcanvas-menu d-xl-none">
                     <nav></nav>
                 </div>
                 <div class="tp-offcanvas-contact">
-                    <h3 class="tp-offcanvas-title fs-20">Information</h3>
+                    <h3 class="tp-offcanvas-title fs-20">{{ __('common.info') }}</h3>
                     <ul>
                         <li><a href="tel:1245654">+ 4 20 7700 1007</a></li>
                         <li><a href="mailto:hello@diego.com">hello@brizmo.com</a></li>
@@ -167,6 +172,11 @@
 
                     <div class="col-xl-2 col-7">
                         <div class="tp-header-med-btn d-flex align-items-center justify-content-end">
+                            <!-- Language Switcher -->
+                            <div class="me-3">
+                                <x-language-switcher />
+                            </div>
+
                             <a class="fw-500 tp-text-common-black-4 hover-text-theme-1 d-none d-sm-block tp-ff-poppins"
                                 href="tel:1234564890">
                                 <span class="icon d-inline-block">
@@ -219,9 +229,7 @@
                         <div class="tp-footer-med-widget mr-75 mb-50">
                             <a class="mb-35 d-inline-block" href="index.html"><img data-width="108"
                                     src="../assets-portal/img/medical/logo/logo-white.png" alt=""></a>
-                            <p class="tp-text-rgba-3 tp-ff-roboto fw-500 mb-20 lh-30">We are committed to helping you
-                                succeed
-                                will work with you every step of the.</p>
+                            <p class="tp-text-rgba-3 tp-ff-roboto fw-500 mb-20 lh-30">{{ __('medical.clinic_description', ['name' => 'Poliklinik Al-Huda']) }}</p>
                             <div class="tp-footer-med-social d-flex">
                                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#">
@@ -259,11 +267,11 @@
                     </div>
                     <div class="col-lg-4 col-md-8">
                         <div class="tp-footer-med-widget mb-50">
-                            <h3 class="tp-ff-poppins fw-600 fs-26 ls-m-2 tp-text-common-white mb-40">Opening hours</h3>
+                            <h3 class="tp-ff-poppins fw-600 fs-26 ls-m-2 tp-text-common-white mb-40">{{ __('messages.opening_hours') }}</h3>
                             <ul class="tp-footer-med-time">
-                                <li>Mon - Fri .................... 8.00 AM to 11.30 pm</li>
-                                <li>Saturday .................... 6.00 AM to 12.30 pm</li>
-                                <li>Sunday .................... Closed </li>
+                                <li>{{ __('messages.schedule.weekdays') }}</li>
+                                <li>{{ __('messages.schedule.saturday') }}</li>
+                                <li>{{ __('messages.schedule.sunday') }}</li>
                             </ul>
                         </div>
                     </div>
@@ -276,12 +284,12 @@
                             </div>
                             <div class="tp-footer-med-bottom-menu">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="treatments.html">Treatments</a></li>
-                                    <li><a href="team.html">Doctors</a></li>
-                                    <li><a href="timetable.html">Timetable</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="index.html">{{ __('common.home') }}</a></li>
+                                    <li><a href="about.html">{{ __('common.about') }}</a></li>
+                                    <li><a href="treatments.html">{{ __('medical.treatment') }}</a></li>
+                                    <li><a href="team.html">{{ __('medical.doctor') }}</a></li>
+                                    <li><a href="timetable.html">{{ __('medical.schedule') }}</a></li>
+                                    <li><a href="contact.html">{{ __('common.contact') }}</a></li>
                                 </ul>
                             </div>
                         </div>
