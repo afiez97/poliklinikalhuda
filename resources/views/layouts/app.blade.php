@@ -1,125 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}"/>
+    <meta name="theme-color" content="#ffffff">
     @vite('resources/sass/app.scss')
 </head>
 <body>
-<!-- ======== sidebar-nav start =========== -->
-<aside class="sidebar-nav-wrapper">
-    <div class="navbar-logo">
-        <a href="{{ route('home') }}">
-            <img src="{{ asset('images/logo/logo.svg') }}" alt="logo"/>
-        </a>
+<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar-brand d-none d-md-flex">
+        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+            <use xlink:href="{{ asset('icons/brand.svg#full') }}"></use>
+        </svg>
+        <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+            <use xlink:href="{{ asset('icons/brand.svg#signet') }}"></use>
+        </svg>
     </div>
-    <nav class="sidebar-nav">
-        @include('layouts.navigation')
-    </nav>
-</aside>
-<div class="overlay"></div>
-<!-- ======== sidebar-nav end =========== -->
-
-<!-- ======== main-wrapper start =========== -->
-<main class="main-wrapper">
-    <!-- ========== header start ========== -->
-    <header class="header">
+    @include('layouts.navigation')
+    <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+</div>
+<div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <header class="header header-sticky mb-4">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-6">
-                    <div class="header-left d-flex align-items-center">
-                        <div class="menu-toggle-btn mr-20">
-                            <button
-                                id="menu-toggle"
-                                class="main-btn primary-btn btn-hover"
-                            >
-                                <i class="lni lni-chevron-left me-2"></i> {{ __('Menu') }}
-                            </button>
-                        </div>
+            <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                <svg class="icon icon-lg">
+                    <use xlink:href="{{ asset('icons/coreui.svg#cil-menu') }}"></use>
+                </svg>
+            </button>
+            <a class="header-brand d-md-none" href="#">
+                <svg width="118" height="46" alt="CoreUI Logo">
+                    <use xlink:href="{{ asset('icons/brand.svg#full') }}"></use>
+                </svg>
+            </a>
+            <ul class="header-nav d-none d-md-flex">
+                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
+            </ul>
+            <ul class="header-nav ms-auto">
+
+            </ul>
+            <ul class="header-nav ms-3">
+                <li class="nav-item dropdown">
+                    <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end pt-0">
+                        <a class="dropdown-item" href="{{ route('profile.show') }}">
+                            <svg class="icon me-2">
+                                <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                            </svg>
+                            {{ __('My profile') }}
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); this.closest('form').submit();">
+                                <svg class="icon me-2">
+                                    <use xlink:href="{{ asset('icons/coreui.svg#cil-account-logout') }}"></use>
+                                </svg>
+                                {{ __('Logout') }}
+                            </a>
+                        </form>
                     </div>
-                </div>
-                <div class="col-lg-7 col-md-7 col-6">
-                    <div class="header-right">
-                        <!-- profile start -->
-                        <div class="profile-box ml-15">
-                            <button
-                                    class="dropdown-toggle bg-transparent border-0"
-                                    type="button"
-                                    id="profile"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                            >
-                                <div class="profile-info">
-                                    <div class="info">
-                                        <h6>{{ Auth::user()->name }}</h6>
-                                    </div>
-                                </div>
-                                <i class="lni lni-chevron-down"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                                <li>
-                                        <a href="{{ route('profile.show') }}"> <i class="lni lni-user"></i> {{ __('My profile') }}</a>
-                                </li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"> <i class="lni lni-exit"></i> {{ __('Logout') }}</a>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- profile end -->
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </header>
-    <!-- ========== header end ========== -->
-
-    <!-- ========== section start ========== -->
-    <section class="section">
-        <div class="container-fluid">
+    <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
             @yield('content')
         </div>
-        <!-- end container -->
-    </section>
-    <!-- ========== section end ========== -->
-
-    <!-- ========== footer start =========== -->
+    </div>
     <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 order-last order-md-first">
-                    <div class="copyright text-md-start">
-                        <p class="text-sm">
-                            Designed and Developed by
-                            <a
-                                    href="https://plainadmin.com"
-                                    rel="nofollow"
-                                    target="_blank"
-                            >
-                                PlainAdmin
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <!-- end col-->
-            </div>
-            <!-- end row -->
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> &copy; 2021
+            creativeLabs.
         </div>
-        <!-- end container -->
+        <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/bootstrap/ui-components/">CoreUI UI
+                Components</a></div>
     </footer>
-    <!-- ========== footer end =========== -->
-</main>
-<!-- ======== main-wrapper end =========== -->
-
-<!-- ========= All Javascript files linkup ======== -->
-@vite('resources/js/app.js')
-<script src="{{ asset('js/main.js') }}"></script>
+</div>
+<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 </body>
 </html>

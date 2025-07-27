@@ -145,7 +145,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="{{ route('portal.about') }}">About</a></li>
+                    {{-- <li><a href="{{ route('portal.about') }}">About</a></li> --}}
                     <li><a href="{{ route('portal.treatments') }}">Treatments</a></li>
                     <li class="has-dropdown">
                         <a href="team.html">Doctors</a>

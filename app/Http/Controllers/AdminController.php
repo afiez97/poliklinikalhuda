@@ -17,8 +17,8 @@ class AdminController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
+        dd($credentials);
 
-        // dd($credentials);
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
@@ -43,5 +43,10 @@ class AdminController extends Controller
     public function services()
     {
         return view('admin.services');
+    }
+    
+        public function register()
+    {
+        return view('auth.register');
     }
 }

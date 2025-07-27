@@ -1,0 +1,14 @@
+{
+    "username": "Username",
+    "password": "password",
+    "Password": "Password",
+    "remember_me": "Remember me",
+    "login": "login",
+    "forgot_password": "Forget?",
+    "reset_password": "Reset Password",
+    "send_reset_link": "Send Reset Link",
+    "email": "Email",
+    "confirm_password": "Confirmation Password",
+    "Login": "Login",
+    "About us": "About us"
+}
