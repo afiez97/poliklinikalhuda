@@ -1,5 +1,5 @@
 @extends('layouts.portal')
-@section('title', 'Laman Utama')
+@section('title', __('common.home'))
 
 @section('content')
 
@@ -8,15 +8,19 @@
       <div class="tp-hero-med-area bg-position fix p-relative" data-background="../assets/img/medical/hero/image.jpg">
         <img class="tp-hero-med-shape p-absolute updown d-none d-md-block" src="../assets-portal/img/medical/hero/shape-2.png" alt="">
         <div class="container container-1230">
+           <!-- Language Switcher -->
+           <div class="d-flex justify-content-end pt-3">
+              <x-language-switcher />
+           </div>
+
            <div class="row gx-24 align-items-end">
               <div class="col-xl-5 col-lg-6">
                  <div class="tp-hero-med-content tp-hero-med-spacing"  data-anime='{ "el": "childs", "rotateX": [90, 0], "opacity": [0,1], "staggervalue": 150, "easing": "easeOutQuad" }'>
                     <h2 class="tp-ff-poppins fw-600 mb-25 fs-80 fs-xl-70 fs-xs-50 ls-m-4 tp-text-common-black-4 lh-1">
-                       Medical and clinic centre
-                       <span class="fw-500 tp-hero-med-text-underline lh-1">services</span>
+                       {{ __('medical.clinic') }} {{ __('common.services') }}
+                       <span class="fw-500 tp-hero-med-text-underline lh-1">{{ __('medical.treatment') }}</span>
                     </h2>
-                    <p class="tp-text-grey-9 lh-26 tp-ff-roboto ls-0 mb-40">Chesterton, a writers of paradoxical stories, is the contrarian on
-                       He speaks for the pig-headed and visionary alike.</p>
+                    <p class="tp-text-grey-9 lh-26 tp-ff-roboto ls-0 mb-40">{{ __('medical.clinic_description', ['name' => 'Poliklinik Al-Huda']) }}</p>
                     <div class="tp-hero-med-btn-wrap d-flex flex-wrap mb-150">
                        <a href="appointment.html" class="med-btn-shadow mb-15 tp-btn-switch-text btn-lg mr-20 bg-hover-black p-relative tp-round-100 d-inline-block hover-text-white tp-bg-theme-1 tp-text-common-white fw-500 tp-ff-poppins lh-26 ls-m-2">
                           <span>
@@ -247,7 +251,7 @@
                              <span class="btn-text"> Know More</span>
                              <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
                              <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
-                          </span> 
+                          </span>
                        </a>
                     </div>
                  </div>
@@ -267,7 +271,7 @@
                              <span class="btn-text"> Know More</span>
                              <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
                              <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
-                          </span> 
+                          </span>
                        </a>
                     </div>
                  </div>
@@ -287,7 +291,7 @@
                              <span class="btn-text"> Know More</span>
                              <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
                              <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
-                          </span> 
+                          </span>
                        </a>
                     </div>
                  </div>
