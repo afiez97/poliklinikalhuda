@@ -26,6 +26,7 @@ class AdminController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
+        // dd($credentials);
 
         // dd($credentials);
         if (Auth::attempt($credentials)) {
@@ -58,5 +59,10 @@ class AdminController extends Controller
     public function services()
     {
         return view('admin.services');
+    }
+    
+        public function register()
+    {
+        return view('auth.register');
     }
 }
