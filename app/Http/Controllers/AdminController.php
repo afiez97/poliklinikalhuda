@@ -26,7 +26,7 @@ class AdminController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
-        dd($credentials);
+        // dd($credentials);
 
         // dd($credentials);
         if (Auth::attempt($credentials)) {
