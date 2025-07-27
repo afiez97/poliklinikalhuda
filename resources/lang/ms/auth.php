@@ -13,25 +13,33 @@ return [
     |
     */
 
-    'failed' => 'Butiran kelayakan ini tidak sepadan dengan rekod kami.',
-    'password' => 'Kata laluan yang diberikan tidak tepat.',
+    'failed' => 'Butiran ini tidak sepadan dengan rekod kami.',
+    'password' => 'Kata laluan yang diberikan tidak betul.',
     'throttle' => 'Terlalu banyak percubaan log masuk. Sila cuba lagi dalam :seconds saat.',
+
+    // Custom auth messages
+    'login_success' => 'Log masuk berjaya! Selamat kembali.',
+    'registration_success' => 'Pendaftaran berjaya! Selamat datang ke klinik kami.',
+    'account_linked' => 'Akaun Google anda telah dipautkan dengan jayanya.',
+    'google_login_failed' => 'Log masuk Google gagal. Sila cuba lagi.',
+    'logout_success' => 'Anda telah log keluar dengan jayanya.',
+    'google_login' => 'Log Masuk dengan Google',
 
     'login' => [
         'title' => 'Log Masuk ke Akaun Anda',
-        'email' => 'Alamat Emel',
+        'email' => 'Alamat E-mel',
         'password' => 'Kata Laluan',
         'remember' => 'Ingat Saya',
         'submit' => 'Log Masuk',
         'forgot_password' => 'Lupa Kata Laluan?',
-        'no_account' => 'Belum ada akaun?',
+        'no_account' => 'Tiada akaun?',
         'register_link' => 'Daftar di sini',
     ],
 
     'register' => [
         'title' => 'Cipta Akaun Baru',
         'name' => 'Nama Penuh',
-        'email' => 'Alamat Emel',
+        'email' => 'Alamat E-mel',
         'password' => 'Kata Laluan',
         'confirm_password' => 'Sahkan Kata Laluan',
         'submit' => 'Daftar',
@@ -40,7 +48,7 @@ return [
     ],
 
     'logout' => [
-        'success' => 'Anda telah berjaya log keluar.',
+        'success' => 'Anda telah log keluar dengan jayanya.',
     ],
 
 ];

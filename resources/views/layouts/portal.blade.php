@@ -177,35 +177,56 @@
                                 <x-language-switcher />
                             </div>
 
-                            <a class="fw-500 tp-text-common-black-4 hover-text-theme-1 d-none d-sm-block tp-ff-poppins"
-                                href="tel:1234564890">
-                                <span class="icon d-inline-block">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16.4774 13.7473C16.4774 14.0173 16.4174 14.2948 16.2899 14.5648C16.1624 14.8348 15.9974 15.0898 15.7799 15.3298C15.4124 15.7348 15.0074 16.0273 14.5499 16.2148C14.0999 16.4023 13.6124 16.4998 13.0874 16.4998C12.3224 16.4998 11.5049 16.3198 10.6424 15.9523C9.77994 15.5848 8.91744 15.0898 8.06244 14.4673C7.19994 13.8373 6.38244 13.1398 5.60244 12.3673C4.82994 11.5873 4.13244 10.7698 3.50994 9.91476C2.89494 9.05976 2.39994 8.20476 2.03994 7.35726C1.67994 6.50226 1.49994 5.68476 1.49994 4.90476C1.49994 4.39476 1.58994 3.90726 1.76994 3.45726C1.94994 2.99976 2.23494 2.57976 2.63244 2.20476C3.11244 1.73226 3.63744 1.49976 4.19244 1.49976C4.40244 1.49976 4.61244 1.54476 4.79994 1.63476C4.99494 1.72476 5.16744 1.85976 5.30244 2.05476L7.04244 4.50726C7.17744 4.69476 7.27494 4.86726 7.34244 5.03226C7.40994 5.18976 7.44744 5.34726 7.44744 5.48976C7.44744 5.66976 7.39494 5.84976 7.28994 6.02226C7.19244 6.19476 7.04994 6.37476 6.86994 6.55476L6.29994 7.14726C6.21744 7.22976 6.17994 7.32726 6.17994 7.44726C6.17994 7.50726 6.18744 7.55976 6.20244 7.61976C6.22494 7.67976 6.24744 7.72476 6.26244 7.76976C6.39744 8.01726 6.62994 8.33976 6.95994 8.72976C7.29744 9.11976 7.65744 9.51726 8.04744 9.91476C8.45244 10.3123 8.84244 10.6798 9.23994 11.0173C9.62994 11.3473 9.95244 11.5723 10.2074 11.7073C10.2449 11.7223 10.2899 11.7448 10.3424 11.7673C10.4024 11.7898 10.4624 11.7973 10.5299 11.7973C10.6574 11.7973 10.7549 11.7523 10.8374 11.6698L11.4074 11.1073C11.5949 10.9198 11.7749 10.7773 11.9474 10.6873C12.1199 10.5823 12.2924 10.5298 12.4799 10.5298C12.6224 10.5298 12.7724 10.5598 12.9374 10.6273C13.1024 10.6948 13.2749 10.7923 13.4624 10.9198L15.9449 12.6823C16.1399 12.8173 16.2749 12.9748 16.3574 13.1623C16.4324 13.3498 16.4774 13.5373 16.4774 13.7473Z"
-                                            stroke="#6C60DC" stroke-width="1.5" stroke-miterlimit="10" />
-                                        <path d="M12.15 5.85H15.75M12.15 5.85V2.25V5.85Z" stroke="#6C60DC"
-                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                123 456 4890
-                            </a>
-                            <button class="tp-header-bar tp-header-bar-med tp-offcanvas-open-btn d-xl-none ml-10">
-                                <span>
-                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21.8808 10.2976H3.8808" stroke="currentcolor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M21.8808 6.29756H3.8808" stroke="currentcolor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M21.8808 14.2976H3.8808" stroke="currentcolor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M21.8808 18.2976H3.8808" stroke="currentcolor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                            </button>
+                            <!-- Authentication Menu -->
+                            <ul class="tp-header-auth-menu list-unstyled m-0">
+                                @auth
+                                    <li class="has-dropdown position-relative">
+                                        <button type="button" class="d-flex align-items-center btn btn-link p-0" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: inherit;">
+                                            @if(auth()->user()->avatar)
+                                                <img src="{{ auth()->user()->avatar }}" alt="Profile" class="rounded-circle me-2" style="width: 24px; height: 24px;">
+                                            @else
+                                                <i class="fas fa-user-circle me-2"></i>
+                                            @endif
+                                            {{ auth()->user()->name }}
+                                            <i class="fas fa-chevron-down ms-2"></i>
+                                        </button>
+                                        <ul class="tp-submenu submenu dropdown-menu">
+                                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>{{ __('common.profile') }}</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="fas fa-calendar me-2"></i>{{ __('medical.appointment') }}</a></li>
+                                            <li>
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <button type="submit" class="dropdown-item">
+                                                        <i class="fas fa-sign-out-alt me-2"></i>{{ __('common.logout') }}
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="has-dropdown position-relative">
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: inherit;">
+                                            <i class="fas fa-sign-in-alt me-2"></i>{{ __('common.login') }}
+                                            <i class="fas fa-chevron-down ms-2"></i>
+                                        </button>
+                                        <ul class="tp-submenu submenu dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" href="{{ route('auth.google') }}">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" class="me-2">
+                                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                                    </svg>
+                                                    {{ __('auth.google_login') }}
+                                                </a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2"></i>{{ __('auth.login.title') }}</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-plus me-2"></i>{{ __('auth.register.title') }}</a></li>
+                                        </ul>
+                                    </li>
+                                @endauth
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -214,6 +235,34 @@
         <!-- header-area-end -->
 
     </header>
+
+    <!-- Flash Messages -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show m-0" role="alert" style="border-radius: 0;">
+            <div class="container">
+                <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show m-0" role="alert" style="border-radius: 0;">
+            <div class="container">
+                <i class="fas fa-exclamation-triangle me-2"></i>{{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
+    @if(session('info'))
+        <div class="alert alert-info alert-dismissible fade show m-0" role="alert" style="border-radius: 0;">
+            <div class="container">
+                <i class="fas fa-info-circle me-2"></i>{{ session('info') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
 
     <main>
         @yield('content')

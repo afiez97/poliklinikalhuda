@@ -20,33 +20,12 @@ class LocalizationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Register helper function for translation with fallback
-        if (!function_exists('trans_with_fallback')) {
-            /**
-             * Translate the given message with fallback support.
-             *
-             * @param  string  $key
-             * @param  array   $replace
-             * @param  string|null  $locale
-             * @return string
-             */
-            function trans_with_fallback($key, $replace = [], $locale = null)
-            {
-                $translation = trans($key, $replace, $locale);
+        // Register Blade directive for easier translation with fallback
+        Blade::directive('langf', function ($expression) {
+            return "<?php echo app('translator')->get($expression, [], app()->getLocale()) ?: app('translator')->get($expression, [], config('app.fallback_locale')); ?>";
+        });
 
-                // If translation key is returned (not found), try fallback locale
-                if ($translation === $key) {
-                    $fallbackLocale = config('app.fallback_locale');
-                    if ($locale !== $fallbackLocale) {
-                        $translation = trans($key, $replace, $fallbackLocale);
-                    }
-                }
-
-                return $translation;
-            }
-        }
-
-        // Register Blade directive for easier translation
+        // Register Blade directive for translation with parameters
         Blade::directive('lang', function ($expression) {
             return "<?php echo trans_with_fallback($expression); ?>";
         });

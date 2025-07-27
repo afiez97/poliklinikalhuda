@@ -40,6 +40,7 @@ class AdminController extends Controller
     }
 
     #[Get('/dashboard', name: 'admin.dashboard')]
+    #[Middleware('auth')]
     public function dashboard()
     {
         return view('admin.dashboard');

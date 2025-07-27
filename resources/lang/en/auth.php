@@ -17,6 +17,14 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    // Custom auth messages
+    'login_success' => 'Login successful! Welcome back.',
+    'registration_success' => 'Registration successful! Welcome to our clinic.',
+    'account_linked' => 'Your Google account has been linked successfully.',
+    'google_login_failed' => 'Google login failed. Please try again.',
+    'logout_success' => 'You have been logged out successfully.',
+    'google_login' => 'Login with Google',
+
     'login' => [
         'title' => 'Login to Your Account',
         'email' => 'Email Address',
