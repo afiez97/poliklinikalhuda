@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="../assets-portal/css/font-awesome-pro.css">
     <link rel="stylesheet" href="../assets-portal/css/spacing.css">
     <link rel="stylesheet" href="../assets-portal/css/main.css">
+
+    <!-- Custom Portal Theme CSS -->
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/custom-theme.css') }}">
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
 </head>
@@ -47,7 +50,7 @@
             <div class="tp-offcanvas-top d-flex align-items-center justify-content-between">
                 <div class="tp-offcanvas-logo">
                     <a href="index.html">
-                        <img data-width="110" src="../assets-portal/img/medical/logo/logo.png" alt="">
+                        <img data-width="110" src="{{ asset('logo-light-removebg.png') }}" alt="">
                     </a>
                 </div>
                 <div class="tp-offcanvas-close">
@@ -163,7 +166,7 @@
                 <div class="row align-items-center p-relative">
                     <div class="col-xl-2 col-5">
                         <div class="tp-header-logo lh-1">
-                            <a href="index.html"><img data-width="110" src="../assets-portal/img/medical/logo/logo.png"
+                            <a href="index.html"><img data-width="110" src="{{ asset('logo-light-removebg.png') }}"
                                     alt="logo"></a>
                         </div>
                     </div>
@@ -283,7 +286,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="tp-footer-med-widget mr-75 mb-50">
                             <a class="mb-35 d-inline-block" href="index.html"><img data-width="108"
-                                    src="../assets-portal/img/medical/logo/logo-white.png" alt=""></a>
+                                    src="{{ asset('logo-light-removebg.png') }}" alt=""></a>
                             <p class="tp-text-rgba-3 tp-ff-roboto fw-500 mb-20 lh-30">{{ __('medical.clinic_description', ['name' => 'Poliklinik Al-Huda']) }}</p>
                             <div class="tp-footer-med-social d-flex">
                                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>

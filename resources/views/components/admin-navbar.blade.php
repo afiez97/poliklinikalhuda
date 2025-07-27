@@ -4,7 +4,7 @@
         <!-- Brand -->
         <div class="ec-brand">
             <a href="{{ route('admin.dashboard') }}" title="Ekka">
-                <img class="ec-brand-icon" src="{{ asset('assets-admin/img/logo/logo-klinik-light.png') }}" alt="" style="width: 100px; height: auto;" />
+                <img class="ec-brand-icon" src="{{ asset('logo-light-removebg.png') }}" alt="" style="width: 100px; height: auto;" />
             </a>
         </div>
 
