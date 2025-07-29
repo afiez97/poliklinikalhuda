@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Inventori Ubat</h4>
+                <h4 class="mb-sm-0"><i class="bi bi-capsule me-2"></i>{{ __('medicine.medicine_inventory') }}</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
@@ -68,19 +68,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Senarai Ubat</h5>
-                    <div class="d-flex gap-2">
+                    <h5 class="card-title mb-0"><i class="bi bi-list-ul me-2"></i>{{ __('medicine.medicine_list') }}</h5>
+                    <div class="d-flex flex-wrap gap-2">
                         <a href="{{ route('admin.medicine.create') }}" class="btn btn-success btn-sm">
-                            <i class="bi bi-plus-circle"></i> Tambah Ubat
+                            <i class="bi bi-plus-circle me-1"></i> {{ __('medicine.add_new_medicine') }}
                         </a>
                         <a href="{{ route('admin.medicine.low-stock') }}" class="btn btn-warning btn-sm">
-                            <i class="bi bi-exclamation-triangle"></i> Stok Rendah
+                            <i class="bi bi-exclamation-triangle me-1"></i> {{ __('medicine.low_stock') }}
                         </a>
                         <a href="{{ route('admin.medicine.expiring') }}" class="btn btn-danger btn-sm">
-                            <i class="bi bi-clock"></i> Hampir Luput
+                            <i class="bi bi-clock me-1"></i> {{ __('medicine.expiring_soon') }}
                         </a>
                         <a href="{{ route('admin.medicine.stock-report') }}" class="btn btn-info btn-sm">
-                            <i class="bi bi-bar-chart"></i> Laporan Stok
+                            <i class="bi bi-bar-chart me-1"></i> {{ __('medicine.stock_report') }}
                         </a>
                     </div>
                 </div>
@@ -143,19 +143,19 @@
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="{{ route('admin.medicine.show', $medicine) }}"
-                                                   class="btn btn-sm btn-outline-info" title="Lihat">
+                                                   class="btn btn-sm btn-info" title="{{ __('medicine.view') }}">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
                                                 <a href="{{ route('admin.medicine.edit', $medicine) }}"
-                                                   class="btn btn-sm btn-outline-primary" title="Edit">
+                                                   class="btn btn-sm btn-primary" title="{{ __('medicine.edit') }}">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-sm btn-outline-success"
+                                                <button type="button" class="btn btn-sm btn-success"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#updateStockModal"
                                                         data-medicine-id="{{ $medicine->id }}"
                                                         data-medicine-name="{{ $medicine->name }}"
-                                                        title="Update Stok">
+                                                        title="{{ __('medicine.update_stock') }}">
                                                     <i class="bi bi-plus-minus"></i>
                                                 </button>
                                             </div>
@@ -205,8 +205,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Update Stok</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('medicine.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('medicine.update_stock') }}</button>
                 </div>
             </form>
         </div>

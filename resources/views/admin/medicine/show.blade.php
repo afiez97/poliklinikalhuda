@@ -191,13 +191,13 @@
         <div class="col-12">
             <div class="d-flex gap-2 justify-content-end">
                 <a href="{{ route('admin.medicine.index') }}" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Kembali ke Senarai
+                    <i class="bi bi-arrow-left"></i> {{ __('medicine.back') }}
                 </a>
                 <a href="{{ route('admin.medicine.edit', $medicine) }}" class="btn btn-primary">
-                    <i class="bi bi-pencil"></i> Edit Ubat
+                    <i class="bi bi-pencil"></i> {{ __('medicine.edit') }} {{ __('medicine.medicine') }}
                 </a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                    <i class="bi bi-trash"></i> Padam
+                    <i class="bi bi-trash"></i> {{ __('medicine.delete') }}
                 </button>
             </div>
         </div>

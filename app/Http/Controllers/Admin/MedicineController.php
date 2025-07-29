@@ -54,7 +54,7 @@ class MedicineController extends Controller
         Medicine::create($request->all());
 
         return redirect()->route('admin.medicine.index')
-            ->with('success', 'Ubat berjaya ditambah ke inventori.');
+            ->with('success', __('medicine.success_created'));
     }
 
     /**
@@ -96,7 +96,7 @@ class MedicineController extends Controller
         $medicine->update($request->all());
 
         return redirect()->route('admin.medicine.index')
-            ->with('success', 'Maklumat ubat berjaya dikemaskini.');
+            ->with('success', __('medicine.success_updated'));
     }
 
     /**
@@ -107,7 +107,7 @@ class MedicineController extends Controller
         $medicine->delete();
 
         return redirect()->route('admin.medicine.index')
-            ->with('success', 'Ubat berjaya dipadam dari inventori.');
+            ->with('success', __('medicine.messages.deleted_successfully'));
     }
 
     /**
@@ -146,13 +146,19 @@ class MedicineController extends Controller
 
             if ($request->action === 'add') {
                 $medicine->increment('stock_quantity', $request->quantity);
-                $message = "Stok ditambah: {$request->quantity} unit. {$request->reason}";
+                $message = __('medicine.messages.stock_added', [
+                    'quantity' => $request->quantity,
+                    'reason' => $request->reason ?? ''
+                ]);
             } else {
                 if ($medicine->stock_quantity < $request->quantity) {
-                    return back()->with('error', 'Stok tidak mencukupi untuk dikurangkan.');
+                    return back()->with('error', __('medicine.messages.insufficient_stock'));
                 }
                 $medicine->decrement('stock_quantity', $request->quantity);
-                $message = "Stok dikurangkan: {$request->quantity} unit. {$request->reason}";
+                $message = __('medicine.messages.stock_reduced', [
+                    'quantity' => $request->quantity,
+                    'reason' => $request->reason ?? ''
+                ]);
             }
 
             DB::commit();
@@ -161,7 +167,7 @@ class MedicineController extends Controller
 
         } catch (\Exception $e) {
             DB::rollback();
-            return back()->with('error', 'Ralat semasa mengemas kini stok: ' . $e->getMessage());
+            return back()->with('error', __('medicine.messages.stock_update_error', ['error' => $e->getMessage()]));
         }
     }
 
@@ -223,6 +229,9 @@ class MedicineController extends Controller
                 ->update(['status' => $request->status]);
 
         $count = count($request->medicine_ids);
-        return back()->with('success', "{$count} ubat telah dikemas kini statusnya kepada {$request->status}.");
+        return back()->with('success', __('medicine.messages.bulk_status_updated', [
+            'count' => $count,
+            'status' => __('medicine.status.' . $request->status)
+        ]));
     }
 }

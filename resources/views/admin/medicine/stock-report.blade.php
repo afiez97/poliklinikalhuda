@@ -204,14 +204,14 @@
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-outline-success" onclick="window.print()">
-                            <i class="bi bi-printer me-2"></i>Cetak Laporan
+                        <button type="button" class="btn btn-success" onclick="window.print()">
+                            <i class="bi bi-printer me-2"></i>{{ __('medicine.print') }} {{ __('medicine.inventory_report') }}
                         </button>
-                        <button type="button" class="btn btn-outline-info" onclick="exportToExcel()">
-                            <i class="bi bi-file-earmark-excel me-2"></i>Eksport Excel
+                        <button type="button" class="btn btn-info" onclick="exportToExcel()">
+                            <i class="bi bi-file-earmark-excel me-2"></i>{{ __('medicine.export') }} Excel
                         </button>
-                        <button type="button" class="btn btn-outline-danger" onclick="exportToPDF()">
-                            <i class="bi bi-file-earmark-pdf me-2"></i>Eksport PDF
+                        <button type="button" class="btn btn-danger" onclick="exportToPDF()">
+                            <i class="bi bi-file-earmark-pdf me-2"></i>{{ __('medicine.export') }} PDF
                         </button>
                     </div>
                 </div>

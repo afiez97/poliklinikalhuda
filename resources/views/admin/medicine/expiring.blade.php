@@ -138,15 +138,15 @@
                                                             data-medicine-name="{{ $medicine->name }}"
                                                             data-expiry-date="{{ $medicine->expiry_date->format('d/m/Y') }}"
                                                             data-days-to-expiry="{{ $daysToExpiry }}"
-                                                            title="Tindakan">
+                                                            title="{{ __('medicine.status') }}">
                                                         <i class="bi bi-gear"></i>
                                                     </button>
                                                     <a href="{{ route('admin.medicine.show', $medicine) }}"
-                                                       class="btn btn-sm btn-outline-info" title="Lihat Detail">
+                                                       class="btn btn-sm btn-info" title="{{ __('medicine.view') }}">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
                                                     <a href="{{ route('admin.medicine.edit', $medicine) }}"
-                                                       class="btn btn-sm btn-outline-primary" title="Edit">
+                                                       class="btn btn-sm btn-primary" title="{{ __('medicine.edit') }}">
                                                         <i class="bi bi-pencil"></i>
                                                     </a>
                                                 </div>
@@ -240,7 +240,7 @@
                             <h5 class="mt-3 text-success">Tiada Ubat Hampir Luput</h5>
                             <p class="text-muted">Semua ubat masih dalam tempoh yang selamat untuk digunakan.</p>
                             <a href="{{ route('admin.medicine.index') }}" class="btn btn-primary">
-                                <i class="bi bi-arrow-left"></i> Kembali ke Inventori
+                                <i class="bi bi-arrow-left"></i> {{ __('medicine.back') }}
                             </a>
                         </div>
                     @endif
@@ -304,8 +304,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Laksanakan Tindakan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('medicine.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('medicine.confirm') }}</button>
                 </div>
             </form>
         </div>

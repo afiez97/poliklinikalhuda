@@ -62,15 +62,15 @@
                 <li class="has-sub {{ request()->is('admin/medicine*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-capsule"></i>
-                        <span class="nav-text">Inventori Ubat</span> <b class="caret"></b>
+                        <span class="nav-text">{{ __('medicine.medicine_inventory') }}</span> <b class="caret"></b>
                     </a>
                     <div class="collapse {{ request()->is('admin/medicine*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="inventori-ubat" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.index') }}">Senarai Ubat</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.create') }}">Tambah Ubat Baru</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.low-stock') }}">Stok Rendah</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.expiring') }}">Hampir Luput</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.stock-report') }}">Laporan Stok</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.index') }}">{{ __('medicine.medicine_list') }}</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.create') }}">{{ __('medicine.add_new_medicine') }}</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.low-stock') }}">{{ __('medicine.low_stock') }}</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.expiring') }}">{{ __('medicine.expiring_soon') }}</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.stock-report') }}">{{ __('medicine.stock_report') }}</a></li>
                         </ul>
                     </div>
                 </li>

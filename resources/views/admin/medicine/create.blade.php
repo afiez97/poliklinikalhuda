@@ -193,10 +193,10 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-success">
-                                <i class="bi bi-check-circle"></i> Simpan Ubat
+                                <i class="bi bi-check-circle"></i> {{ __('medicine.save') }} {{ __('medicine.medicine') }}
                             </button>
                             <a href="{{ route('admin.medicine.index') }}" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i> Kembali
+                                <i class="bi bi-arrow-left"></i> {{ __('medicine.back') }}
                             </a>
                         </div>
                     </form>
