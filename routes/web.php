@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\Admin\MedicineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,19 @@ use App\Http\Controllers\LocaleController;
 
 // Locale switching route
 Route::get('/locale/{locale}', [LocaleController::class, 'changeLocale'])->name('locale.change');
+
+// ==== ADMIN MEDICINE INVENTORY ROUTES ====
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+
+    // Medicine Routes
+    Route::resource('medicine', MedicineController::class);
+    Route::get('medicine-low-stock', [MedicineController::class, 'lowStock'])->name('medicine.low-stock');
+    Route::get('medicine-expiring', [MedicineController::class, 'expiringSoon'])->name('medicine.expiring');
+    Route::patch('medicine/{medicine}/update-stock', [MedicineController::class, 'updateStock'])->name('medicine.update-stock');
+    Route::get('medicine-stock-report', [MedicineController::class, 'stockReport'])->name('medicine.stock-report');
+    Route::patch('medicine-bulk-status', [MedicineController::class, 'bulkUpdateStatus'])->name('medicine.bulk-status');
+
+});
 
 // Routes are now defined using Spatie Route Attributes in controllers
 // Check app/Http/Controllers/PortalController.php and AdminController.php

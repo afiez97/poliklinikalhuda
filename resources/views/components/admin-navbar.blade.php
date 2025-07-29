@@ -58,17 +58,19 @@
                     </a>
                 </li>
 
-                <!-- Preskripsi / Ubat -->
-                <li class="has-sub {{ request()->is('admin/prescription*') ? 'active' : '' }}">
+                <!-- Inventori Ubat -->
+                <li class="has-sub {{ request()->is('admin/medicine*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-capsule"></i>
-                        <span class="nav-text">Preskripsi / Ubat</span> <b class="caret"></b>
+                        <span class="nav-text">Inventori Ubat</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/prescription*') ? 'show' : '' }}">
-                        <ul class="sub-menu" id="preskripsi" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link" >Preskripsi Baru</a></li>
-                            <li><a class="sidenav-item-link" >Senarai Preskripsi</a></li>
-                            <li><a class="sidenav-item-link" >Inventori Ubat</a></li>
+                    <div class="collapse {{ request()->is('admin/medicine*') ? 'show' : '' }}">
+                        <ul class="sub-menu" id="inventori-ubat" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.index') }}">Senarai Ubat</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.create') }}">Tambah Ubat Baru</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.low-stock') }}">Stok Rendah</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.expiring') }}">Hampir Luput</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.medicine.stock-report') }}">Laporan Stok</a></li>
                         </ul>
                     </div>
                 </li>
