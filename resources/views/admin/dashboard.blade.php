@@ -8,7 +8,7 @@
 						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
 							<div class="card card-mini dash-card card-1">
 								<div class="card-body">
-									<h2 class="mb-1">85</h2>
+									<h2 class="mb-1">87</h2>
 									<p>Pesakit Harian</p>
 									<span class="mdi mdi-account-plus"></span>
 								</div>
