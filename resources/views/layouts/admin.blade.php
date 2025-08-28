@@ -38,7 +38,7 @@
 	<!--  WRAPPER  -->
 	<div class="wrapper">
 
-	<x-admin-navbar />
+	<x-admin-sidebar />
 
 		<!--  PAGE WRAPPER -->
 		<div class="ec-page-wrapper">
