@@ -4,6 +4,16 @@
 @section('content')
 
 				<div class="content">
+					<!-- Welcome Message -->
+					<div class="row mb-4">
+						<div class="col-12">
+							<div class="welcome-message">
+								<h4><i class="bi bi-hospital me-2"></i>Selamat Datang ke Sistem Pengurusan Klinik AlHuda</h4>
+								<p>Klinik swasta yang memberikan perkhidmatan kesihatan berkualiti tinggi untuk masyarakat Malaysia. Hari ini adalah {{ \Carbon\Carbon::now()->locale('ms')->translatedFormat('l, j F Y') }}.</p>
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
 							<div class="card card-mini dash-card card-1">

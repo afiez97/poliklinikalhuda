@@ -1,10 +1,10 @@
-<div class="ec-left-sidebar ec-bg-sidebar">
+<div class="ec-left-sidebar ec-bg-sidebar clinic-red-theme">
     <div id="sidebar" class="sidebar ec-sidebar-footer">
 
         <!-- Brand -->
         <div class="ec-brand">
-            <a href="{{ route('admin.dashboard') }}" title="Ekka">
-                <img class="ec-brand-icon" src="{{ asset('logo-light-removebg.png') }}" alt="" style="width: 100px; height: auto;" />
+            <a href="{{ route('admin.dashboard') }}" title="Klinik AlHuda - Sistem Pengurusan Klinik">
+                <img class="ec-brand-icon" src="{{ asset('logo-light-removebg.png') }}" alt="Logo Klinik AlHuda" style="width: 100px; height: auto;" />
             </a>
         </div>
 
