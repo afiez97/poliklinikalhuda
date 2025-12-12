@@ -5,9 +5,9 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Sistem Pengurusan Klinik AlHuda - Klinik Swasta di Malaysia">
+	<meta name="description" content="Ekka - Admin Dashboard eCommerce HTML Template.">
 
-	<title>@yield('title', 'Dashboard Admin') - Klinik AlHuda</title>
+	<title>Ekka - Admin Dashboard eCommerce HTML Template.</title>
 
 	<!-- GOOGLE FONTS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,8 @@
     <!-- Ekka CSS -->
     <link id="ekka-css" href="{{ asset('assets-admin/css/ekka.css') }}" rel="stylesheet" />
 
-    <!-- Clinic Red Theme CSS -->
-    <link href="{{ asset('assets-admin/css/clinic-red-theme.css') }}" rel="stylesheet" />
+    <!-- Custom Theme CSS -->
+    <link href="{{ asset('assets-admin/css/custom-theme.css') }}" rel="stylesheet" />
 
     <!-- FAVICON -->
     <link href="{{ asset('assets-admin/img/favicon.png') }}" rel="shortcut icon" />
@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-dark clinic-red-theme" id="body">
+<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-dark" id="body">
 
 	<!--  WRAPPER  -->
 	<div class="wrapper">
@@ -702,7 +702,8 @@
 				<div class="copyright bg-white">
 					<p>
 						Copyright &copy; <span id="ec-year"></span><a class="text-primary"
-							href="#" target="_blank"> Klinik AlHuda</a> - Sistem Pengurusan Klinik Swasta Malaysia. All Rights Reserved.
+							href="https://themeforest.net/user/ashishmaraviya" target="_blank"> Ekka Admin
+							Dashboard</a>. All Rights Reserved.
 					</p>
 				</div>
 			</footer>

@@ -8,38 +8,38 @@ $grid-breakpoints: (
   xxl: 1500px
 );
 
-// Colors - Updated for Klinik AlHuda Red Theme
-$primary:       #dc2626 !default;  // Strong red for clinic
-$btn-hover:     #b91c1c !default;  // Darker red for hover
-$dark:          #7f1d1d !default;  // Dark red
-$secondary:     #6b7280 !default;  // Neutral gray
-$gray-100:      #fef2f2 !default;  // Very light red background
-$border-color:  #fca5a5 !default;  // Light red border
-$navy:          #7f1d1d !default;  // Dark red instead of navy
-$pink:          #ef4444 !default;  // Bright red accent
-$success:       #16a34a !default;  // Keep green for success
-$info:          #0ea5e9 !default;  // Keep blue for info
-$warning:       #f59e0b !default;  // Keep amber for warning
-$danger:        #dc2626 !default;  // Red for danger (same as primary)
-$inverse:       #1f2937 !default;  // Dark gray
-$purple:        #a855f7 !default;  // Keep purple
+// Colors
+$primary:       #88aaf3 !default;
+$btn-hover:       #6d88c2 !default;
+$dark:          #56606e !default;
+$secondary:     #8a909d !default;
+$gray-100:      #fdfdfd !default;
+$border-color:  #f3f3f3 !default;
+$navy:          #1a283e !default;
+$pink:          #ee5588 !default;
+$success:       #34c997 !default;
+$info:          #24c4da !default;
+$warning:       #ddaa04 !default;
+$danger:        #ec4a58 !default;
+$inverse:       #17161a !default;
+$purple:        #8268e2 !default;
 $white:         #ffffff !default;
-$logo-fill-blue:#dc2626 !default;  // Change to red
+$logo-fill-blue:#84befc !default;
 
-$highlight-primary:       #fecaca !default;  // Light red highlight
-$highlight-dark:          #374151 !default;  // Dark gray
-$highlight-secondary:     #d1d5db !default;  // Light gray
-$highlight-gray-100:      #fef2f2 !default;  // Very light red
-$highlight-border-color:  #fca5a5 !default;  // Light red border
-$highlight-navy:          #dc2626 !default;  // Red instead of navy
-$highlight-pink:          #fecaca !default;  // Light red
-$highlight-success:       #bbf7d0 !default;  // Light green
-$highlight-info:          #bae6fd !default;  // Light blue
-$highlight-warning:       #fde68a !default;  // Light yellow
-$highlight-danger:        #fecaca !default;  // Light red
+$highlight-primary:       #c5d6fc !default;
+$highlight-dark:          #3d3d3d !default;
+$highlight-secondary:     #cacaca !default;
+$highlight-gray-100:      #f3f3f3 !default;
+$highlight-border-color:  #f3f3f3 !default;
+$highlight-navy:          #bdc1c9 !default;
+$highlight-pink:          #f1b8cb !default;
+$highlight-success:       #bffde9 !default;
+$highlight-info:          #b8f5fc !default;
+$highlight-warning:       #faeec6 !default;
+$highlight-danger:        #ffc3c8 !default;
 $highlight-inverse:       #000000 !default;
-$highlight-purple:        #e9d5ff !default;  // Light purple
-$highlight-light:         #fef2f2 !default;  // Very light red
+$highlight-purple:        #cfc6f5 !default;
+$highlight-light:         #f5f6fa !default;
 
 $text-color-777:  #777777;
 $text-color-999:  #999999;
