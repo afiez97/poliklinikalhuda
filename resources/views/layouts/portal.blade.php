@@ -12,12 +12,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets-portal/img/medical/logo/favicon.png">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="../assets-portal/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets-portal/css/swiper-bundle.css">
-    <link rel="stylesheet" href="../assets-portal/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets-portal/css/font-awesome-pro.css">
-    <link rel="stylesheet" href="../assets-portal/css/spacing.css">
-    <link rel="stylesheet" href="../assets-portal/css/main.css">
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/swiper-bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/font-awesome-pro.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/spacing.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-portal/css/main.css') }}">
 
     <!-- Custom Portal Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets-portal/css/custom-theme.css') }}">
@@ -362,23 +362,23 @@
 
 
     <!-- JS here -->
-    <script src="../assets-portal/js/vendor/jquery.js"></script>
-    <script src="../assets-portal/js/jquery.appear.js"></script>
-    <script src="../assets-portal/js/bootstrap-bundle.js"></script>
-    <script src="../assets-portal/js/swiper-bundle.js"></script>
-    <script src="../assets-portal/js/magnific-popup.js"></script>
-    <script src="../assets-portal/js/nice-select.js"></script>
-    <script src="../assets-portal/js/isotope-pkgd.js"></script>
-    <script src="../assets-portal/js/imagesloaded-pkgd.js"></script>
-    <script src="../assets-portal/js/ajax-form.js"></script>
-    <script src="../assets-portal/js/anime.min.js"></script>
-    <script src="../assets-portal/js/parallax.js"></script>
-    <script src="../assets-portal/js/parallax-scrool.js"></script>
-    <script src="../assets-portal/js/Jarallax.js"></script>
-    <script src="../assets-portal/js/atropos.js"></script>
-    <script src="../assets-portal/js/pie-chart.js"></script>
-    <script src="../assets-portal/js/slider-init.js"></script>
-    <script src="../assets-portal/js/main.js"></script>
+    <script src="{{ asset('assets-portal/js/vendor/jquery.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/jquery.appear.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/bootstrap-bundle.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/swiper-bundle.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/magnific-popup.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/nice-select.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/isotope-pkgd.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/imagesloaded-pkgd.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/ajax-form.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/anime.min.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/parallax.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/parallax-scrool.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/Jarallax.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/atropos.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/pie-chart.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/slider-init.js') }}"></script>
+    <script src="{{ asset('assets-portal/js/main.js') }}"></script>
 
 </body>
 
