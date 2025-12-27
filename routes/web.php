@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PesakitController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Admin\MedicineController;
@@ -30,6 +31,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('medicine-stock-report', [MedicineController::class, 'stockReport'])->name('medicine.stock-report');
     Route::patch('medicine-bulk-status', [MedicineController::class, 'bulkUpdateStatus'])->name('medicine.bulk-status');
 
+    // Pesakit Routes
+    Route::get('pesakit', [PesakitController::class, 'index'])->name('pesakit.index');
+    Route::get('pesakit/create', [PesakitController::class, 'create'])->name('pesakit.create');
+    Route::get('pesakit/search', [PesakitController::class, 'search'])->name('pesakit.search');
 });
 
 // Routes are now defined using Spatie Route Attributes in controllers

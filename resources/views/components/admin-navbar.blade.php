@@ -46,6 +46,9 @@
                             <li><a class="sidenav-item-link" >Senarai Pesakit</a></li>
                             <li><a class="sidenav-item-link" >Daftar Pesakit Baharu</a></li>
                             <li><a class="sidenav-item-link" >Carian Pesakit</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pesakit.index') }}">Senarai Pesakit</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pesakit.create') }}">Daftar Pesakit Baharu</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pesakit.search') }}">Carian Pesakit</a></li>
                         </ul>
                     </div>
                 </li>
