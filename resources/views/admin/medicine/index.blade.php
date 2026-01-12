@@ -32,7 +32,7 @@
         <div class="col-md-3">
             <div class="card bg-primary bg-opacity-10 border-primary">
                 <div class="card-body text-center">
-                    <h4 class="text-primary">{{ $medicines->count() }}</h4>
+                    <h4 class="text-primary">{{ $stats['total_medicines'] }}</h4>
                     <p class="mb-0">Total Ubat</p>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         <div class="col-md-3">
             <div class="card bg-warning bg-opacity-10 border-warning">
                 <div class="card-body text-center">
-                    <h4 class="text-warning">{{ $medicines->filter(function($m) { return $m->isLowStock(); })->count() }}</h4>
+                    <h4 class="text-warning">{{ $stats['low_stock_count'] }}</h4>
                     <p class="mb-0">Stok Rendah</p>
                 </div>
             </div>
@@ -48,7 +48,7 @@
         <div class="col-md-3">
             <div class="card bg-danger bg-opacity-10 border-danger">
                 <div class="card-body text-center">
-                    <h4 class="text-danger">{{ $medicines->filter(function($m) { return $m->isExpiringSoon(); })->count() }}</h4>
+                    <h4 class="text-danger">{{ $stats['expiring_soon_count'] }}</h4>
                     <p class="mb-0">Hampir Luput</p>
                 </div>
             </div>
@@ -56,7 +56,7 @@
         <div class="col-md-3">
             <div class="card bg-success bg-opacity-10 border-success">
                 <div class="card-body text-center">
-                    <h4 class="text-success">RM {{ number_format($medicines->sum('total_value'), 0) }}</h4>
+                    <h4 class="text-success">RM {{ number_format($stats['total_value'], 0) }}</h4>
                     <p class="mb-0">Nilai Total</p>
                 </div>
             </div>

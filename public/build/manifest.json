@@ -5,9 +5,9 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
-  "resources/sass/app.scss": {
+  "resources/scss/app.scss": {
     "file": "assets/app-C-Svbwbf.css",
-    "src": "resources/sass/app.scss",
+    "src": "resources/scss/app.scss",
     "isEntry": true
   }
 }

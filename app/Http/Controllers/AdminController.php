@@ -26,9 +26,7 @@ class AdminController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
-        // dd($credentials);
 
-        // dd($credentials);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
@@ -44,7 +42,14 @@ class AdminController extends Controller
     #[Middleware('auth')]
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $stats = [
+            'daily_patients' => 0,
+            'monthly_visits' => 0,
+            'today_appointments' => 0,
+            'active_doctors' => 0,
+        ];
+
+        return view('admin.dashboard', compact('stats'));
     }
 
     #[Get('/appointments', name: 'admin.appointments')]

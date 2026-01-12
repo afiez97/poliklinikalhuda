@@ -39,7 +39,12 @@ class Medicine extends Model
 
         static::creating(function ($medicine) {
             if (empty($medicine->medicine_code)) {
-                $medicine->medicine_code = 'MED' . str_pad(static::count() + 1, 6, '0', STR_PAD_LEFT);
+                $prefix = config('medicine.code.prefix', 'MED');
+                $length = config('medicine.code.length', 6);
+                $padString = config('medicine.code.pad_string', '0');
+
+                $lastId = static::max('id') ?? 0;
+                $medicine->medicine_code = $prefix . str_pad($lastId + 1, $length, $padString, STR_PAD_LEFT);
             }
         });
     }
@@ -84,12 +89,7 @@ class Medicine extends Model
      */
     public function getStatusBadgeAttribute()
     {
-        $badges = [
-            'active' => '<span class="badge badge-success">Aktif</span>',
-            'inactive' => '<span class="badge badge-secondary">Tidak Aktif</span>',
-            'expired' => '<span class="badge badge-danger">Luput</span>',
-        ];
-
+        $badges = config('medicine.status_badges', []);
         return $badges[$this->status] ?? '<span class="badge badge-secondary">Tidak Diketahui</span>';
     }
 
@@ -98,17 +98,7 @@ class Medicine extends Model
      */
     public function getCategoryLabelAttribute()
     {
-        $categories = [
-            'tablet' => 'Tablet',
-            'capsule' => 'Kapsul',
-            'syrup' => 'Sirap',
-            'injection' => 'Suntikan',
-            'cream' => 'Krim',
-            'drops' => 'Titisan',
-            'spray' => 'Semburan',
-            'patch' => 'Tampalan',
-        ];
-
+        $categories = config('medicine.category_labels', []);
         return $categories[$this->category] ?? $this->category;
     }
 

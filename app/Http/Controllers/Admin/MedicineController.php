@@ -4,29 +4,59 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Medicine;
+use App\Http\Requests\StoreMedicineRequest;
+use App\Http\Requests\UpdateMedicineRequest;
+use App\Http\Requests\UpdateStockRequest;
+use App\Services\MedicineService;
+use App\Exceptions\MedicineException;
+use App\Traits\HandlesApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Patch;
+use Spatie\RouteAttributes\Attributes\Delete;
+use Spatie\RouteAttributes\Attributes\Prefix;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
+#[Prefix('admin/medicine')]
+#[Middleware(['web', 'auth'])]
 class MedicineController extends Controller
 {
+    use HandlesApiResponses;
+
+    protected MedicineService $medicineService;
+
+    public function __construct(MedicineService $medicineService)
+    {
+        $this->medicineService = $medicineService;
+    }
     /**
      * Display a listing of medicines.
      */
+    #[Get('/', name: 'admin.medicine.index')]
     public function index(Request $request)
     {
-        // Untuk DataTable, kita ambil semua data tanpa pagination
         $medicines = Medicine::orderBy('name')->get();
 
-        // Data untuk dropdown filter (jika diperlukan)
-        $categories = Medicine::distinct()->pluck('category', 'category');
-        $statuses = ['active' => 'Aktif', 'inactive' => 'Tidak Aktif', 'expired' => 'Luput'];
+        $stats = [
+            'total_medicines' => $medicines->count(),
+            'low_stock_count' => $medicines->filter(fn($m) => $m->isLowStock())->count(),
+            'expiring_soon_count' => $medicines->filter(fn($m) => $m->isExpiringSoon())->count(),
+            'total_value' => $medicines->sum('total_value'),
+        ];
 
-        return view('admin.medicine.index', compact('medicines', 'categories', 'statuses'));
+        $categories = config('medicine.category_labels', []);
+        $statuses = config('medicine.status_labels', []);
+
+        return view('admin.medicine.index', compact('medicines', 'categories', 'statuses', 'stats'));
     }
 
     /**
      * Show the form for creating a new medicine.
      */
+    #[Get('/create', name: 'admin.medicine.create')]
     public function create()
     {
         return view('admin.medicine.create');
@@ -35,31 +65,22 @@ class MedicineController extends Controller
     /**
      * Store a newly created medicine in storage.
      */
-    public function store(Request $request)
+    #[Post('/', name: 'admin.medicine.store')]
+    public function store(StoreMedicineRequest $request)
     {
-        $request->validate([
-            'medicine_code' => 'nullable|string|unique:medicines,medicine_code',
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'category' => 'required|in:tablet,capsule,syrup,injection,cream,drops,spray,patch',
-            'manufacturer' => 'nullable|string|max:255',
-            'strength' => 'nullable|string|max:100',
-            'unit_price' => 'required|numeric|min:0',
-            'stock_quantity' => 'required|integer|min:0',
-            'minimum_stock' => 'required|integer|min:0',
-            'expiry_date' => 'nullable|date|after:today',
-            'batch_number' => 'nullable|string|max:100',
-        ]);
-
-        Medicine::create($request->all());
-
-        return redirect()->route('admin.medicine.index')
-            ->with('success', __('medicine.success_created'));
+        try {
+            Medicine::create($request->validated());
+            return $this->successRedirect('admin.medicine.index', __('medicine.success_created'));
+        } catch (\Exception $e) {
+            Log::error('Medicine creation failed', ['error' => $e->getMessage(), 'data' => $request->validated()]);
+            return $this->errorRedirect(__('medicine.messages.create_failed'));
+        }
     }
 
     /**
      * Display the specified medicine.
      */
+    #[Get('/{medicine}', name: 'admin.medicine.show')]
     public function show(Medicine $medicine)
     {
         return view('admin.medicine.show', compact('medicine'));
@@ -68,6 +89,7 @@ class MedicineController extends Controller
     /**
      * Show the form for editing the specified medicine.
      */
+    #[Get('/{medicine}/edit', name: 'admin.medicine.edit')]
     public function edit(Medicine $medicine)
     {
         return view('admin.medicine.edit', compact('medicine'));
@@ -76,43 +98,37 @@ class MedicineController extends Controller
     /**
      * Update the specified medicine in storage.
      */
-    public function update(Request $request, Medicine $medicine)
+    #[Patch('/{medicine}', name: 'admin.medicine.update')]
+    public function update(UpdateMedicineRequest $request, Medicine $medicine)
     {
-        $request->validate([
-            'medicine_code' => 'required|string|unique:medicines,medicine_code,' . $medicine->id,
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'category' => 'required|in:tablet,capsule,syrup,injection,cream,drops,spray,patch',
-            'manufacturer' => 'nullable|string|max:255',
-            'strength' => 'nullable|string|max:100',
-            'unit_price' => 'required|numeric|min:0',
-            'stock_quantity' => 'required|integer|min:0',
-            'minimum_stock' => 'required|integer|min:0',
-            'expiry_date' => 'nullable|date|after:today',
-            'batch_number' => 'nullable|string|max:100',
-            'status' => 'required|in:active,inactive,expired',
-        ]);
-
-        $medicine->update($request->all());
-
-        return redirect()->route('admin.medicine.index')
-            ->with('success', __('medicine.success_updated'));
+        try {
+            $medicine->update($request->validated());
+            return $this->successRedirect('admin.medicine.index', __('medicine.success_updated'));
+        } catch (\Exception $e) {
+            Log::error('Medicine update failed', ['id' => $medicine->id, 'error' => $e->getMessage()]);
+            return $this->errorRedirect(__('medicine.messages.update_failed'));
+        }
     }
 
     /**
      * Remove the specified medicine from storage.
      */
+    #[Delete('/{medicine}', name: 'admin.medicine.destroy')]
     public function destroy(Medicine $medicine)
     {
-        $medicine->delete();
-
-        return redirect()->route('admin.medicine.index')
-            ->with('success', __('medicine.messages.deleted_successfully'));
+        try {
+            $medicine->delete();
+            return $this->successRedirect('admin.medicine.index', __('medicine.messages.deleted_successfully'));
+        } catch (\Exception $e) {
+            Log::error('Medicine deletion failed', ['id' => $medicine->id, 'error' => $e->getMessage()]);
+            return $this->errorRedirect(__('medicine.messages.delete_failed'));
+        }
     }
 
     /**
      * Display medicines with low stock.
      */
+    #[Get('/low-stock', name: 'admin.medicine.low-stock')]
     public function lowStock()
     {
         $medicines = Medicine::lowStock()->orderBy('stock_quantity')->get();
@@ -123,6 +139,7 @@ class MedicineController extends Controller
     /**
      * Display medicines expiring soon.
      */
+    #[Get('/expiring', name: 'admin.medicine.expiring')]
     public function expiringSoon()
     {
         $medicines = Medicine::expiringSoon()->orderBy('expiry_date')->get();
@@ -133,14 +150,9 @@ class MedicineController extends Controller
     /**
      * Update stock for a medicine.
      */
-    public function updateStock(Request $request, Medicine $medicine)
+    #[Patch('/{medicine}/update-stock', name: 'admin.medicine.update-stock')]
+    public function updateStock(UpdateStockRequest $request, Medicine $medicine)
     {
-        $request->validate([
-            'action' => 'required|in:add,subtract',
-            'quantity' => 'required|integer|min:1',
-            'reason' => 'nullable|string|max:255',
-        ]);
-
         try {
             DB::beginTransaction();
 
@@ -152,7 +164,12 @@ class MedicineController extends Controller
                 ]);
             } else {
                 if ($medicine->stock_quantity < $request->quantity) {
-                    return back()->with('error', __('medicine.messages.insufficient_stock'));
+                    DB::rollBack();
+                    throw MedicineException::insufficientStock(
+                        $medicine->name,
+                        $medicine->stock_quantity,
+                        $request->quantity
+                    );
                 }
                 $medicine->decrement('stock_quantity', $request->quantity);
                 $message = __('medicine.messages.stock_reduced', [
@@ -162,18 +179,25 @@ class MedicineController extends Controller
             }
 
             DB::commit();
-
             return back()->with('success', $message);
 
+        } catch (MedicineException $e) {
+            return $this->errorRedirect($e->getMessage());
         } catch (\Exception $e) {
-            DB::rollback();
-            return back()->with('error', __('medicine.messages.stock_update_error', ['error' => $e->getMessage()]));
+            DB::rollBack();
+            Log::error('Stock update failed', [
+                'medicine_id' => $medicine->id,
+                'action' => $request->action,
+                'error' => $e->getMessage()
+            ]);
+            return $this->errorRedirect(__('medicine.messages.stock_update_error'));
         }
     }
 
     /**
      * Display stock report.
      */
+    #[Get('/stock-report', name: 'admin.medicine.stock-report')]
     public function stockReport()
     {
         // Statistik keseluruhan
@@ -217,6 +241,7 @@ class MedicineController extends Controller
     /**
      * Bulk update status for medicines.
      */
+    #[Patch('/bulk-status', name: 'admin.medicine.bulk-status')]
     public function bulkUpdateStatus(Request $request)
     {
         $request->validate([

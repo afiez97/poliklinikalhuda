@@ -8,7 +8,7 @@
 						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
 							<div class="card card-mini dash-card card-1">
 								<div class="card-body">
-									<h2 class="mb-1">87</h2>
+									<h2 class="mb-1">{{ $stats['daily_patients'] }}</h2>
 									<p>Pesakit Harian</p>
 									<span class="mdi mdi-account-plus"></span>
 								</div>
@@ -17,7 +17,7 @@
 						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
 							<div class="card card-mini dash-card card-2">
 								<div class="card-body">
-									<h2 class="mb-1">320</h2>
+									<h2 class="mb-1">{{ $stats['monthly_visits'] }}</h2>
 									<p>Jumlah Kunjungan Bulan Ini</p>
 									<span class="mdi mdi-calendar-month"></span>
 								</div>
@@ -26,7 +26,7 @@
 						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
 							<div class="card card-mini dash-card card-3">
 								<div class="card-body">
-									<h2 class="mb-1">12</h2>
+									<h2 class="mb-1">{{ $stats['today_appointments'] }}</h2>
 									<p>Temujanji Hari Ini</p>
 									<span class="mdi mdi-calendar-check"></span>
 								</div>
@@ -35,7 +35,7 @@
 						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
 							<div class="card card-mini dash-card card-4">
 								<div class="card-body">
-									<h2 class="mb-1">4</h2>
+									<h2 class="mb-1">{{ $stats['active_doctors'] }}</h2>
 									<p>Doktor Bertugas</p>
 									<span class="mdi mdi-doctor"></span>
 								</div>

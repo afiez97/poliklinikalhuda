@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
+use Spatie\RouteAttributes\Attributes\Get;
 
 class LocaleController extends Controller
 {
@@ -14,6 +15,7 @@ class LocaleController extends Controller
      * @param string $locale
      * @return \Illuminate\Http\RedirectResponse
      */
+    #[Get('/locale/{locale}', name: 'locale.change')]
     public function changeLocale($locale)
     {
         // Validate if the locale is supported
