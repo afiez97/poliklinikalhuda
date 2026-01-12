@@ -1,393 +1,805 @@
-# PRD: [Feature Name]
+# PRD: [Nama Modul/Feature]
 
-**PRD ID:** PRYYYY-NN-feature-name  
-**Created:** [Date]  
-**Author:** [Name]  
-**Last Updated:** [Date]
+**Kod PRD:** KLINIK-[NamaModul]-PR[YYYY]-[NN]-[nama-feature]
+**Dicipta:** [Tarikh]
+**Penulis:** [Nama]
+**Dikemaskini:** [Tarikh]
 
-### Format Breakdown
+### Format Kod PRD
 
-- **`<KOD_MODULE-MODULE_NAME>`** - SPSM module code and name (e.g., `SPSM01-TadbirUrus`, `SPSM13-Penggajian`)
-- **`<SUBMODULE_NAME>`** - Sub-module name if applicable (optional, use if nested)
-- **`PR`** - Fixed prefix for "Product Requirement"
-- **`YYYY`** - Four-digit year (e.g., 2026)
-- **`NN`** - Two-digit sequential number starting from 01 for each module-submodule combination per year
-- **`feature-name`** - Descriptive kebab-case name
+- **`KLINIK`** - Prefix tetap untuk projek Poliklinik Al-Huda
+- **`[NamaModul]`** - Nama modul (contoh: PendaftaranPesakit, TemujanjiPesakit, Ubat, Billing)
+- **`PR`** - Fixed prefix untuk "Product Requirement"
+- **`[YYYY]`** - Tahun 4 digit (contoh: 2026)
+- **`[NN]`** - Nombor sequential 2 digit bermula dari 01 setiap tahun untuk setiap modul
+- **`[nama-feature]`** - Nama deskriptif dalam format kebab-case
+
+**Contoh:**
+- `KLINIK-PendaftaranPesakit-PR2026-01-pengurusan-maklumat-pesakit`
+- `KLINIK-TemujanjiPesakit-PR2026-01-pengurusan-temujanji`
+- `KLINIK-Ubat-PR2026-01-pengurusan-inventori`
+
 ---
 
-## 1. Overview
+## 1. Ringkasan Eksekutif
 
-### 1.1 Feature Summary
-[Provide a brief 2-3 sentence summary of what this feature does and why it's being built]
+### 1.1 Gambaran Keseluruhan
+[Berikan ringkasan 2-3 ayat tentang apa yang dilakukan oleh feature ini dan mengapa ia dibina]
 
 ### 1.2 Metadata
-- **Feature Name:** [Full descriptive name]
-- **Module/SubModule:** [e.g., Admin/UserManagement/SuperAdmin/UserList]
-- **Target Roles:** [e.g., SuperAdmin, Admin, User]
-- **Priority:** [High / Medium / Low]
-- **Status:** [Planning / In Progress / Review / Complete]
-- **Estimated Effort:** [Small / Medium / Large]
+- **Nama Feature**: [Nama penuh yang deskriptif]
+- **Modul**: [contoh: Pendaftaran Pesakit, Temujanji, Ubat, Rekod Perubatan]
+- **Peranan Sasaran**: [contoh: Kerani, Jururawat, Doktor, Admin]
+- **Keutamaan**: [Tinggi / Sederhana / Rendah]
+- **Status**: [Perancangan / Dalam Pembangunan / Semakan / Selesai]
+- **Anggaran Usaha**: [Kecil / Sederhana / Besar]
+
+### 1.3 Objektif
+[Senaraikan objektif utama feature ini (3-5 bullet points)]
+- Objektif 1
+- Objektif 2
+- Objektif 3
+
+### 1.4 Skop
+
+**Dalam Skop:**
+- Feature A
+- Feature B
+- Feature C
+
+**Luar Skop:**
+- Feature X
+- Feature Y
 
 ---
 
-## 2. Problem Statement
+## 2. Pernyataan Masalah
 
-### 2.1 Current Situation
-[Describe the current state and what pain points or limitations exist]
+### 2.1 Masalah Semasa
+[Terangkan keadaan semasa dan masalah atau batasan yang wujud]
 
-### 2.2 Desired Outcome
-[Describe the ideal state after this feature is implemented]
+### 2.2 Impak Kepada Perniagaan
+[Terangkan bagaimana masalah ini memberi impak kepada operasi klinik, pesakit, atau staff]
 
-### 2.3 Success Metrics
-[How will we measure success? User adoption, time saved, error reduction, etc.]
+### 2.3 Hasil Yang Diingini
+[Terangkan keadaan ideal selepas feature ini dilaksanakan]
 
 ---
 
 ## 3. User Stories
 
-### 3.1 Primary User Stories
-- **As a (Sebagai)** [role], **I want to (saya mahu)** [action] **so that (oleh yang demikian)** [benefit]
-- **As a (Sebagai)** [role], **I want to (saya mahu)** [action] **so that (oleh yang demikian)** [benefit]
+### 3.1 User Stories Utama
 
-### 3.2 Edge Cases & Secondary Stories
-- **As a (Sebagai)** [role], **when (bila)** [condition], **I should (saya sepatutnya)** [expected behavior]
+- **Sebagai** [peranan], **saya mahu** [tindakan] **supaya** [faedah]
 
----
+- **Sebagai** [peranan], **saya mahu** [tindakan] **supaya** [faedah]
 
-## 4. Functional Requirements
+- **Sebagai** [peranan], **saya mahu** [tindakan] **supaya** [faedah]
 
-### 4.1 Core Features
-- [ ] **FR-1:** [Requirement description]
-- [ ] **FR-2:** [Requirement description]
-- [ ] **FR-3:** [Requirement description]
+### 3.2 Edge Cases & User Stories Sekunder
 
-### 4.2 Permissions & Access Control
-- **Required Roles:** [List roles that can access this feature]
-- **Required Permissions:** [List specific permissions needed, e.g., 'users.create', 'users.edit']
-- **Policy/Gate Logic:** [Describe any complex authorization rules]
+- **Sebagai** [peranan], **bila** [kondisi], **saya sepatutnya** [tingkah laku yang dijangka]
 
-### 4.3 Badge System Integration
-- [ ] **Does this feature need notification badges?** [Yes/No]
-- **Badge Count Logic:** [e.g., "Count of pending approvals for current user"]
-- **Badge Update Trigger:** [When should badge count refresh? e.g., on create, update, delete]
-- **Badge Display Location:** [Where should badge appear? Module icon, SubModule icon, both]
+- **Sebagai** [peranan], **bila** [kondisi], **saya sepatutnya** [tingkah laku yang dijangka]
 
-### 4.4 Data Validation
-- **Required Fields:** [List required form fields]
-- **Validation Rules:** [Describe validation logic, e.g., unique email, min/max length]
-- **Business Rules:** [Any special business logic, e.g., "Cannot delete user with active sessions"]
+**Nota Format:**
+- Satu ayat sahaja untuk setiap user story
+- Guna bold untuk keyword: **Sebagai**, **saya mahu**, **supaya**, **bila**, **saya sepatutnya**
+- Tiada full stop di hujung ayat
+- Tiada sub-bullets
 
 ---
 
-## 5. Technical Specifications
+## 4. Keperluan Fungsian
 
-### 5.1 Architecture
+### 4.1 Ciri-ciri Teras
 
-#### Module Structure
+- [ ] **FR-01:** [Penerangan keperluan]
+- [ ] **FR-02:** [Penerangan keperluan]
+- [ ] **FR-03:** [Penerangan keperluan]
+
+### 4.2 Kebenaran & Kawalan Akses
+
+- **Peranan Diperlukan**: [Senaraikan peranan yang boleh akses feature ini]
+- **Kebenaran Diperlukan**: [Senaraikan permission spesifik yang diperlukan]
+- **Authorization Logic**: [Terangkan sebarang peraturan authorization yang kompleks]
+
+### 4.3 Validasi Data
+
+- **Field Wajib**: [Senaraikan field form yang wajib diisi]
+- **Peraturan Validasi**: [Terangkan logik validasi, contoh: email unik, min/max length]
+- **Peraturan Perniagaan**: [Sebarang logik perniagaan khas, contoh: "Tidak boleh delete pesakit yang ada temujanji aktif"]
+
+### 4.4 Audit Trail & PDPA Compliance
+
+- [ ] **Adakah feature ini perlu audit trail?** [Ya/Tidak]
+- **Field Audit**: [created_by, updated_by, deleted_at]
+- **Data Consent**: [Adakah pesakit perlu beri consent untuk data ini?]
+- **Data Retention**: [Berapa lama data disimpan? Boleh delete secara kekal atau soft delete sahaja?]
+
+---
+
+## 5. Keperluan Teknikal
+
+### 5.1 Teknologi Stack
+
+- **Framework**: Laravel 12
+- **Frontend**: Blade Templates + Bootstrap 5 + CoreUI
+- **Database**: MySQL 8.0
+- **Authentication**: Laravel Breeze/Sanctum
+- **File Storage**: Laravel Storage (local/S3)
+- **Queue**: Laravel Queue (database/Redis)
+- **Cache**: Redis/File Cache
+
+### 5.2 Arsitektur Aplikasi
+
+Mengikut pattern yang ditetapkan dalam `DEVELOPER_GUIDE.md`:
+
 ```
-ModuleName/
-  └── SubModuleName/
-      └── RoleName/
-          └── ComponentName/
-              ├── ComponentName.php (Livewire)
-              ├── component-name.blade.php
-              └── ComponentNameTest.php
+Route Attributes (dalam Controller)
+   ↓
+Controller (HTTP Layer)
+   ↓
+FormRequest (Validation Layer)
+   ↓
+Service Layer (Business Logic)
+   ↓
+Repository Layer (Data Access)
+   ↓
+Model (Eloquent ORM)
+   ↓
+Database
 ```
 
-- **Module Path:** [e.g., Admin/UserManagement/SuperAdmin/UserList]
-- **Livewire Component Type:** [Class-based / Functional Volt]
-- **Component Name:** [e.g., UserList, CreateUser]
+### 5.3 Struktur Modul
 
-#### Command to Generate
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   └── Admin/
+│   │       └── [ModuleName]Controller.php (dengan Route Attributes)
+│   └── Requests/
+│       ├── Store[ModuleName]Request.php
+│       └── Update[ModuleName]Request.php
+├── Services/
+│   └── [ModuleName]Service.php
+├── Repositories/
+│   └── [ModuleName]Repository.php
+├── Models/
+│   └── [ModelName].php
+├── Traits/
+│   └── [TraitName].php (jika perlu)
+└── Exceptions/
+    └── [ModuleName]Exception.php (jika perlu)
+
+config/
+└── [module_name].php (configuration file)
+
+resources/
+└── views/
+    └── admin/
+        └── [module_name]/
+            ├── index.blade.php
+            ├── create.blade.php
+            ├── edit.blade.php
+            └── show.blade.php
+```
+
+### 5.4 Command untuk Generate
+
 ```bash
-php artisan make:controller-core [ModuleName]/[SubModuleName]/[RoleName]/[ComponentName]
+# Model dengan migration dan factory
+php artisan make:model [ModelName] -mf
+
+# Controller
+php artisan make:controller Admin/[ModuleName]Controller
+
+# FormRequests
+php artisan make:request Store[ModelName]Request
+php artisan make:request Update[ModelName]Request
+
+# Service (manual create)
+# Create file: app/Services/[ModuleName]Service.php
+
+# Repository (manual create)
+# Create file: app/Repositories/[ModuleName]Repository.php
+
+# Exception (optional)
+php artisan make:exception [ModuleName]Exception
 ```
 
-### 5.2 Database Schema
+### 5.5 Database Schema
 
-#### New Tables
-- [ ] **Table Name:** `table_name`
-  - **Columns:**
-    - `id` - string(26)
-    - `name` - string(255)
-    - `created_at` - timestamp
-    - `updated_at` - timestamp
-  - **Indexes:** [List indexes]
-  - **Foreign Keys:** [List relationships]
+#### Jadual Baharu
 
-#### Existing Table Modifications
-- [ ] **Table:** `existing_table`
-  - **Changes:** [Add/modify/remove columns]
+**Jadual: `[table_name]`**
 
-### 5.3 Eloquent Models
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | bigint UNSIGNED PK | Primary key |
+| `nama_field` | varchar(255) NOT NULL | Penerangan |
+| `created_by` | bigint UNSIGNED NULL | FK → users.id |
+| `updated_by` | bigint UNSIGNED NULL | FK → users.id |
+| `created_at` | timestamp | Waktu rekod dicipta |
+| `updated_at` | timestamp | Waktu rekod dikemaskini |
+| `deleted_at` | timestamp NULL | Soft delete |
 
-#### New Models
-- [ ] **Model:** `ModelName`
-  - **Relationships:**
-    - `belongsTo()` - [Related model]
-    - `hasMany()` - [Related model]
-  - **Casts:** [e.g., 'is_active' => 'boolean']
-  - **Fillable:** [List fillable attributes]
-  - **Factory:** [Yes/No]
-  - **Seeder:** [Yes/No]
+**Indexes:**
+- `idx_field_name` on `field_name`
 
-### 5.4 Routes
-- [ ] `Route::get('/path', ComponentName::class)->name('route.name');`
-- [ ] `Route::post('/path', [Controller::class, 'method'])->name('route.name');`
+**Foreign Keys:**
+- `fk_table_user_created` FOREIGN KEY (`created_by`) REFERENCES `users`(`id`) ON DELETE SET NULL
+- `fk_table_user_updated` FOREIGN KEY (`updated_by`) REFERENCES `users`(`id`) ON DELETE SET NULL
 
-**Route Middleware:** [auth, permission:permission-name]
+#### Pengubahsuaian Jadual Sedia Ada
 
-### 5.5 UI Components
+- [ ] **Jadual**: `existing_table`
+  - **Perubahan**: [Tambah/ubah/buang column]
 
-#### Layout
-- **Page Type:** [Full page / Modal / Slide-over / Inline section]
-- **Navigation:** [Add to menu? Yes/No - specify menu location]
+### 5.6 Model Eloquent
 
-#### Flux UI Components
-List specific Flux UI Pro components to use:
-- [ ] `<flux:button variant="primary">` - [Purpose]
-- [ ] `<flux:input wire:model="form.name">` - [Purpose]
-- [ ] `<flux:table>` - [Purpose]
-- [ ] `<flux:modal>` - [Purpose]
-- [ ] [Other components...]
+#### Model Baharu
 
-#### Icons
-- **Module Icon:** [e.g., heroicon-o-users]
-- **SubModule Icon:** [e.g., heroicon-o-user-group]
+**Model: `[ModelName]`**
 
-#### Tailwind CSS
-- **Custom Styles:** [Any custom Tailwind classes or theme extensions needed]
-- **Dark Mode Support:** [Yes/No - specify dark mode classes]
+```php
+<?php
 
-### 5.6 Form Requests & Validation
-- [ ] **Form Request:** `StoreUserRequest`
-  - **Validation Rules:**
-    ```php
-    'name' => 'required|string|max:255',
-    'email' => 'required|email|unique:users',
-    ```
-  - **Custom Error Messages:** [List any custom messages]
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class [ModelName] extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $table = '[table_name]';
+
+    protected $fillable = [
+        'field1', 'field2', 'created_by', 'updated_by'
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'date_field' => 'date',
+    ];
+
+    // Relationships
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updater()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    // Accessors
+    public function getStatusBadgeAttribute()
+    {
+        return config("module.status_badges.{$this->status}", $this->status);
+    }
+}
+```
+
+**Relationships:**
+- `belongsTo()` - [Related model]
+- `hasMany()` - [Related model]
+
+**Factory**: [Ya/Tidak]
+**Seeder**: [Ya/Tidak]
+
+### 5.7 Configuration File
+
+**File: `config/[module_name].php`**
+
+```php
+<?php
+
+return [
+    // Kod generation
+    'kod_prefix' => '[PREFIX]',
+    'kod_format' => '[PREFIX]-YYYYMMDD-9999',
+
+    // Categories/Statuses
+    'categories' => ['category1', 'category2'],
+    'statuses' => ['active', 'inactive'],
+
+    // Labels (Bahasa Malaysia)
+    'category_labels' => [
+        'category1' => 'Kategori 1',
+        'category2' => 'Kategori 2',
+    ],
+
+    'status_labels' => [
+        'active' => 'Aktif',
+        'inactive' => 'Tidak Aktif',
+    ],
+
+    'status_badges' => [
+        'active' => '<span class="badge badge-success">Aktif</span>',
+        'inactive' => '<span class="badge badge-secondary">Tidak Aktif</span>',
+    ],
+
+    // Business rules
+    'max_records_per_page' => 15,
+    'threshold_value' => 100,
+];
+```
+
+### 5.8 Routes (Route Attributes)
+
+**File: `app/Http/Controllers/Admin/[ModuleName]Controller.php`**
+
+```php
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\[ModelName];
+use App\Http\Requests\Store[ModelName]Request;
+use App\Http\Requests\Update[ModelName]Request;
+use App\Services\[ModuleName]Service;
+use App\Traits\HandlesApiResponses;
+use Illuminate\Support\Facades\Log;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Patch;
+use Spatie\RouteAttributes\Attributes\Delete;
+use Spatie\RouteAttributes\Attributes\Prefix;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Prefix('admin/[module-name]')]
+#[Middleware(['web', 'auth'])]
+class [ModuleName]Controller extends Controller
+{
+    use HandlesApiResponses;
+
+    protected [ModuleName]Service $service;
+
+    public function __construct([ModuleName]Service $service)
+    {
+        $this->service = $service;
+    }
+
+    #[Get('/', name: 'admin.[module-name].index')]
+    public function index()
+    {
+        // Implementation
+    }
+
+    #[Get('/create', name: 'admin.[module-name].create')]
+    public function create()
+    {
+        // Implementation
+    }
+
+    #[Post('/', name: 'admin.[module-name].store')]
+    public function store(Store[ModelName]Request $request)
+    {
+        try {
+            $this->service->create($request->validated());
+            return $this->successRedirect('admin.[module-name].index', 'Rekod berjaya dicipta');
+        } catch (\Exception $e) {
+            Log::error('[ModuleName] creation failed', ['error' => $e->getMessage()]);
+            return $this->errorRedirect('Gagal mencipta rekod');
+        }
+    }
+
+    #[Get('/{[model]}', name: 'admin.[module-name].show')]
+    public function show([ModelName] $[model])
+    {
+        // Implementation
+    }
+
+    #[Get('/{[model]}/edit', name: 'admin.[module-name].edit')]
+    public function edit([ModelName] $[model])
+    {
+        // Implementation
+    }
+
+    #[Patch('/{[model]}', name: 'admin.[module-name].update')]
+    public function update(Update[ModelName]Request $request, [ModelName] $[model])
+    {
+        try {
+            $this->service->update($[model]->id, $request->validated());
+            return $this->successRedirect('admin.[module-name].index', 'Rekod berjaya dikemaskini');
+        } catch (\Exception $e) {
+            Log::error('[ModuleName] update failed', ['id' => $[model]->id, 'error' => $e->getMessage()]);
+            return $this->errorRedirect('Gagal mengemaskini rekod');
+        }
+    }
+
+    #[Delete('/{[model]}', name: 'admin.[module-name].destroy')]
+    public function destroy([ModelName] $[model])
+    {
+        try {
+            $this->service->delete($[model]->id);
+            return $this->successRedirect('admin.[module-name].index', 'Rekod berjaya dihapus');
+        } catch (\Exception $e) {
+            Log::error('[ModuleName] deletion failed', ['id' => $[model]->id, 'error' => $e->getMessage()]);
+            return $this->errorRedirect('Gagal menghapus rekod');
+        }
+    }
+}
+```
+
+**Route Middleware**: `['web', 'auth']`
+
+### 5.9 FormRequest Validation
+
+**File: `app/Http/Requests/Store[ModelName]Request.php`**
+
+```php
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class Store[ModelName]Request extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true; // atau check permissions
+    }
+
+    public function rules(): array
+    {
+        return [
+            'nama' => 'required|string|max:255',
+            'category' => 'required|in:' . implode(',', config('module.categories')),
+            'is_active' => 'boolean',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nama.required' => 'Nama adalah wajib',
+            'category.required' => 'Kategori adalah wajib',
+        ];
+    }
+}
+```
 
 ---
 
-## 6. Business Logic & Workflows
+## 6. Workflow dan User Flow
 
-### 6.1 Main User Flow
-1. User navigates to [location]
-2. User clicks [action]
-3. System validates [conditions]
-4. System performs [operations]
-5. User sees [feedback/result]
+### 6.1 Workflow Utama
+
+```
+[Pengguna] → [Tindakan 1]
+    ↓
+[Sistem] Validasi [kondisi]
+    ↓
+[Sistem] Lakukan [operasi]
+    ↓
+[Pengguna] Lihat [feedback/hasil]
+```
 
 ### 6.2 State Management
-- **Livewire Properties:** [List public properties, e.g., `public $search = ''`]
-- **Computed Properties:** [List computed properties, e.g., `$users = computed(fn() => ...)`]
 
-### 6.3 Event Handling
-- **Events Dispatched:** [e.g., `$this->dispatch('user-created')`]
-- **Events Listened:** [e.g., `#[On('refresh-list')]`]
+**Status Flow:**
+```
+[Status Awal] → [Status 2] → [Status 3] → [Status Akhir]
+```
 
-### 6.4 Background Jobs (if applicable)
-- [ ] **Job Name:** `ProcessUserImport`
-  - **Trigger:** [When is job queued?]
-  - **Queue:** [Queue name, e.g., 'default', 'emails']
-  - **Failure Handling:** [Retry logic, notifications]
+### 6.3 Error Handling
+
+**Exception Handling:**
+- Guna `try-catch` blocks dalam controller methods
+- Log semua errors dengan context
+- Return user-friendly error messages
+- Guna `HandlesApiResponses` trait untuk consistent responses
 
 ---
 
-## 7. Testing Requirements
+## 7. Keperluan UI/UX
 
-### 7.1 Feature Tests
-Create tests in `tests/Feature/[ModuleName]/[ComponentName]Test.php`:
+### 7.1 Layout
 
-- [ ] **Test:** User can view [feature]
-  ```php
-  test('authorized user can view component', function () {
-      $user = User::factory()->create();
-      $user->givePermissionTo('permission.name');
-      
-      $this->actingAs($user)
-          ->get(route('route.name'))
-          ->assertOk()
-          ->assertSeeLivewire(ComponentName::class);
-  });
-  ```
+- **Jenis Halaman**: [Full page / Modal / Inline section]
+- **Navigation**: [Tambah ke menu? Ya/Tidak - nyatakan lokasi menu]
 
-- [ ] **Test:** User can create [resource]
-- [ ] **Test:** User can update [resource]
-- [ ] **Test:** User can delete [resource]
-- [ ] **Test:** Unauthorized user cannot access [feature]
-- [ ] **Test:** Validation rules are enforced
-- [ ] **Test:** Badge count updates correctly (if applicable)
+### 7.2 Bootstrap 5 + CoreUI Components
 
-### 7.2 Unit Tests
+Senaraikan component yang digunakan:
+- [ ] **Card** - [Tujuan]
+- [ ] **Table** - [Tujuan]
+- [ ] **Form** - [Tujuan]
+- [ ] **Modal** - [Tujuan]
+- [ ] **Badge** - [Tujuan]
+- [ ] **Button** - [Tujuan]
+
+### 7.3 Icons
+
+- **Heroicons**: [contoh: heroicon-o-users, heroicon-o-calendar]
+
+### 7.4 Responsive Design
+
+- **Mobile Support**: [Ya/Tidak]
+- **Tablet Support**: [Ya/Tidak]
+- **Breakpoints**: [Specify jika ada custom breakpoints]
+
+---
+
+## 8. Keperluan Keselamatan
+
+### 8.1 Authentication & Authorization
+
+- **Authentication**: Laravel Breeze/Sanctum
+- **Middleware**: `auth` untuk semua admin routes
+- **Role-based Access**: [Senaraikan roles yang boleh akses]
+
+### 8.2 Data Protection (PDPA Compliance)
+
+- **Audit Trail**: Rekod created_by, updated_by untuk semua operasi
+- **Soft Delete**: Guna soft delete untuk data sensitive
+- **Consent**: Rekod consent pesakit untuk penggunaan data
+- **Data Encryption**: [Jika perlu encrypt field tertentu]
+
+### 8.3 Input Validation & Security
+
+- **CSRF Protection**: Semua POST/PATCH/DELETE dilindungi CSRF token
+- **SQL Injection Prevention**: Guna Eloquent ORM
+- **XSS Prevention**: Guna Blade `{{ }}` escaping
+- **File Upload Security**: Validate file type, size, scan malware (jika applicable)
+
+---
+
+## 9. Keperluan Prestasi
+
+### 9.1 Response Time
+
+- **Halaman Senarai**: < 2 saat
+- **Halaman Form**: < 1 saat
+- **Submit Form**: < 3 saat
+
+### 9.2 Scalability
+
+- **Database Indexing**: Index pada foreign keys dan search fields
+- **Query Optimization**: Guna eager loading untuk relationships
+- **Caching**: Cache configuration files dan static data
+- **Pagination**: Limit records per page (default: 15)
+
+### 9.3 Concurrent Users
+
+- **Expected Users**: [Nyatakan bilangan concurrent users dijangka]
+
+---
+
+## 10. Keperluan Ujian
+
+### 10.1 Unit Testing
+
 Create tests in `tests/Unit/[Feature]Test.php`:
 
-- [ ] **Test:** Model relationships work correctly
-- [ ] **Test:** Business logic methods return expected results
-- [ ] **Test:** Helper functions behave as expected
+- [ ] **Test**: Model relationships work correctly
+- [ ] **Test**: Service methods return expected results
+- [ ] **Test**: Validation rules are enforced
 
-### 7.3 Test Data
-- **Factories:** [List factories needed]
-- **Seeders:** [List seeders needed for testing]
+### 10.2 Feature Testing
 
-### 7.4 Test Coverage Goals
-- [ ] All happy paths tested
-- [ ] All validation rules tested
-- [ ] All authorization checks tested
-- [ ] Edge cases covered
+Create tests in `tests/Feature/[ModuleName]Test.php`:
 
----
+- [ ] **Test**: Authenticated user can view index page
+- [ ] **Test**: Authenticated user can create record
+- [ ] **Test**: Authenticated user can update record
+- [ ] **Test**: Authenticated user can delete record
+- [ ] **Test**: Unauthenticated user cannot access pages
+- [ ] **Test**: Validation rules are enforced on submit
 
-## 8. Implementation Steps
+```php
+public function test_authenticated_user_can_view_index()
+{
+    $user = User::factory()->create();
 
-### 8.1 Pre-Implementation Checklist
-- [ ] PRD reviewed and approved
-- [ ] Design mockups ready (if UI-heavy feature)
-- [ ] Dependencies identified and available
-- [ ] Database schema reviewed
+    $response = $this->actingAs($user)
+        ->get(route('admin.[module-name].index'));
 
-### 8.2 Implementation Order
-1. **Database Setup**
-   ```bash
-   php artisan make:migration create_table_name_table
-   php artisan make:model ModelName -mf
-   ```
+    $response->assertStatus(200);
+    $response->assertViewIs('admin.[module-name].index');
+}
+```
 
-2. **Generate Component Structure**
-   ```bash
-   php artisan make:controller-core [ModuleName]/[SubModuleName]/[RoleName]/[ComponentName]
-   ```
+### 10.3 Integration Testing
 
-3. **Create Form Requests**
-   ```bash
-   php artisan make:request StoreResourceRequest
-   php artisan make:request UpdateResourceRequest
-   ```
+- [ ] **Test**: Integration dengan SMS gateway (jika applicable)
+- [ ] **Test**: Queue processing
+- [ ] **Test**: File upload dan storage
 
-4. **Implement Business Logic**
-   - Model relationships and methods
-   - Livewire component logic
-   - Form validation
-   - Authorization (policies/gates)
+### 10.4 User Acceptance Testing (UAT)
 
-5. **Build UI**
-   - Blade templates with Flux UI components
-   - Tailwind styling with dark mode support
-   - Icons and navigation integration
+**Scenario 1**: [Terangkan scenario testing]
+- Expected Result: [Apa yang dijangka berlaku]
 
-6. **Badge Integration (if applicable)**
-   - Implement badge count logic in BadgeService
-   - Update menu definitions in MenuService
-   - Test badge updates
-
-7. **Write Tests**
-   - Feature tests for all user flows
-   - Unit tests for business logic
-   - Run tests: `php artisan test --filter=ComponentName`
-
-8. **Code Formatting**
-   ```bash
-   vendor/bin/pint --dirty
-   ```
-
-9. **Final Review**
-   - All tests passing
-   - Code formatted
-   - Documentation updated
-   - PRD acceptance criteria met
+**Scenario 2**: [Terangkan scenario testing]
+- Expected Result: [Apa yang dijangka berlaku]
 
 ---
 
-## 9. Dependencies
+## 11. Langkah Implementasi
 
-### 9.1 External Packages
-- [ ] **Package Name:** [e.g., spatie/laravel-permission]
-  - **Version:** [Specify version if critical]
-  - **Purpose:** [Why is this needed?]
+### 11.1 Fasa 1: Setup & Database (Minggu [X])
 
-### 9.2 Related Features/Modules
-- **Depends On:** [List features that must exist first]
-- **Impacts:** [List features that will be affected by this change]
+- [ ] Create migrations untuk jadual baharu
+- [ ] Create Model Eloquent dengan relationships
+- [ ] Create configuration file
+- [ ] Run migrations dan seed sample data
 
-### 9.3 Third-Party Integrations
-- [ ] **Service:** [e.g., Email service, Payment gateway]
-  - **Configuration Required:** [Environment variables, API keys]
+### 11.2 Fasa 2: Repository & Service Layer (Minggu [X])
 
----
+- [ ] Create Repository dengan methods: `create()`, `update()`, `delete()`, `search()`
+- [ ] Create Service dengan business logic
+- [ ] Create custom Exception (jika perlu)
 
-## 10. Acceptance Criteria
+### 11.3 Fasa 3: FormRequest Validation (Minggu [X])
 
-### 10.1 Functional Acceptance
-- [ ] All functional requirements (FR-1, FR-2, etc.) are implemented
-- [ ] All user stories can be completed successfully
-- [ ] Permissions and authorization work as specified
-- [ ] Badge system integrated correctly (if applicable)
-- [ ] Data validation enforces all rules
-- [ ] Error handling provides clear feedback
+- [ ] Create `Store[ModelName]Request`
+- [ ] Create `Update[ModelName]Request`
+- [ ] Test validation rules
 
-### 10.2 Technical Acceptance
-- [ ] All feature tests pass
-- [ ] All unit tests pass
-- [ ] Code follows Laravel conventions from copilot-instructions.md
-- [ ] Code formatted with `vendor/bin/pint`
-- [ ] No N+1 query problems (eager loading used)
-- [ ] Livewire component has single root element
-- [ ] Dark mode supported (if UI feature)
+### 11.4 Fasa 4: Controller & Routes (Minggu [X])
 
-### 10.3 Quality Acceptance
-- [ ] Code reviewed by peer
-- [ ] Manual testing completed
-- [ ] No console errors or warnings
-- [ ] Responsive design works on mobile/tablet
-- [ ] Accessibility considerations addressed
+- [ ] Create Controller dengan Route Attributes
+- [ ] Implement CRUD methods
+- [ ] Add error handling dengan `HandlesApiResponses` trait
+- [ ] Clear route cache: `php artisan route:clear`
 
-### 10.4 Documentation Acceptance
-- [ ] PRD updated with final implementation notes
-- [ ] BADGES.md updated (if badge added)
-- [ ] README.md updated (if user-facing feature)
-- [ ] Inline code comments for complex logic
+### 11.5 Fasa 5: Views & UI (Minggu [X])
 
----
+- [ ] Create Blade templates (index, create, edit, show)
+- [ ] Integrate Bootstrap 5 + CoreUI components
+- [ ] Add responsive design
+- [ ] Test UI di browser
 
-## 11. Notes & Considerations
+### 11.6 Fasa 6: Testing (Minggu [X])
 
-### 11.1 Future Enhancements
-[List potential improvements or features to add later]
+- [ ] Write unit tests
+- [ ] Write feature tests
+- [ ] Perform manual UAT
+- [ ] Fix bugs
 
-### 11.2 Known Limitations
-[Document any known constraints or trade-offs]
+### 11.7 Fasa 7: Deployment (Minggu [X])
 
-### 11.3 Migration Considerations
-[If modifying existing feature, how will existing data/users be handled?]
-
-### 11.4 Performance Considerations
-[Any caching, queueing, or optimization strategies needed?]
-
-### 11.5 Security Considerations
-[Any security concerns? XSS, CSRF, SQL injection prevention?]
+- [ ] Deploy ke production server
+- [ ] Training untuk pengguna
+- [ ] Monitor error logs
 
 ---
 
-## 12. Appendix
+## 12. Kriteria Kejayaan
 
-### 12.1 References
-- [Link to related PRDs]
-- [Link to design mockups]
-- [Link to API documentation]
+### 12.1 Metrics Utama
 
-### 12.2 Change Log
-| Date | Author | Change |
-|------|--------|--------|
-| [Date] | [Name] | Initial PRD creation |
-| [Date] | [Name] | [Description of change] |
+- **Metric 1**: [Target value]
+- **Metric 2**: [Target value]
+- **Metric 3**: [Target value]
 
-### 12.3 Approval
-- [ ] **Product Owner:** [Name] - [Date]
-- [ ] **Tech Lead:** [Name] - [Date]
-- [ ] **Stakeholders:** [Names] - [Date]
+### 12.2 User Satisfaction
+
+- **Kepuasan Pengguna**: > 4.0/5.0 (survey)
+
+### 12.3 Technical Metrics
+
+- **Uptime**: > 99%
+- **Response Time**: < 2 saat untuk 95% requests
+- **Bug Rate**: < 5 bugs per bulan selepas deployment
 
 ---
 
-**Implementation Status:** [Not Started / In Progress / Completed]  
-**Completion Date:** [Date when feature shipped to production]
+## 13. Risks & Mitigation
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| [Risiko 1] | [High/Medium/Low] | [High/Medium/Low] | [Cara mitigation] |
+| [Risiko 2] | [High/Medium/Low] | [High/Medium/Low] | [Cara mitigation] |
+
+---
+
+## 14. Dependencies
+
+### 14.1 External Packages
+
+- [ ] **Package Name**: [contoh: spatie/laravel-permission]
+  - **Version**: [Specify version jika kritikal]
+  - **Purpose**: [Mengapa diperlukan?]
+
+### 14.2 Related Features/Modules
+
+- **Bergantung Kepada**: [Senaraikan features yang mesti wujud dahulu]
+- **Memberi Impak Kepada**: [Senaraikan features yang akan terjejas oleh perubahan ini]
+
+### 14.3 Third-Party Integrations
+
+- [ ] **Service**: [contoh: SMS gateway, Email service]
+  - **Configuration Required**: [Environment variables, API keys]
+
+---
+
+## 15. Acceptance Criteria
+
+### 15.1 Functional Acceptance
+
+- [ ] Semua functional requirements (FR-01, FR-02, dll) dilaksanakan
+- [ ] Semua user stories dapat diselesaikan dengan jayanya
+- [ ] Authorization berfungsi seperti yang dinyatakan
+- [ ] Data validation enforce semua peraturan
+- [ ] Error handling memberikan feedback yang jelas
+
+### 15.2 Technical Acceptance
+
+- [ ] Semua feature tests lulus
+- [ ] Semua unit tests lulus
+- [ ] Kod mengikut conventions dari `DEVELOPER_GUIDE.md` dan `.github/copilot-instructions.md`
+- [ ] Kod diformat dengan `./vendor/bin/pint`
+- [ ] Tiada N+1 query problems (guna eager loading)
+- [ ] Route cache cleared selepas tambah routes
+
+### 15.3 Quality Acceptance
+
+- [ ] Kod di-review oleh peer
+- [ ] Manual testing selesai
+- [ ] Tiada console errors atau warnings
+- [ ] Responsive design berfungsi di mobile/tablet
+- [ ] Accessibility considerations ditangani
+
+### 15.4 Documentation Acceptance
+
+- [ ] PRD dikemaskini dengan implementation notes akhir
+- [ ] DEVELOPER_GUIDE.md dikemaskini (jika perlu)
+- [ ] Inline code comments untuk logik yang kompleks
+
+---
+
+## 16. Lampiran
+
+### 16.1 Contoh Screenshots/Wireframes
+
+[Tambah screenshots atau wireframes UI jika ada]
+
+### 16.2 Database ER Diagram
+
+[Tambah ER diagram untuk jadual-jadual yang terlibat]
+
+### 16.3 References
+
+- [Link ke PRD berkaitan]
+- [Link ke design mockups]
+- [Link ke dokumentasi API]
+
+### 16.4 Change Log
+
+| Tarikh | Penulis | Perubahan |
+|--------|---------|-----------|
+| [Tarikh] | [Nama] | PRD awal dicipta |
+| [Tarikh] | [Nama] | [Penerangan perubahan] |
+
+### 16.5 Approval
+
+- [ ] **Product Owner**: [Nama] - [Tarikh]
+- [ ] **Tech Lead**: [Nama] - [Tarikh]
+- [ ] **Pengurus Klinik**: [Nama] - [Tarikh]
+- [ ] **Stakeholders**: [Nama-nama] - [Tarikh]
+
+---
+
+**Status Implementasi**: [Belum Bermula / Dalam Pembangunan / Selesai]
+**Tarikh Selesai**: [Tarikh bila feature deploy ke production]
+
+---
+
+**Catatan**: Dokumen ini adalah living document dan akan dikemaskini mengikut keperluan semasa development.
