@@ -82,82 +82,322 @@ KLINIK-Laporan-Kewangan-PR2026-01-monthly-financial-report.md
 
 ---
 
-## Senarai PRD Sedia Ada
+## Senarai PRD Sedia Ada (Mengikut Flow Proses Klinik)
 
-### 1. Modul Pendaftaran Pesakit
+Susunan PRD disusun mengikut **aliran proses sebenar** di klinik:
 
-#### KLINIK-PendaftaranPesakit-PR2026-01
-**Fail**: [KLINIK-PendaftaranPesakit-PR2026-01-pengurusan-maklumat-pesakit.md](KLINIK-PendaftaranPesakit-PR2026-01-pengurusan-maklumat-pesakit.md)
-
-**Status**: Draft
-**Keutamaan**: Tinggi
-**Tarikh**: 12 Januari 2026
-
-**Ringkasan**:
-Sistem pengurusan pendaftaran pesakit yang membolehkan Kerani mendaftar pesakit baharu, mencari rekod sedia ada, dan mengemaskini maklumat pesakit dengan cepat dan tepat.
-
-**Objektif Utama**:
-- Memudahkan pendaftaran pesakit baharu dengan cepat (< 2 minit)
-- Mengurangkan ralat data dengan validation dan workflow approval
-- Mematuhi PDPA dengan rekod consent dan audit trail
-- Elakkan duplicate records dengan IC/Passport check
-- Sokongan untuk warganegara asing dan kanak-kanak
-
-**Jadual Database**:
-- `pesakit` - Maklumat asas pesakit
-- `pesakit_audit_trail` - Log semua perubahan data
-
-**User Stories**: 10 user stories (6 utama, 4 edge cases)
-
-**Fasa Implementasi**: 6 minggu (7 fasa)
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         FLOW PROSES KLINIK                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │
+│  │ 1. TETAPAN & │───▶│ 2. SUMBER    │───▶│ 3. PENDAFTA- │                   │
+│  │    KESELAMATAN│    │    MANUSIA   │    │    RAN       │                   │
+│  └──────────────┘    └──────────────┘    └──────────────┘                   │
+│         │                                        │                           │
+│         ▼                                        ▼                           │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │
+│  │ Setup awal   │    │ Urus staf &  │    │ Daftar       │                   │
+│  │ sistem       │    │ jadual kerja │    │ pesakit      │                   │
+│  └──────────────┘    └──────────────┘    └──────────────┘                   │
+│                                                  │                           │
+│                                                  ▼                           │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │
+│  │ 6. FARMASI   │◀───│ 5. KONSULTASI│◀───│ 4. TEMUJANJI │                   │
+│  │              │    │    & EMR     │    │    & QUEUE   │                   │
+│  └──────────────┘    └──────────────┘    └──────────────┘                   │
+│         │                   │                                                │
+│         │                   ▼                                                │
+│         │            ┌──────────────┐                                        │
+│         │            │ 7. AI TRIAGE │                                        │
+│         │            │    & EMR     │                                        │
+│         │            └──────────────┘                                        │
+│         │                                                                    │
+│         ▼                                                                    │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │
+│  │ 8. BILLING   │───▶│ 9. PANEL     │───▶│ 10. LAPORAN  │                   │
+│  │              │    │    INSURANS  │    │    & ANALITIK│                   │
+│  └──────────────┘    └──────────────┘    └──────────────┘                   │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-### 2. Modul Temujanji Pesakit
+### FASA A: SETUP & OPERASI (Mesti Ada Dahulu)
 
-#### KLINIK-TemujanjiPesakit-PR2026-01
-**Fail**: [KLINIK-TemujanjiPesakit-PR2026-01-pengurusan-temujanji.md](KLINIK-TemujanjiPesakit-PR2026-01-pengurusan-temujanji.md)
+---
 
-**Status**: Draft
-**Keutamaan**: Tinggi
-**Tarikh**: 12 Januari 2026
+#### 1. Modul Tetapan & Keselamatan
+**Fail**: [01-KLINIK-Tetapan-PR2026-01-kawalan-sistem-keselamatan.md](01-KLINIK-Tetapan-PR2026-01-kawalan-sistem-keselamatan.md)
 
-**Ringkasan**:
-Sistem pengurusan temujanji pesakit yang membolehkan tempahan online, pengurusan slot doktor, notifikasi automatik SMS/WhatsApp, dan pengurusan no-show dengan polisi blacklist.
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Kritikal |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 14 minggu |
 
-**Objektif Utama**:
-- Memudahkan pesakit membuat temujanji online tanpa datang ke klinik
-- Mengurangkan kadar no-show dari 15-20% ke < 10% dengan reminder automatik
-- Mengoptimumkan jadual doktor dengan slot management
-- Kurangkan beban kerja kerani dengan automation
-- Meningkatkan kepuasan pesakit dengan sistem yang mudah
-
-**Jadual Database**:
-- `temujanji` - Rekod temujanji
-- `slot_doktor` - Konfigurasi slot waktu doktor
-- `slot_tutup` - Slot yang ditutup (cuti/mesyuarat)
-- `pesakit_blacklist` - Blacklist pesakit yang selalu no-show
-- `notification_log` - Log SMS/WhatsApp yang dihantar
-
-**User Stories**: 13 user stories (Pesakit, Kerani, Doktor, Pengurus)
+**Ringkasan**: Modul teras untuk pengurusan pengguna, RBAC, MFA, audit trail, dan konfigurasi keselamatan sistem.
 
 **Features Utama**:
-- Tempahan online self-service portal
-- Tempahan walk-in oleh kerani
+- Pengurusan Pengguna (CRUD, bulk import, activate/deactivate)
+- RBAC dengan Permissions Granular
+- Multi-Factor Authentication (TOTP + Email OTP)
+- Audit Trail Komprehensif (7 tahun retention)
+- Session Management (single session, auto-logout)
+- Password Policy & Brute Force Protection
+- IP Whitelist untuk Admin
+- Backup & Recovery dengan UI Dashboard
+
+---
+
+#### 2. Modul Sumber Manusia (HR)
+**Fail**: [02-KLINIK-HR-PR2026-01-pengurusan-kakitangan.md](02-KLINIK-HR-PR2026-01-pengurusan-kakitangan.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 16 minggu |
+
+**Ringkasan**: Sistem pengurusan kakitangan bersepadu untuk rekod staf, penjadualan, cuti, dan payroll.
+
+**Features Utama**:
+- Rekod Kakitangan (semua jenis: tetap, kontrak, part-time, locum)
+- Penjadualan Kerja (shift-based dengan roster)
+- Sistem Kehadiran (clock in/out dengan GPS geo-tagging)
+- Pengurusan Cuti (multi-level approval)
+- Payroll dengan Statutory Deductions (EPF, SOCSO, EIS, PCB)
+- Komisyen Doktor (integrasi dengan Billing)
+- Portal Self-Service untuk Kakitangan
+- Statutory Reports (Borang A, 8A, E, EA)
+
+---
+
+### FASA B: PENDAFTARAN & ALIRAN PESAKIT
+
+---
+
+#### 3. Modul Pendaftaran Pesakit
+**Fail**: [03-KLINIK-PendaftaranPesakit-PR2026-01-pengurusan-maklumat-pesakit.md](03-KLINIK-PendaftaranPesakit-PR2026-01-pengurusan-maklumat-pesakit.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 12 Januari 2026 |
+| **Tempoh** | 6 minggu |
+
+**Ringkasan**: Sistem pengurusan pendaftaran pesakit untuk daftar pesakit baharu, carian rekod, dan kemaskini maklumat.
+
+**Features Utama**:
+- Pendaftaran pesakit baharu (< 2 minit)
+- Duplicate check dengan IC/Passport
+- PDPA consent tracking
+- Sokongan warganegara asing dan kanak-kanak
+- Audit trail untuk semua perubahan
+
+---
+
+#### 4. Modul Temujanji Pesakit
+**Fail**: [04-KLINIK-TemujanjiPesakit-PR2026-01-pengurusan-temujanji.md](04-KLINIK-TemujanjiPesakit-PR2026-01-pengurusan-temujanji.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 12 Januari 2026 |
+| **Tempoh** | 6 minggu |
+
+**Ringkasan**: Sistem pengurusan temujanji dengan tempahan online, SMS/WhatsApp reminder, dan pengurusan no-show.
+
+**Features Utama**:
+- Tempahan online self-service
 - SMS/WhatsApp notification automatik
+- Slot management untuk doktor
 - Auto no-show detection
 - Blacklist management (3 no-show = 30 hari blacklist)
-- Reschedule & cancellation dengan polisi
-- Dashboard doktor dan kerani
-- Laporan dan statistik
 
-**Fasa Implementasi**: 6 minggu (10 fasa)
+---
 
-**Integrasi**:
-- Twilio/MSG91 untuk SMS
-- WhatsApp Business API untuk WhatsApp
-- Laravel Scheduler untuk auto-reminder dan no-show detection
-- Laravel Queue untuk async notifications
+#### 5. Modul Queue Management
+**Fail**: [05-KLINIK-Queue-PR2026-01-pengurusan-giliran.md](05-KLINIK-Queue-PR2026-01-pengurusan-giliran.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 11 minggu |
+
+**Ringkasan**: Sistem pengurusan giliran pesakit dengan nombor giliran, paparan digital, dan voice announcement.
+
+**Features Utama**:
+- Multi-queue dengan prefixes (A-Pendaftaran, B-Doktor, C-Farmasi)
+- Kiosk self-service
+- Paparan digital real-time (WebSocket)
+- Voice announcement (TTS)
+- Priority queue untuk kecemasan
+- SMS notification untuk giliran
+- Expected Wait Time (EWT) calculation
+
+---
+
+### FASA C: KLINIKAL & RAWATAN
+
+---
+
+#### 6. Modul Konsultasi & EMR
+**Fail**: [06-KLINIK-KonsultasiEMR-PR2026-01-rekod-rawatan-pesakit.md](06-KLINIK-KonsultasiEMR-PR2026-01-rekod-rawatan-pesakit.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Kritikal |
+| **Tarikh** | 12 Januari 2026 |
+| **Tempoh** | TBD |
+
+**Ringkasan**: Sistem Electronic Medical Record (EMR) untuk dokumentasi klinikal, preskripsi, dan rekod perubatan pesakit.
+
+**Features Utama**:
+- SOAP notes documentation
+- Vital signs recording
+- Problem list management
+- Prescription writing
+- Allergy and medication history
+- ICD-10 coding
+- Clinical templates
+
+---
+
+#### 7. Modul AI – Triage & EMR
+**Fail**: [07-KLINIK-AI-PR2026-01-triage-emr-sokongan-klinikal.md](07-KLINIK-AI-PR2026-01-triage-emr-sokongan-klinikal.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 14 Januari 2026 |
+| **Tempoh** | 20 minggu |
+
+**Ringkasan**: Sistem sokongan keputusan klinikal pintar dengan AI triage, ringkasan EMR automatik, dan cadangan klinikal.
+
+**Features Utama**:
+- AI Triage (5-level Manchester Triage System)
+- Red Flag Detection (life-threatening symptoms)
+- EMR Summary Generation automatik
+- Differential Diagnosis dengan confidence scores
+- Drug Interaction Checking (multi-level)
+- Explainable AI (reasoning chain, evidence)
+- Human-in-the-Loop (mandatory review)
+- On-Premise Processing (PDPA compliance)
+
+---
+
+#### 8. Modul Farmasi & Stok Ubat
+**Fail**: [08-KLINIK-Farmasi-PR2026-01-pengurusan-ubat-stok.md](08-KLINIK-Farmasi-PR2026-01-pengurusan-ubat-stok.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 10.5 minggu |
+
+**Ringkasan**: Sistem pengurusan ubat dan stok dengan dispensing workflow dan pematuhan Akta Racun 1952.
+
+**Features Utama**:
+- Pengurusan katalog ubat
+- Stok management (FEFO/FIFO)
+- Preskripsi (elektronik & manual)
+- Dispensing workflow dengan verification
+- Drug interaction checking
+- Patient Medication Record (PMR)
+- Poison Register (Akta Racun 1952)
+- Low stock alerts
+
+---
+
+### FASA D: KEWANGAN & TUNTUTAN
+
+---
+
+#### 9. Modul Bil & Pembayaran
+**Fail**: [09-KLINIK-Billing-PR2026-01-caj-kutipan-bayaran.md](09-KLINIK-Billing-PR2026-01-caj-kutipan-bayaran.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 15.5 minggu |
+
+**Ringkasan**: Sistem billing dan kutipan bayaran dengan sokongan pelbagai kaedah pembayaran dan SST compliance.
+
+**Features Utama**:
+- Invoice generation automatik
+- Multiple payment methods (Cash, Card, QR Pay, e-Wallet)
+- Split payment & partial payment
+- SST calculation
+- Receipt & refund management
+- Cashier closing & reconciliation
+- Promo codes & discounts
+- Deposit management
+
+---
+
+#### 10. Modul Panel Insurans / GL
+**Fail**: [10-KLINIK-Panel-PR2026-01-pengurusan-pesakit-panel.md](10-KLINIK-Panel-PR2026-01-pengurusan-pesakit-panel.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 13.5 minggu |
+
+**Ringkasan**: Sistem pengurusan pesakit panel dan Guarantee Letter dengan benefit limit tracking.
+
+**Features Utama**:
+- Panel company management
+- Guarantee Letter (GL) verification
+- Benefit limit tracking (annual, per-visit)
+- Pre-Authorization (PA) workflow
+- Claim submission dan tracking
+- Payment advice reconciliation
+- ICD-10 integration
+- SLA monitoring untuk insurers
+
+---
+
+### FASA E: LAPORAN & ANALITIK
+
+---
+
+#### 11. Modul Laporan & Analitik
+**Fail**: [11-KLINIK-Laporan-PR2026-01-analisis-prestasi-kpi.md](11-KLINIK-Laporan-PR2026-01-analisis-prestasi-kpi.md)
+
+| Aspek | Maklumat |
+|-------|----------|
+| **Status** | Draft |
+| **Keutamaan** | Tinggi |
+| **Tarikh** | 13 Januari 2026 |
+| **Tempoh** | 18 minggu |
+
+**Ringkasan**: Sistem laporan dan analitik dengan KPI tracking, dashboard berbilang peringkat, dan data warehouse.
+
+**Features Utama**:
+- Multi-level Dashboards (Executive, Operational, Department)
+- Comprehensive KPI Tracking (Financial, Clinical, Operational)
+- Star Schema Data Warehouse
+- ETL Jobs untuk data aggregation
+- Custom Report Builder (drag-and-drop)
+- Alert & Notification System
+- Predictive Analytics (forecasting)
+- Data Export (PDF, Excel, CSV)
 
 ---
 
@@ -256,10 +496,21 @@ User meminta feature baharu atau enhancement.
 
 ## Status PRD
 
-| PRD ID | Modul | Status | Priority | Start Date | Target Date | Completion |
-|--------|-------|--------|----------|------------|-------------|------------|
-| KLINIK-PendaftaranPesakit-PR2026-01 | Pendaftaran Pesakit | Draft | Tinggi | TBD | TBD | 0% |
-| KLINIK-TemujanjiPesakit-PR2026-01 | Temujanji Pesakit | Draft | Tinggi | TBD | TBD | 0% |
+| # | PRD ID | Modul | Status | Priority | Tempoh |
+|---|--------|-------|--------|----------|--------|
+| 1 | KLINIK-Tetapan-PR2026-01 | Tetapan & Keselamatan | Draft | Kritikal | 14 minggu |
+| 2 | KLINIK-HR-PR2026-01 | Sumber Manusia (HR) | Draft | Tinggi | 16 minggu |
+| 3 | KLINIK-PendaftaranPesakit-PR2026-01 | Pendaftaran Pesakit | Draft | Tinggi | 6 minggu |
+| 4 | KLINIK-TemujanjiPesakit-PR2026-01 | Temujanji Pesakit | Draft | Tinggi | 6 minggu |
+| 5 | KLINIK-Queue-PR2026-01 | Queue Management | Draft | Tinggi | 11 minggu |
+| 6 | KLINIK-KonsultasiEMR-PR2026-01 | Konsultasi & EMR | Draft | Kritikal | TBD |
+| 7 | KLINIK-AI-PR2026-01 | AI Triage & EMR | Draft | Tinggi | 20 minggu |
+| 8 | KLINIK-Farmasi-PR2026-01 | Farmasi & Stok Ubat | Draft | Tinggi | 10.5 minggu |
+| 9 | KLINIK-Billing-PR2026-01 | Bil & Pembayaran | Draft | Tinggi | 15.5 minggu |
+| 10 | KLINIK-Panel-PR2026-01 | Panel Insurans / GL | Draft | Tinggi | 13.5 minggu |
+| 11 | KLINIK-Laporan-PR2026-01 | Laporan & Analitik | Draft | Tinggi | 18 minggu |
+
+**Jumlah Anggaran Tempoh**: ~131 minggu (boleh parallelkan beberapa modul)
 
 **Legend**:
 - **Draft**: PRD sedang ditulis atau menunggu approval
@@ -272,30 +523,36 @@ User meminta feature baharu atau enhancement.
 
 ## Roadmap Modul (Cadangan)
 
-### Fasa 1: Core Patient Management (Q1 2026)
-- ✅ **Pengurusan Ubat & Inventori** - Sudah ada (refactored)
-- 🔄 **Pendaftaran Pesakit** - PRD ready
-- 🔄 **Temujanji Pesakit** - PRD ready
+### Fasa A: Setup & Operasi (Q1 2026) - MESTI DAHULU
+- 🔄 **Tetapan & Keselamatan** - PRD ready (14 minggu)
+- 🔄 **Sumber Manusia (HR)** - PRD ready (16 minggu)
 
-### Fasa 2: Clinical Operations (Q2 2026)
-- ⏳ **Rekod Perubatan Pesakit** - Medical records, consultation notes
-- ⏳ **Preskripsi & Dispensing Ubat** - Prescription workflow
-- ⏳ **Vital Signs & Pemeriksaan** - Vital signs tracking
+### Fasa B: Pendaftaran & Aliran Pesakit (Q1-Q2 2026)
+- 🔄 **Pendaftaran Pesakit** - PRD ready (6 minggu)
+- 🔄 **Temujanji Pesakit** - PRD ready (6 minggu)
+- 🔄 **Queue Management** - PRD ready (11 minggu)
 
-### Fasa 3: Financial Management (Q3 2026)
-- ⏳ **Billing & Pembayaran** - Invoicing, payments
-- ⏳ **Insurance Claims** - Insurance integration
-- ⏳ **Laporan Kewangan** - Financial reports
+### Fasa C: Klinikal & Rawatan (Q2-Q3 2026)
+- 🔄 **Konsultasi & EMR** - PRD ready
+- 🔄 **AI Triage & EMR** - PRD ready (20 minggu)
+- 🔄 **Farmasi & Stok Ubat** - PRD ready (10.5 minggu)
 
-### Fasa 4: Advanced Features (Q4 2026)
+### Fasa D: Kewangan & Tuntutan (Q3 2026)
+- 🔄 **Bil & Pembayaran** - PRD ready (15.5 minggu)
+- 🔄 **Panel Insurans / GL** - PRD ready (13.5 minggu)
+
+### Fasa E: Laporan & Analitik (Q4 2026)
+- 🔄 **Laporan & Analitik** - PRD ready (18 minggu)
+
+### Fasa Future: Advanced Features
 - ⏳ **Lab Results Integration** - Lab test results
 - ⏳ **Imaging & Radiology** - X-ray, ultrasound records
-- ⏳ **Reporting & Analytics Dashboard** - BI dashboard
 - ⏳ **Mobile App untuk Pesakit** - Patient mobile app
+- ⏳ **Telemedicine** - Video consultation
 
 **Legend**:
 - ✅ Selesai
-- 🔄 PRD Ready / In Development
+- 🔄 PRD Ready
 - ⏳ Belum bermula
 
 ---
@@ -432,5 +689,5 @@ Untuk soalan atau cadangan berkaitan PRD:
 
 ---
 
-**Dikemaskini**: 13 Januari 2026
-**Versi**: 2.0 (Updated untuk Poliklinik Al-Huda dengan module-based naming)
+**Dikemaskini**: 14 Januari 2026
+**Versi**: 3.0 (Disusun mengikut flow proses klinik sebenar)
