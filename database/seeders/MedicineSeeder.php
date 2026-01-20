@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Medicine;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class MedicineSeeder extends Seeder
 {
@@ -191,7 +190,6 @@ class MedicineSeeder extends Seeder
     }
 }Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class MedicineSeeder extends Seeder

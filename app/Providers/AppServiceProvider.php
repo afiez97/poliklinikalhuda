@@ -2,8 +2,19 @@
 
 namespace App\Providers;
 
+use App\Models\AuditLog;
+use App\Models\Backup;
+use App\Models\SystemSetting;
+use App\Models\User;
+use App\Policies\AuditLogPolicy;
+use App\Policies\BackupPolicy;
+use App\Policies\RolePolicy;
+use App\Policies\SystemSettingPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Role;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +36,24 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        // Register policies
+        Gate::policy(User::class, UserPolicy::class);
+        Gate::policy(Role::class, RolePolicy::class);
+        Gate::policy(AuditLog::class, AuditLogPolicy::class);
+        Gate::policy(SystemSetting::class, SystemSettingPolicy::class);
+        Gate::policy(Backup::class, BackupPolicy::class);
+
+        // Gate for session management (no model)
+        Gate::define('viewAny-session', fn (User $user) => $user->can('sessions.view'));
+        Gate::define('view-session', fn (User $user) => $user->can('sessions.view'));
+        Gate::define('delete-session', fn (User $user) => $user->can('sessions.delete'));
+
+        // Super admin bypass - grant all permissions
+        Gate::before(function (User $user, string $ability) {
+            if ($user->hasRole('super-admin')) {
+                return true;
+            }
+        });
     }
 }

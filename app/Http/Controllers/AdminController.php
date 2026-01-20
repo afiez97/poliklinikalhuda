@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Prefix;
-use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Prefix('admin')]
 #[Middleware('web')]
@@ -29,6 +29,7 @@ class AdminController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
             return redirect()->route('admin.dashboard');
         }
 
@@ -65,8 +66,8 @@ class AdminController extends Controller
     {
         return view('admin.services');
     }
-    
-        public function register()
+
+    public function register()
     {
         return view('auth.register');
     }

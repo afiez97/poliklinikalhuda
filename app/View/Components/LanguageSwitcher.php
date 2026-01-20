@@ -4,8 +4,8 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Illuminate\Support\Facades\App;
+use Illuminate\View\Component;
 
 class LanguageSwitcher extends Component
 {
@@ -27,7 +27,7 @@ class LanguageSwitcher extends Component
 
         return view('components.language-switcher', [
             'currentLocale' => $currentLocale,
-            'availableLocales' => $availableLocales
+            'availableLocales' => $availableLocales,
         ]);
     }
 }

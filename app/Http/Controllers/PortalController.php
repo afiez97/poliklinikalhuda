@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\RouteAttributes\Attributes\Get;
-use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Middleware;
+use Spatie\RouteAttributes\Attributes\Post;
 
 #[Middleware('web')]
 class PortalController extends Controller
@@ -68,6 +68,7 @@ class PortalController extends Controller
             if ($user) {
                 // User already exists with Google ID, login
                 Auth::login($user);
+
                 return redirect()->route('admin.dashboard')->with('success', __('auth.login_success'));
             }
 
@@ -82,6 +83,7 @@ class PortalController extends Controller
                 ]);
 
                 Auth::login($existingUser);
+
                 return redirect()->route('admin.dashboard')->with('success', __('auth.account_linked'));
             }
 
