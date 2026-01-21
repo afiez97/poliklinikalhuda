@@ -28,14 +28,21 @@ class OutstandingReminder extends Model
     ];
 
     const TYPE_FIRST = 'first';
+
     const TYPE_SECOND = 'second';
+
     const TYPE_FINAL = 'final';
+
     const TYPE_LEGAL = 'legal';
 
     const VIA_SMS = 'sms';
+
     const VIA_EMAIL = 'email';
+
     const VIA_WHATSAPP = 'whatsapp';
+
     const VIA_CALL = 'call';
+
     const VIA_LETTER = 'letter';
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Encounter;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEncounterRequest extends FormRequest

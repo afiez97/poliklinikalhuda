@@ -48,7 +48,7 @@ class CashierService
     /**
      * Start new cashier session.
      */
-    public function startSession(int $cashierId, float $openingBalance = null): CashierClosing
+    public function startSession(int $cashierId, ?float $openingBalance = null): CashierClosing
     {
         // Check if already has open session today
         $existingSession = CashierClosing::forDate(today())

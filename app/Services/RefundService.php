@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\BillingSetting;
 use App\Models\CreditNote;
 use App\Models\Invoice;
 use App\Models\Payment;
@@ -173,12 +172,12 @@ class RefundService
 
             // Update invoice balance
             $invoice = $refund->payment->invoice;
-            $invoice->balance += $refund->amount;
+            $invoice->balance_owed += $refund->amount;
             $invoice->paid_amount -= $refund->amount;
 
-            if ($invoice->balance >= $invoice->grand_total) {
+            if ($invoice->balance_owed >= $invoice->total_amount) {
                 $invoice->status = Invoice::STATUS_ISSUED;
-            } elseif ($invoice->balance > 0) {
+            } elseif ($invoice->balance_owed > 0) {
                 $invoice->status = Invoice::STATUS_PARTIAL;
             }
 

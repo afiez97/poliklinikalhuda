@@ -51,7 +51,9 @@ class CashierClosing extends Model
     ];
 
     const STATUS_DRAFT = 'draft';
+
     const STATUS_SUBMITTED = 'submitted';
+
     const STATUS_VERIFIED = 'verified';
 
     /**

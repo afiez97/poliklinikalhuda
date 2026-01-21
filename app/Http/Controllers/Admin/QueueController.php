@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PatientVisit;
 use App\Models\QueueCounter;
-use App\Models\QueueStaffAssignment;
 use App\Models\QueueTicket;
 use App\Models\QueueType;
 use App\Services\AuditService;

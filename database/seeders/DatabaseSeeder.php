@@ -28,6 +28,11 @@ class DatabaseSeeder extends Seeder
             QueueSeeder::class,
         ]);
 
+        // Seed Billing data
+        $this->call([
+            BillingSeeder::class,
+        ]);
+
         // Seed demo data (optional - for testing/demonstration)
         if (app()->environment('local', 'staging')) {
             $this->call([

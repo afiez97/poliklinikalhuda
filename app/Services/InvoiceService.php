@@ -8,7 +8,6 @@ use App\Models\Encounter;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Patient;
-use App\Models\PatientVisit;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -56,9 +55,9 @@ class InvoiceService
 
         if (! empty($filters['payment_status'])) {
             match ($filters['payment_status']) {
-                'paid' => $query->where('balance', 0),
-                'partial' => $query->where('balance', '>', 0)->where('balance', '<', DB::raw('grand_total')),
-                'unpaid' => $query->where('balance', DB::raw('grand_total')),
+                'paid' => $query->where('balance_owed', 0),
+                'partial' => $query->where('balance_owed', '>', 0)->where('balance_owed', '<', DB::raw('total_amount')),
+                'unpaid' => $query->where('balance_owed', DB::raw('total_amount')),
                 default => null,
             };
         }
@@ -307,7 +306,7 @@ class InvoiceService
     public function getPatientOutstanding(int $patientId): Collection
     {
         return Invoice::where('patient_id', $patientId)
-            ->where('balance', '>', 0)
+            ->where('balance_owed', '>', 0)
             ->whereIn('status', [Invoice::STATUS_ISSUED, Invoice::STATUS_PARTIAL])
             ->orderBy('due_date')
             ->get();
@@ -318,18 +317,18 @@ class InvoiceService
      */
     public function getOutstandingSummary(): array
     {
-        $invoices = Invoice::where('balance', '>', 0)
+        $invoices = Invoice::where('balance_owed', '>', 0)
             ->whereIn('status', [Invoice::STATUS_ISSUED, Invoice::STATUS_PARTIAL])
             ->get();
 
-        $current = $invoices->filter(fn ($i) => $i->days_overdue <= 0)->sum('balance');
-        $overdue30 = $invoices->filter(fn ($i) => $i->days_overdue > 0 && $i->days_overdue <= 30)->sum('balance');
-        $overdue60 = $invoices->filter(fn ($i) => $i->days_overdue > 30 && $i->days_overdue <= 60)->sum('balance');
-        $overdue90 = $invoices->filter(fn ($i) => $i->days_overdue > 60 && $i->days_overdue <= 90)->sum('balance');
-        $overdue90Plus = $invoices->filter(fn ($i) => $i->days_overdue > 90)->sum('balance');
+        $current = $invoices->filter(fn ($i) => $i->days_overdue <= 0)->sum('balance_owed');
+        $overdue30 = $invoices->filter(fn ($i) => $i->days_overdue > 0 && $i->days_overdue <= 30)->sum('balance_owed');
+        $overdue60 = $invoices->filter(fn ($i) => $i->days_overdue > 30 && $i->days_overdue <= 60)->sum('balance_owed');
+        $overdue90 = $invoices->filter(fn ($i) => $i->days_overdue > 60 && $i->days_overdue <= 90)->sum('balance_owed');
+        $overdue90Plus = $invoices->filter(fn ($i) => $i->days_overdue > 90)->sum('balance_owed');
 
         return [
-            'total' => $invoices->sum('balance'),
+            'total' => $invoices->sum('balance_owed'),
             'count' => $invoices->count(),
             'current' => $current,
             'overdue_30' => $overdue30,

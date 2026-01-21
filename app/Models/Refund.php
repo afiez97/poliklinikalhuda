@@ -11,6 +11,15 @@ class Refund extends Model
 {
     use HasFactory;
 
+    // Status constants
+    public const STATUS_PENDING = 'pending_approval';
+
+    public const STATUS_APPROVED = 'approved';
+
+    public const STATUS_REJECTED = 'rejected';
+
+    public const STATUS_PROCESSED = 'processed';
+
     protected $fillable = [
         'refund_number',
         'invoice_id',
@@ -100,11 +109,51 @@ class Refund extends Model
     }
 
     /**
+     * Scope for pending (alias for pendingApproval).
+     */
+    public function scopePending($query)
+    {
+        return $query->where('status', self::STATUS_PENDING);
+    }
+
+    /**
      * Scope for approved.
      */
     public function scopeApproved($query)
     {
         return $query->where('status', 'approved');
+    }
+
+    /**
+     * Check if refund is pending approval.
+     */
+    public function isPending(): bool
+    {
+        return $this->status === self::STATUS_PENDING;
+    }
+
+    /**
+     * Check if refund is approved.
+     */
+    public function isApproved(): bool
+    {
+        return $this->status === self::STATUS_APPROVED;
+    }
+
+    /**
+     * Check if refund is processed.
+     */
+    public function isProcessed(): bool
+    {
+        return $this->status === self::STATUS_PROCESSED;
+    }
+
+    /**
+     * Check if refund is rejected.
+     */
+    public function isRejected(): bool
+    {
+        return $this->status === self::STATUS_REJECTED;
     }
 
     /**
@@ -203,5 +252,19 @@ class Refund extends Model
             'processed_at' => now(),
             'reference_number' => $referenceNumber,
         ]);
+    }
+
+    /**
+     * Get method label.
+     */
+    public static function getMethodLabel(string $method): string
+    {
+        return match ($method) {
+            'cash' => 'Tunai',
+            'card' => 'Kad',
+            'bank_transfer' => 'Pindahan Bank',
+            'cheque' => 'Cek',
+            default => ucfirst($method),
+        };
     }
 }

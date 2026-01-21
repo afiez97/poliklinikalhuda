@@ -21,16 +21,16 @@
                 </li>
 
                 <!-- Temujanji -->
-                <li class="has-sub {{ request()->is('admin/temujanji*') ? 'active' : '' }}">
+                <li class="has-sub {{ request()->is('admin/appointments*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-calendar-check"></i>
                         <span class="nav-text">Temujanji</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/temujanji*') ? 'show' : '' }}">
+                    <div class="collapse {{ request()->is('admin/appointments*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="temujanji" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link" >Jadual Temujanji</a></li>
-                            <li><a class="sidenav-item-link" >Buat Temujanji Baru</a></li>
-                            <li><a class="sidenav-item-link" >Sejarah Temujanji</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.appointments.calendar') }}">Jadual Temujanji</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.appointments.create') }}">Buat Temujanji Baru</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.appointments') }}">Sejarah Temujanji</a></li>
                         </ul>
                     </div>
                 </li>
@@ -83,42 +83,42 @@
                     </div>
                 </li>
 
-                <!-- Inventori Ubat -->
-                <li class="has-sub {{ request()->is('admin/medicine*') ? 'active' : '' }}">
+                <!-- Inventori Ubat (Akan Datang) -->
+                <li class="has-sub {{ request()->is('admin/pharmacy*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-capsule"></i>
                         <span class="nav-text">Inventori Ubat</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/medicine*') ? 'show' : '' }}">
+                    <div class="collapse {{ request()->is('admin/pharmacy*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="inventori-ubat" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link">Senarai Ubat</a></li>
-                            <li><a class="sidenav-item-link">Tambah Ubat Baru</a></li>
-                            <li><a class="sidenav-item-link">Stok Rendah</a></li>
-                            <li><a class="sidenav-item-link">Hampir Tamat Tempoh</a></li>
-                            <li><a class="sidenav-item-link">Laporan Stok</a></li>
+                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Senarai Ubat</a></li>
+                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Tambah Ubat Baru</a></li>
+                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Stok Rendah</a></li>
+                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Hampir Tamat Tempoh</a></li>
+                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Laporan Stok</a></li>
                         </ul>
                     </div>
                 </li>
 
-                <!-- Surat Rujukan -->
-                <li class="{{ request()->routeIs('admin.referral-letter') ? 'active' : '' }}">
-                    <a class="sidenav-item-link" >
+                <!-- Surat Rujukan (Akan Datang) -->
+                <li>
+                    <a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang">
                         <i class="bi bi-envelope-paper"></i>
-                        <span class="nav-text">Surat Rujukan</span>
+                        <span class="nav-text"><i class="bi bi-clock me-1"></i>Surat Rujukan</span>
                     </a>
                 </li>
 
                 <!-- Laporan -->
-                <li class="has-sub {{ request()->is('admin/reports*') ? 'active' : '' }}">
+                <li class="has-sub {{ request()->is('admin/billing/reports*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-bar-chart-line"></i>
                         <span class="nav-text">Laporan</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/reports*') ? 'show' : '' }}">
+                    <div class="collapse {{ request()->is('admin/billing/reports*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="laporan" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link" >Laporan Harian</a></li>
-                            <li><a class="sidenav-item-link" >Laporan Bulanan</a></li>
-                            <li><a class="sidenav-item-link" >Eksport PDF/Excel</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports.daily') }}">Laporan Harian</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports') }}">Laporan Kewangan</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports.outstanding') }}">Laporan Tertunggak</a></li>
                         </ul>
                     </div>
                 </li>
@@ -131,49 +131,67 @@
                     </a>
                     <div class="collapse {{ request()->is('admin/billing*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="bil" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link" >Bil Pesakit</a></li>
-                            <li><a class="sidenav-item-link" >Transaksi</a></li>
-                            <li><a class="sidenav-item-link" >Terimaan Harian</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.index') }}">Dashboard Billing</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.invoices.index') }}">Senarai Invois</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.payments.index') }}">Senarai Pembayaran</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.refunds.index') }}">Pulangan</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.approvals.index') }}">Kelulusan Diskaun</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.cashier.index') }}">Tutup Kaunter</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports') }}">Laporan Kewangan</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.settings') }}">Tetapan Billing</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <!-- Staf / Pengguna Sistem -->
-                <li class="has-sub {{ request()->is('admin/staff*') ? 'active' : '' }}">
+                <li class="has-sub {{ request()->is('admin/staff*') || request()->is('admin/users*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-person-badge"></i>
                         <span class="nav-text">Staf / Pengguna Sistem</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/staff*') ? 'show' : '' }}">
+                    <div class="collapse {{ request()->is('admin/staff*') || request()->is('admin/users*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="staf" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link">Senarai Staf</a></li>
-                            <li><a class="sidenav-item-link" >Peranan & Kebenaran</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.staff.index') }}">Senarai Staf</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.users.index') }}">Pengguna Sistem</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <!-- Tetapan Sistem -->
-                <li class="{{ request()->routeIs('admin.system-settings') ? 'active' : '' }}">
-                    <a class="sidenav-item-link" >
+                <li class="has-sub {{ request()->is('admin/settings*') ? 'active' : '' }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-gear"></i>
-                        <span class="nav-text">Tetapan Sistem</span>
+                        <span class="nav-text">Tetapan Sistem</span> <b class="caret"></b>
                     </a>
+                    <div class="collapse {{ request()->is('admin/settings*') ? 'show' : '' }}">
+                        <ul class="sub-menu" id="tetapan" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.settings.general') }}">Umum</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.settings.clinic') }}">Maklumat Klinik</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.settings.security') }}">Keselamatan</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.settings.notifications') }}">Notifikasi</a></li>
+                        </ul>
+                    </div>
                 </li>
 
                 <!-- Profil Saya -->
-                <li class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}">
-                    <a class="sidenav-item-link" >
+                @auth
+                <li class="{{ request()->is('admin/users/' . auth()->id()) ? 'active' : '' }}">
+                    <a class="sidenav-item-link" href="{{ route('admin.users.show', auth()->id()) }}">
                         <i class="bi bi-person-circle"></i>
                         <span class="nav-text">Profil Saya</span>
                     </a>
                 </li>
+                @endauth
 
                 <!-- Log Keluar -->
                 <li>
-                    <a class="sidenav-item-link" >
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span class="nav-text">Log Keluar</span>
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                        @csrf
+                        <a class="sidenav-item-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="nav-text">Log Keluar</span>
+                        </a>
+                    </form>
                 </li>
             </ul>
         </div>

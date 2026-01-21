@@ -138,7 +138,7 @@ class QueueTicketService
     /**
      * Complete serving a ticket.
      */
-    public function completeTicket(QueueTicket $ticket, ?int $transferToQueueId = null, int $completedBy = null): QueueTicket
+    public function completeTicket(QueueTicket $ticket, ?int $transferToQueueId = null, ?int $completedBy = null): QueueTicket
     {
         return DB::transaction(function () use ($ticket, $transferToQueueId, $completedBy) {
             if (! $ticket->canBeCompleted()) {

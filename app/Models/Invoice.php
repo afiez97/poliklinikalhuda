@@ -12,6 +12,21 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    // Status constants
+    public const STATUS_DRAFT = 'draft';
+
+    public const STATUS_ISSUED = 'pending_payment';
+
+    public const STATUS_PARTIAL = 'partially_paid';
+
+    public const STATUS_PAID = 'fully_paid';
+
+    public const STATUS_OVERDUE = 'overdue';
+
+    public const STATUS_VOID = 'voided';
+
+    public const STATUS_REFUNDED = 'refunded';
+
     protected $fillable = [
         'invoice_number',
         'patient_id',
@@ -387,7 +402,7 @@ class Invoice extends Model
     /**
      * Record payment.
      */
-    public function recordPayment(float $amount): void
+    public function recordPayment(float $amount, ?string $method = null, ?string $reference = null): void
     {
         $newPaidAmount = $this->paid_amount + $amount;
         $newBalance = $this->total_amount - $newPaidAmount;
@@ -403,5 +418,72 @@ class Invoice extends Model
             'balance_owed' => $newBalance,
             'status' => $status,
         ]);
+    }
+
+    /**
+     * Apply discount.
+     */
+    public function applyDiscount(string $type, float $value): void
+    {
+        $this->discount_type = $type;
+        $this->discount_value = $value;
+        $this->save();
+        $this->calculateTotals();
+    }
+
+    /**
+     * Get grand_total attribute (alias for total_amount).
+     */
+    public function getGrandTotalAttribute(): float
+    {
+        return (float) $this->total_amount;
+    }
+
+    /**
+     * Get balance attribute (alias for balance_owed).
+     */
+    public function getBalanceAttribute(): float
+    {
+        return (float) $this->balance_owed;
+    }
+
+    /**
+     * Get tax_amount attribute (alias for sst_amount).
+     */
+    public function getTaxAmountAttribute(): float
+    {
+        return (float) $this->sst_amount;
+    }
+
+    /**
+     * Get tax_rate attribute (alias for sst_rate).
+     */
+    public function getTaxRateAttribute(): float
+    {
+        return (float) $this->sst_rate;
+    }
+
+    /**
+     * Get rounding_amount attribute (alias for rounding_adjustment).
+     */
+    public function getRoundingAmountAttribute(): float
+    {
+        return (float) $this->rounding_adjustment;
+    }
+
+    /**
+     * Get is_overdue attribute.
+     */
+    public function getIsOverdueAttribute(): bool
+    {
+        return $this->isOverdue();
+    }
+
+    /**
+     * Get status badge class.
+     */
+    public function getStatusBadgeClassAttribute(): string
+    {
+        return 'bg-'.$this->status_color;
     }
 }

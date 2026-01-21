@@ -30,10 +30,13 @@ class DiscountApproval extends Model
     ];
 
     const STATUS_PENDING = 'pending';
+
     const STATUS_APPROVED = 'approved';
+
     const STATUS_REJECTED = 'rejected';
 
     const TYPE_PERCENTAGE = 'percentage';
+
     const TYPE_FIXED = 'fixed';
 
     /**

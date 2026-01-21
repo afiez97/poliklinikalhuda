@@ -5,10 +5,8 @@ namespace App\Services;
 use App\Models\Diagnosis;
 use App\Models\Encounter;
 use App\Models\Patient;
-use App\Models\PatientVisit;
 use App\Models\VitalSign;
 use App\Repositories\EncounterRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +30,7 @@ class EmrService
      */
     public function createEncounter(array $data, ?int $createdBy = null): Encounter
     {
-        return DB::transaction(function () use ($data, $createdBy) {
+        return DB::transaction(function () use ($data) {
             // Set default values
             $data['status'] = $data['status'] ?? 'draft';
 

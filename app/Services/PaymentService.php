@@ -163,11 +163,11 @@ class PaymentService
 
             // Reverse invoice payment
             $invoice->paid_amount -= $amount;
-            $invoice->balance += $amount;
+            $invoice->balance_owed += $amount;
 
-            if ($invoice->balance >= $invoice->grand_total) {
+            if ($invoice->balance_owed >= $invoice->total_amount) {
                 $invoice->status = Invoice::STATUS_ISSUED;
-            } elseif ($invoice->balance > 0) {
+            } elseif ($invoice->balance_owed > 0) {
                 $invoice->status = Invoice::STATUS_PARTIAL;
             }
 

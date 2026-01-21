@@ -11,6 +11,17 @@ class Payment extends Model
 {
     use HasFactory;
 
+    // Status constants
+    public const STATUS_PENDING = 'pending';
+
+    public const STATUS_COMPLETED = 'completed';
+
+    public const STATUS_FAILED = 'failed';
+
+    public const STATUS_VOIDED = 'voided';
+
+    public const STATUS_REFUNDED = 'refunded';
+
     protected $fillable = [
         'payment_number',
         'invoice_id',
@@ -234,5 +245,13 @@ class Payment extends Model
             'deposit' => 'mdi-piggy-bank',
             default => 'mdi-cash',
         };
+    }
+
+    /**
+     * Get static method label.
+     */
+    public static function getMethodLabel(string $method): string
+    {
+        return self::METHOD_LABELS[$method] ?? ucfirst($method);
     }
 }

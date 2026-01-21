@@ -647,7 +647,7 @@ class BillingController extends Controller
     public function outstandingReport(Request $request)
     {
         $invoices = Invoice::with(['patient'])
-            ->where('balance', '>', 0)
+            ->where('balance_owed', '>', 0)
             ->whereIn('status', [Invoice::STATUS_ISSUED, Invoice::STATUS_PARTIAL])
             ->orderBy('due_date')
             ->paginate(20);

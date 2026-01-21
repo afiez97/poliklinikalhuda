@@ -449,7 +449,7 @@
                     <h5 class="mb-0"><i class="mdi mdi-history me-2"></i>Sejarah Pesakit</h5>
                 </div>
                 <div class="card-body">
-                    @if($patientHistory['chronic_conditions']->count() > 0)
+                    @if(isset($patientHistory['chronic_conditions']) && $patientHistory['chronic_conditions']->count() > 0)
                     <h6 class="text-danger mb-2">Keadaan Kronik</h6>
                     <ul class="list-unstyled mb-3">
                         @foreach($patientHistory['chronic_conditions'] as $condition)
@@ -458,17 +458,19 @@
                     </ul>
                     @endif
 
-                    @if($patientHistory['recent_encounters']->count() > 0)
+                    @if(isset($patientHistory['recent_encounters']) && $patientHistory['recent_encounters']->count() > 0)
                     <h6 class="mb-2">Encounter Sebelumnya</h6>
                     <div class="list-group list-group-flush">
                         @foreach($patientHistory['recent_encounters']->where('id', '!=', $encounter->id)->take(5) as $enc)
-                        <a href="{{ route('admin.emr.encounters.show', $enc) }}" class="list-group-item list-group-item-action px-0">
+                        @if($enc && $enc->id)
+                        <a href="{{ route('admin.emr.encounters.show', ['encounter' => $enc->id]) }}" class="list-group-item list-group-item-action px-0">
                             <div class="d-flex justify-content-between">
                                 <small class="text-muted">{{ $enc->encounter_date->format('d/m/Y') }}</small>
                                 <small class="text-muted">{{ $enc->doctor->user->name ?? '' }}</small>
                             </div>
                             <div class="text-truncate">{{ Str::limit($enc->chief_complaint, 40) }}</div>
                         </a>
+                        @endif
                         @endforeach
                     </div>
                     @endif

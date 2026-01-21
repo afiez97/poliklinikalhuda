@@ -135,7 +135,8 @@ return new class extends Migration
             $table->string('card_type', 20)->nullable()->comment('visa, mastercard, etc.');
             $table->string('card_last4', 4)->nullable();
             $table->string('ewallet_provider', 50)->nullable();
-            $table->foreignId('panel_id')->nullable()->constrained('panels')->nullOnDelete();
+            $table->unsignedBigInteger('panel_id')->nullable()->comment('Reference to panels table when created');
+            $table->string('panel_name')->nullable()->comment('Panel/Corporate name');
             $table->decimal('change_amount', 10, 2)->default(0)->comment('For cash payments');
             $table->timestamp('payment_date');
             $table->enum('status', ['pending', 'completed', 'failed', 'voided', 'refunded'])->default('completed');

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEncounterRequest;
 use App\Http\Requests\StoreDiagnosisRequest;
+use App\Http\Requests\StoreEncounterRequest;
 use App\Http\Requests\StoreVitalSignRequest;
 use App\Http\Requests\UpdateEncounterRequest;
 use App\Models\ClinicalTemplate;
@@ -17,7 +17,6 @@ use App\Models\VitalSign;
 use App\Services\EmrService;
 use App\Traits\HandlesApiResponses;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Spatie\RouteAttributes\Attributes\Delete;
 use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Middleware;
@@ -108,6 +107,65 @@ class EncounterController extends Controller
             'templates',
             'patientHistory'
         ));
+    }
+
+    /**
+     * Get today's encounters for the logged-in doctor.
+     * NOTE: Must be defined BEFORE show() to prevent route conflict
+     */
+    #[Get('/today', name: 'admin.emr.encounters.today')]
+    public function today(Request $request)
+    {
+        $doctorId = $request->input('doctor_id');
+
+        $user = auth()->user();
+        if ($user->hasRole('doctor') && $user->staff) {
+            $doctorId = $user->staff->id;
+        }
+
+        $encounters = $doctorId
+            ? $this->emrService->getTodayEncountersForDoctor($doctorId)
+            : Encounter::today()->with(['patient', 'doctor'])->get();
+
+        return view('admin.emr.encounters.today', compact('encounters'));
+    }
+
+    /**
+     * Get doctor's pending encounters.
+     * NOTE: Must be defined BEFORE show() to prevent route conflict
+     */
+    #[Get('/pending', name: 'admin.emr.encounters.pending')]
+    public function pending(Request $request)
+    {
+        $doctorId = $request->input('doctor_id');
+
+        // If user is a doctor, only show their encounters
+        $user = auth()->user();
+        if ($user->hasRole('doctor') && $user->staff) {
+            $doctorId = $user->staff->id;
+        }
+
+        $encounters = $this->emrService->getPendingEncounters($doctorId);
+
+        return view('admin.emr.encounters.pending', compact('encounters'));
+    }
+
+    /**
+     * Search ICD-10 codes.
+     * NOTE: Must be defined BEFORE show() to prevent route conflict
+     */
+    #[Get('/icd10/search', name: 'admin.emr.icd10.search')]
+    public function searchIcd10(Request $request)
+    {
+        $term = $request->input('q', '');
+
+        if (strlen($term) < 2) {
+            return response()->json([]);
+        }
+
+        $results = $this->emrService->searchIcd10($term);
+
+        return response()->json($results);
     }
 
     /**
@@ -399,61 +457,5 @@ class EncounterController extends Controller
         } catch (\Exception $e) {
             return $this->errorRedirect($e->getMessage());
         }
-    }
-
-    /**
-     * Search ICD-10 codes.
-     */
-    #[Get('/icd10/search', name: 'admin.emr.icd10.search')]
-    public function searchIcd10(Request $request)
-    {
-        $term = $request->input('q', '');
-
-        if (strlen($term) < 2) {
-            return response()->json([]);
-        }
-
-        $results = $this->emrService->searchIcd10($term);
-
-        return response()->json($results);
-    }
-
-    /**
-     * Get doctor's pending encounters.
-     */
-    #[Get('/pending', name: 'admin.emr.encounters.pending')]
-    public function pending(Request $request)
-    {
-        $doctorId = $request->input('doctor_id');
-
-        // If user is a doctor, only show their encounters
-        $user = auth()->user();
-        if ($user->hasRole('doctor') && $user->staff) {
-            $doctorId = $user->staff->id;
-        }
-
-        $encounters = $this->emrService->getPendingEncounters($doctorId);
-
-        return view('admin.emr.encounters.pending', compact('encounters'));
-    }
-
-    /**
-     * Get today's encounters for the logged-in doctor.
-     */
-    #[Get('/today', name: 'admin.emr.encounters.today')]
-    public function today(Request $request)
-    {
-        $doctorId = $request->input('doctor_id');
-
-        $user = auth()->user();
-        if ($user->hasRole('doctor') && $user->staff) {
-            $doctorId = $user->staff->id;
-        }
-
-        $encounters = $doctorId
-            ? $this->emrService->getTodayEncountersForDoctor($doctorId)
-            : Encounter::today()->with(['patient', 'doctor'])->get();
-
-        return view('admin.emr.encounters.today', compact('encounters'));
     }
 }
