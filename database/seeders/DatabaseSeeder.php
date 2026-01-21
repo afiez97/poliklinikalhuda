@@ -16,5 +16,23 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             AdminUserSeeder::class,
         ]);
+
+        // Seed EMR reference data
+        $this->call([
+            IcdCodeSeeder::class,
+            ClinicalTemplateSeeder::class,
+        ]);
+
+        // Seed Queue Management data
+        $this->call([
+            QueueSeeder::class,
+        ]);
+
+        // Seed demo data (optional - for testing/demonstration)
+        if (app()->environment('local', 'staging')) {
+            $this->call([
+                DemoEncounterSeeder::class,
+            ]);
+        }
     }
 }

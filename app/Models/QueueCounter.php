@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class QueueCounter extends Model
@@ -11,11 +12,12 @@ class QueueCounter extends Model
     use HasFactory;
 
     protected $fillable = [
+        'queue_type_id',
         'code',
         'name',
-        'description',
-        'type',
-        'display_order',
+        'name_en',
+        'name_zh',
+        'location',
         'is_active',
     ];
 
@@ -24,84 +26,39 @@ class QueueCounter extends Model
     ];
 
     /**
-     * Counter types.
+     * Get the queue type.
      */
-    public const TYPES = [
-        'registration' => 'Pendaftaran',
-        'consultation' => 'Konsultasi',
-        'pharmacy' => 'Farmasi',
-        'payment' => 'Pembayaran',
-        'lab' => 'Makmal',
-        'other' => 'Lain-lain',
-    ];
-
-    /**
-     * Get type label.
-     */
-    public function getTypeLabelAttribute(): string
+    public function queueType(): BelongsTo
     {
-        return self::TYPES[$this->type] ?? $this->type;
+        return $this->belongsTo(QueueType::class);
     }
 
     /**
-     * Get entries.
+     * Get tickets served at this counter.
      */
-    public function entries(): HasMany
+    public function tickets(): HasMany
     {
-        return $this->hasMany(QueueEntry::class);
+        return $this->hasMany(QueueTicket::class, 'current_counter_id');
     }
 
     /**
-     * Get today's entries.
+     * Get calls made from this counter.
      */
-    public function todayEntries(): HasMany
+    public function calls(): HasMany
     {
-        return $this->entries()->today();
+        return $this->hasMany(QueueCall::class, 'counter_id');
     }
 
     /**
-     * Get waiting count.
+     * Get staff assignments for this counter.
      */
-    public function getWaitingCountAttribute(): int
+    public function staffAssignments(): HasMany
     {
-        return $this->entries()->today()->waiting()->count();
+        return $this->hasMany(QueueStaffAssignment::class, 'counter_id');
     }
 
     /**
-     * Get next queue number.
-     */
-    public function getNextQueueNumber(): string
-    {
-        $lastEntry = $this->entries()
-            ->whereDate('created_at', today())
-            ->orderBy('queue_number', 'desc')
-            ->first();
-
-        if ($lastEntry) {
-            // Extract number from queue_number (e.g., "A001" -> 1)
-            $lastNumber = (int) preg_replace('/[^0-9]/', '', $lastEntry->queue_number);
-            $newNumber = $lastNumber + 1;
-        } else {
-            $newNumber = 1;
-        }
-
-        return sprintf('%s%03d', $this->code, $newNumber);
-    }
-
-    /**
-     * Get next in queue.
-     */
-    public function getNextInQueue(): ?QueueEntry
-    {
-        return $this->entries()
-            ->today()
-            ->waiting()
-            ->orderByPriority()
-            ->first();
-    }
-
-    /**
-     * Scope for active.
+     * Scope for active counters.
      */
     public function scopeActive($query)
     {
@@ -109,10 +66,66 @@ class QueueCounter extends Model
     }
 
     /**
-     * Scope ordered.
+     * Get the current active staff assignment.
      */
-    public function scopeOrdered($query)
+    public function getCurrentStaffAttribute()
     {
-        return $query->orderBy('display_order')->orderBy('name');
+        return $this->staffAssignments()
+            ->where('assignment_date', today())
+            ->where('is_active', true)
+            ->with('user')
+            ->first();
+    }
+
+    /**
+     * Check if counter has an assigned staff today.
+     */
+    public function hasAssignedStaff(): bool
+    {
+        return $this->current_staff !== null;
+    }
+
+    /**
+     * Get localized name.
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        return match ($locale) {
+            'en' => $this->name_en ?? $this->name,
+            'zh' => $this->name_zh ?? $this->name,
+            default => $this->name,
+        };
+    }
+
+    /**
+     * Get display name with code.
+     */
+    public function getDisplayNameAttribute(): string
+    {
+        return "{$this->code} - {$this->name}";
+    }
+
+    /**
+     * Get today's served count.
+     */
+    public function getTodayServedCountAttribute(): int
+    {
+        return $this->calls()
+            ->whereDate('called_at', today())
+            ->where('responded', true)
+            ->count();
+    }
+
+    /**
+     * Get current ticket being served.
+     */
+    public function getCurrentServingTicket(): ?QueueTicket
+    {
+        return QueueTicket::where('current_counter_id', $this->id)
+            ->where('status', 'serving')
+            ->whereDate('queue_date', today())
+            ->first();
     }
 }
