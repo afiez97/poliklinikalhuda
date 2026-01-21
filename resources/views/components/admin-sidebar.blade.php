@@ -83,19 +83,19 @@
                     </div>
                 </li>
 
-                <!-- Inventori Ubat (Akan Datang) -->
+                <!-- Farmasi & Inventori Ubat -->
                 <li class="has-sub {{ request()->is('admin/pharmacy*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-capsule"></i>
-                        <span class="nav-text">Inventori Ubat</span> <b class="caret"></b>
+                        <span class="nav-text">Farmasi</span> <b class="caret"></b>
                     </a>
                     <div class="collapse {{ request()->is('admin/pharmacy*') ? 'show' : '' }}">
-                        <ul class="sub-menu" id="inventori-ubat" data-parent="#sidebar-menu">
-                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Senarai Ubat</a></li>
-                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Tambah Ubat Baru</a></li>
-                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Stok Rendah</a></li>
-                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Hampir Tamat Tempoh</a></li>
-                            <li><a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang"><i class="bi bi-clock me-1"></i>Laporan Stok</a></li>
+                        <ul class="sub-menu" id="farmasi" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pharmacy.medicines.index') }}">Senarai Ubat</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pharmacy.medicines.create') }}">Tambah Ubat Baru</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pharmacy.dispensing.index') }}">Dispensing</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pharmacy.dispensing.pending') }}">Menunggu Dispens</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.pharmacy.suppliers.index') }}">Pembekal</a></li>
                         </ul>
                     </div>
                 </li>

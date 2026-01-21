@@ -25,9 +25,9 @@ trait HandlesApiResponses
         ], $statusCode);
     }
 
-    protected function successRedirect(string $route, string $message): RedirectResponse
+    protected function successRedirect(string $route, string $message, array $params = []): RedirectResponse
     {
-        return redirect()->route($route)->with('success', $message);
+        return redirect()->route($route, $params)->with('success', $message);
     }
 
     protected function errorRedirect(string $message): RedirectResponse

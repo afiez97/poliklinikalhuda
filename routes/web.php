@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 | - app/Http/Controllers/LocaleController.php (Language switching)
 |
 */
+
+// Alias for Laravel's default login route name (used by auth middleware)
+Route::get('/login', fn () => redirect()->route('admin.login'))->name('login');

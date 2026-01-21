@@ -342,7 +342,7 @@
                 </div>
 
                 <!-- Patient History -->
-                @if(!empty($patientHistory) && $patientHistory['chronic_conditions']->count() > 0)
+                @if(!empty($patientHistory) && isset($patientHistory['chronic_conditions']) && $patientHistory['chronic_conditions']->count() > 0)
                 <div class="card mb-4">
                     <div class="card-header">
                         <h5 class="mb-0"><i class="mdi mdi-alert-circle me-2 text-danger"></i>Keadaan Kronik</h5>

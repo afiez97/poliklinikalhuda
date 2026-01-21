@@ -378,7 +378,7 @@
                         <h5 class="mb-0"><i class="mdi mdi-history me-2"></i>Sejarah Pesakit</h5>
                     </div>
                     <div class="card-body">
-                        @if($patientHistory['chronic_conditions']->count() > 0)
+                        @if(isset($patientHistory['chronic_conditions']) && $patientHistory['chronic_conditions']->count() > 0)
                         <h6 class="text-danger mb-2">Keadaan Kronik</h6>
                         <ul class="list-unstyled mb-3">
                             @foreach($patientHistory['chronic_conditions'] as $condition)
@@ -387,7 +387,7 @@
                         </ul>
                         @endif
 
-                        @if($patientHistory['last_vital_signs'])
+                        @if(isset($patientHistory['last_vital_signs']) && $patientHistory['last_vital_signs'])
                         <h6 class="mb-2">Tanda Vital Terakhir</h6>
                         <small class="text-muted">{{ $patientHistory['last_vital_signs']->recorded_at->format('d/m/Y H:i') }}</small>
                         <table class="table table-sm mt-2">
@@ -412,17 +412,19 @@
                         </table>
                         @endif
 
-                        @if($patientHistory['encounters']->count() > 0)
+                        @if(isset($patientHistory['encounters']) && $patientHistory['encounters']->count() > 0)
                         <h6 class="mb-2 mt-3">Encounter Terkini</h6>
                         <div class="list-group list-group-flush">
                             @foreach($patientHistory['encounters']->take(3) as $enc)
-                            <a href="{{ route('admin.emr.encounters.show', $enc) }}" class="list-group-item list-group-item-action px-0">
+                            @if($enc && $enc->id)
+                            <a href="{{ route('admin.emr.encounters.show', ['encounter' => $enc->id]) }}" class="list-group-item list-group-item-action px-0">
                                 <div class="d-flex justify-content-between">
                                     <small class="text-muted">{{ $enc->encounter_date->format('d/m/Y') }}</small>
                                     <span class="badge bg-{{ $enc->status === 'completed' ? 'success' : 'secondary' }}">{{ $enc->status_label }}</span>
                                 </div>
                                 <div class="text-truncate">{{ $enc->chief_complaint }}</div>
                             </a>
+                            @endif
                             @endforeach
                         </div>
                         @endif
