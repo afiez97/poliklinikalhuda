@@ -100,6 +100,24 @@
                     </div>
                 </li>
 
+                <!-- Panel Insurans / GL -->
+                <li class="has-sub {{ request()->is('admin/panel*') ? 'active' : '' }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="bi bi-shield-check"></i>
+                        <span class="nav-text">Panel Insurans</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse {{ request()->is('admin/panel*') ? 'show' : '' }}">
+                        <ul class="sub-menu" id="panel" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.panel.panels.index') }}">Senarai Panel</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.panel.gl.index') }}">Guarantee Letter</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.panel.claims.index') }}">Tuntutan</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.panel.pa.index') }}">Pre-Authorization</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.panel.reconciliation.index') }}">Pemadanan Bayaran</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.panel.reports.index') }}">Laporan Panel</a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <!-- Surat Rujukan (Akan Datang) -->
                 <li>
                     <a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang">
