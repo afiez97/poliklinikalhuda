@@ -262,6 +262,11 @@ class PanelClaim extends Model
         return $this->claimable_amount - ($this->paid_amount ?? 0);
     }
 
+    public function getClaimAmountAttribute(): float
+    {
+        return (float) ($this->claimable_amount ?? 0);
+    }
+
     // Methods
     public static function generateClaimNumber(): string
     {

@@ -57,7 +57,7 @@ class AdminController extends Controller
     #[Middleware('auth')]
     public function appointments()
     {
-        return view('admin.appointments');
+        return redirect()->route('admin.appointments.index');
     }
 
     #[Get('/services', name: 'admin.services')]

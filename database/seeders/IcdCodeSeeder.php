@@ -227,7 +227,7 @@ class IcdCodeSeeder extends Seeder
             $code['updated_at'] = $now;
         }
 
-        DB::table('icd10_codes')->insert($codes);
+        DB::table('icd10_codes')->insertOrIgnore($codes);
 
         $this->command->info('ICD-10 codes seeded: '.count($codes).' records');
     }

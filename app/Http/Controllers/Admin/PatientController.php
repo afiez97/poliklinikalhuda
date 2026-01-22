@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
 use App\Models\PatientVisit;
 use App\Services\AuditService;
+use App\Services\PatientService;
 use App\Traits\HandlesApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +27,8 @@ class PatientController extends Controller
     use HandlesApiResponses;
 
     public function __construct(
-        protected AuditService $auditService
+        protected AuditService $auditService,
+        protected PatientService $service
     ) {}
 
     #[Get('/', name: 'admin.patients.index')]
@@ -40,8 +44,8 @@ class PatientController extends Controller
 
         $statistics = [
             'total' => Patient::count(),
-            'active' => Patient::where('status', 'active')->count(),
-            'panel' => Patient::where('has_panel', true)->count(),
+            'active' => Patient::active()->count(),
+            'panel' => Patient::panel()->count(),
             'today' => Patient::whereDate('created_at', today())->count(),
         ];
 
@@ -57,40 +61,9 @@ class PatientController extends Controller
     }
 
     #[Post('/', name: 'admin.patients.store')]
-    public function store(Request $request)
+    public function store(StorePatientRequest $request)
     {
-        $validated = $request->validate([
-            'ic_number' => 'nullable|string|max:20',
-            'passport_number' => 'nullable|string|max:30',
-            'id_type' => 'required|in:ic,passport,military,police,birth_cert,other',
-            'name' => 'required|string|max:150',
-            'date_of_birth' => 'required|date|before:today',
-            'gender' => 'required|in:male,female',
-            'nationality' => 'nullable|string|max:50',
-            'race' => 'nullable|string|max:50',
-            'religion' => 'nullable|string|max:50',
-            'marital_status' => 'nullable|in:single,married,divorced,widowed',
-            'occupation' => 'nullable|string|max:100',
-            'phone' => 'nullable|string|max:20',
-            'phone_alt' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:100',
-            'address' => 'nullable|string|max:500',
-            'postcode' => 'nullable|string|max:10',
-            'city' => 'nullable|string|max:50',
-            'state' => 'nullable|string|max:50',
-            'emergency_name' => 'nullable|string|max:100',
-            'emergency_phone' => 'nullable|string|max:20',
-            'emergency_relationship' => 'nullable|string|max:50',
-            'blood_type' => 'nullable|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
-            'allergies' => 'nullable|string|max:1000',
-            'chronic_diseases' => 'nullable|string|max:1000',
-            'current_medications' => 'nullable|string|max:1000',
-            'has_panel' => 'boolean',
-            'panel_company' => 'nullable|string|max:100',
-            'panel_member_id' => 'nullable|string|max:50',
-            'panel_expiry_date' => 'nullable|date',
-            'pdpa_consent' => 'required|boolean',
-        ]);
+        $validated = $request->validated();
 
         try {
             DB::beginTransaction();
@@ -114,9 +87,8 @@ class PatientController extends Controller
             DB::commit();
 
             return $this->successRedirect(
-                'admin.patients.show',
-                __('Pesakit berjaya didaftarkan. MRN: :mrn', ['mrn' => $patient->mrn]),
-                ['patient' => $patient->id]
+                'admin.patients.index',
+                __('Pesakit berjaya didaftarkan. MRN: :mrn', ['mrn' => $patient->mrn])
             );
         } catch (\Exception $e) {
             DB::rollBack();
@@ -147,40 +119,9 @@ class PatientController extends Controller
     }
 
     #[Patch('/{patient}', name: 'admin.patients.update')]
-    public function update(Request $request, Patient $patient)
+    public function update(UpdatePatientRequest $request, Patient $patient)
     {
-        $validated = $request->validate([
-            'ic_number' => 'nullable|string|max:20',
-            'passport_number' => 'nullable|string|max:30',
-            'id_type' => 'required|in:ic,passport,military,police,birth_cert,other',
-            'name' => 'required|string|max:150',
-            'date_of_birth' => 'required|date|before:today',
-            'gender' => 'required|in:male,female',
-            'nationality' => 'nullable|string|max:50',
-            'race' => 'nullable|string|max:50',
-            'religion' => 'nullable|string|max:50',
-            'marital_status' => 'nullable|in:single,married,divorced,widowed',
-            'occupation' => 'nullable|string|max:100',
-            'phone' => 'nullable|string|max:20',
-            'phone_alt' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:100',
-            'address' => 'nullable|string|max:500',
-            'postcode' => 'nullable|string|max:10',
-            'city' => 'nullable|string|max:50',
-            'state' => 'nullable|string|max:50',
-            'emergency_name' => 'nullable|string|max:100',
-            'emergency_phone' => 'nullable|string|max:20',
-            'emergency_relationship' => 'nullable|string|max:50',
-            'blood_type' => 'nullable|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
-            'allergies' => 'nullable|string|max:1000',
-            'chronic_diseases' => 'nullable|string|max:1000',
-            'current_medications' => 'nullable|string|max:1000',
-            'has_panel' => 'boolean',
-            'panel_company' => 'nullable|string|max:100',
-            'panel_member_id' => 'nullable|string|max:50',
-            'panel_expiry_date' => 'nullable|date',
-            'status' => 'required|in:active,inactive,deceased,transferred',
-        ]);
+        $validated = $request->validated();
 
         try {
             $oldData = $patient->toArray();
@@ -195,9 +136,8 @@ class PatientController extends Controller
             );
 
             return $this->successRedirect(
-                'admin.patients.show',
-                __('Maklumat pesakit berjaya dikemaskini.'),
-                ['patient' => $patient->id]
+                'admin.patients.index',
+                __('Maklumat pesakit berjaya dikemaskini.')
             );
         } catch (\Exception $e) {
             Log::error('Failed to update patient', ['error' => $e->getMessage()]);
@@ -211,24 +151,48 @@ class PatientController extends Controller
     {
         try {
             $mrn = $patient->mrn;
-            $patient->delete();
+            $this->service->deletePatient($patient->id);
 
-            $this->auditService->log(
-                'delete',
-                "Patient deleted: {$mrn}",
-                null,
-                metadata: ['mrn' => $mrn]
-            );
+            Log::info('Patient deleted successfully', ['id' => $patient->id, 'mrn' => $mrn]);
 
             return $this->successRedirect(
                 'admin.patients.index',
                 __('Pesakit berjaya dipadam.')
             );
         } catch (\Exception $e) {
-            Log::error('Failed to delete patient', ['error' => $e->getMessage()]);
-
-            return $this->errorRedirect($e->getMessage());
+            Log::error('Failed to delete patient', [
+                'id' => $patient->id,
+                'error' => $e->getMessage()
+            ]);
+            return $this->errorRedirect(__('Gagal memadam pesakit.'));
         }
+    }
+
+    #[Get('/search', name: 'admin.patients.search')]
+    public function search(Request $request)
+    {
+        $term = $request->input('q');
+
+        if (strlen($term) < 2) {
+            return response()->json([]);
+        }
+
+        $patients = Patient::search($term)
+            ->active()
+            ->select('id', 'mrn', 'name', 'ic_number', 'phone', 'date_of_birth', 'gender')
+            ->limit(15)
+            ->get()
+            ->map(fn ($p) => [
+                'id' => $p->id,
+                'mrn' => $p->mrn,
+                'name' => $p->name,
+                'ic_number' => $p->ic_number,
+                'phone' => $p->phone,
+                'age' => $p->formatted_age,
+                'gender' => $p->gender_label,
+            ]);
+
+        return response()->json($patients);
     }
 
     #[Get('/search/quick', name: 'admin.patients.quickSearch')]

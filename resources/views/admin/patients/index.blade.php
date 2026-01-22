@@ -178,6 +178,15 @@
                                         </li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li>
+                                            <form action="{{ route('admin.patients.destroy', $patient) }}" method="POST" id="deleteForm{{ $patient->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger" onclick="event.stopPropagation(); return confirm('Padam rekod pesakit ini?');">
+                                                    <i class="mdi mdi-delete me-2"></i> Padam
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li>
                                             <button type="button" class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#registerVisitModal{{ $patient->id }}">
                                                 <i class="mdi mdi-plus-circle me-2"></i> Daftar Lawatan
                                             </button>

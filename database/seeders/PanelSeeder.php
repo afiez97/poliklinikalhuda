@@ -116,16 +116,22 @@ class PanelSeeder extends Seeder
         ];
 
         foreach ($panels as $panelData) {
-            $panel = Panel::create($panelData);
+            $panel = Panel::firstOrCreate(
+                ['panel_code' => $panelData['panel_code']],
+                $panelData
+            );
 
-            // Create default packages
-            $this->createPackages($panel);
+            // Only create related data if panel was just created
+            if ($panel->wasRecentlyCreated) {
+                // Create default packages
+                $this->createPackages($panel);
 
-            // Create contract
-            $this->createContract($panel);
+                // Create contract
+                $this->createContract($panel);
 
-            // Create exclusions
-            $this->createExclusions($panel);
+                // Create exclusions
+                $this->createExclusions($panel);
+            }
         }
 
         $this->command->info('PanelSeeder: Created '.count($panels).' panels with packages, contracts, and exclusions.');

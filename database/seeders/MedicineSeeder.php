@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Medicine;
+use App\Models\MedicineCategory;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -10,195 +11,225 @@ class MedicineSeeder extends Seeder
 {
     /**
      * Run the database seeder.
+     * Note: This seeder adds additional demo medicines.
+     * PharmacySeeder should be run first to create categories.
      */
     public function run(): void
     {
+        // Skip if medicines already exist (PharmacySeeder already ran)
+        if (Medicine::count() > 10) {
+            $this->command->info('MedicineSeeder: Skipped - Medicines already exist.');
+            return;
+        }
+
+        // Get or create default category
+        $defaultCategory = MedicineCategory::firstOrCreate(
+            ['code' => 'MISC'],
+            ['name' => 'Pelbagai', 'is_active' => true]
+        );
+
         $medicines = [
             [
-                'medicine_code' => 'MED000001',
-                'name' => 'Paracetamol',
-                'description' => 'Ubat demam dan sakit kepala',
-                'category' => 'tablet',
-                'manufacturer' => 'Pharmaniaga',
+                'code' => Medicine::generateCode(),
+                'name' => 'Paracetamol 500mg',
+                'name_generic' => 'Paracetamol',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'tablet',
                 'strength' => '500mg',
-                'unit_price' => 0.50,
-                'stock_quantity' => 500,
-                'minimum_stock' => 50,
-                'expiry_date' => Carbon::now()->addMonths(18),
-                'batch_number' => 'PAR2024001',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000002',
-                'name' => 'Amoxicillin',
-                'description' => 'Antibiotik untuk jangkitan bakteria',
-                'category' => 'capsule',
-                'manufacturer' => 'Duopharma',
-                'strength' => '250mg',
-                'unit_price' => 1.20,
-                'stock_quantity' => 15, // Low stock
-                'minimum_stock' => 20,
-                'expiry_date' => Carbon::now()->addMonths(12),
-                'batch_number' => 'AMX2024002',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000003',
-                'name' => 'Cough Syrup',
-                'description' => 'Sirap batuk untuk kanak-kanak dan dewasa',
-                'category' => 'syrup',
-                'manufacturer' => 'CCM Pharma',
-                'strength' => '100ml',
-                'unit_price' => 8.50,
-                'stock_quantity' => 80,
-                'minimum_stock' => 10,
-                'expiry_date' => Carbon::now()->addDays(20), // Expiring soon
-                'batch_number' => 'CSY2024003',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000004',
-                'name' => 'Insulin Injection',
-                'description' => 'Insulin untuk pesakit diabetes',
-                'category' => 'injection',
-                'manufacturer' => 'Novo Nordisk',
-                'strength' => '100IU/ml',
-                'unit_price' => 45.00,
-                'stock_quantity' => 25,
-                'minimum_stock' => 5,
-                'expiry_date' => Carbon::now()->addMonths(6),
-                'batch_number' => 'INS2024004',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000005',
-                'name' => 'Hydrocortisone Cream',
-                'description' => 'Krim untuk masalah kulit dan gatal-gatal',
-                'category' => 'cream',
-                'manufacturer' => 'GSK',
-                'strength' => '1%',
-                'unit_price' => 12.80,
-                'stock_quantity' => 0, // Out of stock
-                'minimum_stock' => 10,
-                'expiry_date' => Carbon::now()->addMonths(24),
-                'batch_number' => 'HYD2024005',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000006',
-                'name' => 'Eye Drops',
-                'description' => 'Titisan mata untuk mata kering',
-                'category' => 'drops',
-                'manufacturer' => 'Alcon',
-                'strength' => '10ml',
-                'unit_price' => 15.60,
-                'stock_quantity' => 35,
-                'minimum_stock' => 15,
-                'expiry_date' => Carbon::now()->addMonths(8),
-                'batch_number' => 'EYE2024006',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000007',
-                'name' => 'Nasal Spray',
-                'description' => 'Semburan hidung untuk selsema',
-                'category' => 'spray',
-                'manufacturer' => 'Reckitt Benckiser',
-                'strength' => '20ml',
-                'unit_price' => 18.90,
-                'stock_quantity' => 3, // Very low stock
-                'minimum_stock' => 8,
-                'expiry_date' => Carbon::now()->addMonths(15),
-                'batch_number' => 'NAS2024007',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000008',
-                'name' => 'Nicotine Patch',
-                'description' => 'Tampalan nikotin untuk berhenti merokok',
-                'category' => 'patch',
-                'manufacturer' => 'Johnson & Johnson',
-                'strength' => '21mg/24h',
-                'unit_price' => 25.50,
-                'stock_quantity' => 40,
-                'minimum_stock' => 10,
-                'expiry_date' => Carbon::now()->addMonths(36),
-                'batch_number' => 'NIC2024008',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000009',
-                'name' => 'Aspirin',
-                'description' => 'Ubat sakit kepala dan pengencer darah',
-                'category' => 'tablet',
-                'manufacturer' => 'Bayer',
-                'strength' => '100mg',
-                'unit_price' => 0.80,
-                'stock_quantity' => 200,
-                'minimum_stock' => 30,
-                'expiry_date' => Carbon::now()->addDays(10), // Expiring very soon
-                'batch_number' => 'ASP2024009',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000010',
-                'name' => 'Expired Medicine',
-                'description' => 'Ubat yang sudah luput untuk testing',
-                'category' => 'tablet',
-                'manufacturer' => 'Test Pharma',
-                'strength' => '50mg',
-                'unit_price' => 1.00,
-                'stock_quantity' => 100,
-                'minimum_stock' => 20,
-                'expiry_date' => Carbon::now()->subDays(30), // Already expired
-                'batch_number' => 'EXP2023010',
-                'status' => 'expired',
-            ],
-            [
-                'medicine_code' => 'MED000011',
-                'name' => 'Vitamin C',
-                'description' => 'Vitamin C untuk meningkatkan imuniti',
-                'category' => 'tablet',
-                'manufacturer' => 'Blackmores',
-                'strength' => '1000mg',
-                'unit_price' => 2.50,
-                'stock_quantity' => 150,
-                'minimum_stock' => 25,
-                'expiry_date' => Carbon::now()->addMonths(20),
-                'batch_number' => 'VTC2024011',
-                'status' => 'active',
-            ],
-            [
-                'medicine_code' => 'MED000012',
-                'name' => 'Ibuprofen',
-                'description' => 'Ubat anti-radang dan sakit',
-                'category' => 'capsule',
+                'unit' => 'tablet',
                 'manufacturer' => 'Pharmaniaga',
+                'cost_price' => 0.30,
+                'selling_price' => 0.50,
+                'stock_quantity' => 500,
+                'reorder_level' => 50,
+                'max_stock_level' => 1000,
+                'expiry_date' => Carbon::now()->addMonths(18),
+                'requires_prescription' => false,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Amoxicillin 250mg',
+                'name_generic' => 'Amoxicillin',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'capsule',
+                'strength' => '250mg',
+                'unit' => 'capsule',
+                'manufacturer' => 'Duopharma',
+                'cost_price' => 0.80,
+                'selling_price' => 1.20,
+                'stock_quantity' => 15, // Low stock
+                'reorder_level' => 20,
+                'max_stock_level' => 500,
+                'expiry_date' => Carbon::now()->addMonths(12),
+                'requires_prescription' => true,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Sirap Batuk 100ml',
+                'name_generic' => 'Dextromethorphan',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'syrup',
+                'strength' => '15mg/5ml',
+                'unit' => 'bottle',
+                'manufacturer' => 'CCM Pharma',
+                'cost_price' => 5.00,
+                'selling_price' => 8.50,
+                'stock_quantity' => 80,
+                'reorder_level' => 10,
+                'max_stock_level' => 200,
+                'expiry_date' => Carbon::now()->addDays(20), // Expiring soon
+                'requires_prescription' => false,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Insulin 100IU/ml',
+                'name_generic' => 'Human Insulin',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'injection',
+                'strength' => '100IU/ml',
+                'unit' => 'vial',
+                'manufacturer' => 'Novo Nordisk',
+                'cost_price' => 30.00,
+                'selling_price' => 45.00,
+                'stock_quantity' => 25,
+                'reorder_level' => 5,
+                'max_stock_level' => 100,
+                'expiry_date' => Carbon::now()->addMonths(6),
+                'storage_conditions' => 'refrigerate',
+                'requires_prescription' => true,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Hydrocortisone Cream 1%',
+                'name_generic' => 'Hydrocortisone',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'cream',
+                'strength' => '1%',
+                'unit' => 'tube',
+                'manufacturer' => 'GSK',
+                'cost_price' => 8.00,
+                'selling_price' => 12.80,
+                'stock_quantity' => 0, // Out of stock
+                'reorder_level' => 10,
+                'max_stock_level' => 100,
+                'expiry_date' => Carbon::now()->addMonths(24),
+                'requires_prescription' => true,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Artificial Tears 10ml',
+                'name_generic' => 'Carboxymethylcellulose',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'drops',
+                'strength' => '0.5%',
+                'unit' => 'bottle',
+                'manufacturer' => 'Alcon',
+                'cost_price' => 10.00,
+                'selling_price' => 15.60,
+                'stock_quantity' => 35,
+                'reorder_level' => 15,
+                'max_stock_level' => 100,
+                'expiry_date' => Carbon::now()->addMonths(8),
+                'requires_prescription' => false,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Aspirin 100mg',
+                'name_generic' => 'Acetylsalicylic Acid',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'tablet',
+                'strength' => '100mg',
+                'unit' => 'tablet',
+                'manufacturer' => 'Bayer',
+                'cost_price' => 0.50,
+                'selling_price' => 0.80,
+                'stock_quantity' => 200,
+                'reorder_level' => 30,
+                'max_stock_level' => 500,
+                'expiry_date' => Carbon::now()->addDays(10), // Expiring very soon
+                'requires_prescription' => false,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Tramadol 50mg',
+                'name_generic' => 'Tramadol HCL',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'capsule',
+                'strength' => '50mg',
+                'unit' => 'capsule',
+                'manufacturer' => 'Pharmaniaga',
+                'cost_price' => 1.50,
+                'selling_price' => 2.50,
+                'stock_quantity' => 100,
+                'reorder_level' => 20,
+                'max_stock_level' => 200,
+                'expiry_date' => Carbon::now()->addMonths(12),
+                'requires_prescription' => true,
+                'is_controlled' => true,
+                'poison_schedule' => 'B',
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Vitamin C 1000mg',
+                'name_generic' => 'Ascorbic Acid',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'tablet',
+                'strength' => '1000mg',
+                'unit' => 'tablet',
+                'manufacturer' => 'Blackmores',
+                'cost_price' => 1.50,
+                'selling_price' => 2.50,
+                'stock_quantity' => 150,
+                'reorder_level' => 25,
+                'max_stock_level' => 300,
+                'expiry_date' => Carbon::now()->addMonths(20),
+                'requires_prescription' => false,
+                'is_controlled' => false,
+                'is_active' => true,
+            ],
+            [
+                'code' => Medicine::generateCode(),
+                'name' => 'Ibuprofen 400mg',
+                'name_generic' => 'Ibuprofen',
+                'category_id' => $defaultCategory->id,
+                'dosage_form' => 'tablet',
                 'strength' => '400mg',
-                'unit_price' => 1.50,
+                'unit' => 'tablet',
+                'manufacturer' => 'Pharmaniaga',
+                'cost_price' => 0.80,
+                'selling_price' => 1.50,
                 'stock_quantity' => 75,
-                'minimum_stock' => 20,
+                'reorder_level' => 20,
+                'max_stock_level' => 300,
                 'expiry_date' => Carbon::now()->addMonths(14),
-                'batch_number' => 'IBU2024012',
-                'status' => 'active',
+                'requires_prescription' => false,
+                'is_controlled' => false,
+                'is_active' => true,
             ],
         ];
 
         foreach ($medicines as $medicine) {
-            Medicine::create($medicine);
+            Medicine::firstOrCreate(
+                ['name' => $medicine['name']],
+                $medicine
+            );
         }
-    }
-}Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
-class MedicineSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        //
+        $this->command->info('MedicineSeeder: Created '.count($medicines).' additional medicines.');
     }
 }

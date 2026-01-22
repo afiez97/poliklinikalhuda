@@ -86,45 +86,7 @@ class PanelClaimController extends Controller
         }
     }
 
-    #[Get('/{claim}', name: 'admin.panel.claims.show')]
-    public function show(PanelClaim $claim)
-    {
-        $claim->load([
-            'panel',
-            'patient',
-            'guaranteeLetter',
-            'invoice',
-            'encounter',
-            'preAuthorization',
-            'documents',
-            'rejections',
-            'appeals',
-        ]);
-
-        return view('admin.panel.claims.show', compact('claim'));
-    }
-
-    #[Post('/{claim}/submit', name: 'admin.panel.claims.submit')]
-    public function submit(PanelClaim $claim)
-    {
-        if ($claim->claim_status !== PanelClaim::STATUS_DRAFT) {
-            return $this->errorRedirect('Tuntutan ini tidak dalam status draf.');
-        }
-
-        try {
-            $this->claimService->submitClaim($claim, auth()->id());
-
-            return $this->successRedirect(
-                'admin.panel.claims.show',
-                __('Tuntutan berjaya dihantar.'),
-                ['claim' => $claim->id]
-            );
-        } catch (\Exception $e) {
-            return $this->errorRedirect($e->getMessage());
-        }
-    }
-
-    #[Post('/batch-submit', name: 'admin.panel.claims.batchSubmit')]
+    #[Post('/batch-submit', name: 'admin.panel.claims.batch-submit')]
     public function batchSubmit(Request $request)
     {
         $validated = $request->validate([
@@ -146,125 +108,17 @@ class PanelClaimController extends Controller
         }
     }
 
-    #[Post('/{claim}/approve', name: 'admin.panel.claims.approve')]
-    public function approve(Request $request, PanelClaim $claim)
-    {
-        $validated = $request->validate([
-            'approved_amount' => ['required', 'numeric', 'min:0'],
-            'panel_remarks' => ['nullable', 'string'],
-        ]);
-
-        try {
-            $this->claimService->approveClaim(
-                $claim,
-                $validated['approved_amount'],
-                $validated['panel_remarks'] ?? null
-            );
-
-            return $this->successRedirect(
-                'admin.panel.claims.show',
-                __('Tuntutan berjaya diluluskan.'),
-                ['claim' => $claim->id]
-            );
-        } catch (\Exception $e) {
-            return $this->errorRedirect($e->getMessage());
-        }
-    }
-
-    #[Post('/{claim}/reject', name: 'admin.panel.claims.reject')]
-    public function reject(Request $request, PanelClaim $claim)
-    {
-        $validated = $request->validate([
-            'rejection_reason' => ['required', 'string'],
-            'panel_remarks' => ['nullable', 'string'],
-        ]);
-
-        try {
-            $this->claimService->rejectClaim(
-                $claim,
-                $validated['rejection_reason'],
-                $validated['panel_remarks'] ?? null,
-                auth()->id()
-            );
-
-            return $this->successRedirect(
-                'admin.panel.claims.show',
-                __('Tuntutan telah ditolak.'),
-                ['claim' => $claim->id]
-            );
-        } catch (\Exception $e) {
-            return $this->errorRedirect($e->getMessage());
-        }
-    }
-
-    #[Post('/{claim}/documents', name: 'admin.panel.claims.attachDocument')]
-    public function attachDocument(Request $request, PanelClaim $claim)
-    {
-        $validated = $request->validate([
-            'document' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:10240'],
-            'document_type' => ['required', 'in:gl_copy,invoice,medical_certificate,lab_report,prescription,pa_approval,referral_letter,other'],
-            'notes' => ['nullable', 'string'],
-        ]);
-
-        try {
-            $this->claimService->attachDocument(
-                $claim,
-                $request->file('document'),
-                $validated['document_type'],
-                $validated['notes'] ?? null,
-                auth()->id()
-            );
-
-            return $this->successRedirect(
-                'admin.panel.claims.show',
-                __('Dokumen berjaya dimuat naik.'),
-                ['claim' => $claim->id]
-            );
-        } catch (\Exception $e) {
-            return $this->errorRedirect($e->getMessage());
-        }
-    }
-
-    #[Delete('/{claim}/documents/{document}', name: 'admin.panel.claims.deleteDocument')]
-    public function deleteDocument(PanelClaim $claim, ClaimDocument $document)
-    {
-        $document->delete();
-
-        return $this->successRedirect(
-            'admin.panel.claims.show',
-            __('Dokumen berjaya dipadam.'),
-            ['claim' => $claim->id]
-        );
-    }
-
-    #[Post('/{claim}/appeal', name: 'admin.panel.claims.appeal')]
-    public function appeal(Request $request, PanelClaim $claim)
-    {
-        $validated = $request->validate([
-            'appeal_reason' => ['required', 'string'],
-            'appealed_amount' => ['nullable', 'numeric', 'min:0'],
-            'supporting_notes' => ['nullable', 'string'],
-            'documents' => ['nullable', 'array'],
-            'documents.*' => ['file', 'mimes:pdf,jpg,jpeg,png', 'max:5120'],
-        ]);
-
-        try {
-            $this->claimService->createAppeal($claim, $validated, auth()->id());
-
-            return $this->successRedirect(
-                'admin.panel.claims.show',
-                __('Rayuan berjaya dihantar.'),
-                ['claim' => $claim->id]
-            );
-        } catch (\Exception $e) {
-            return $this->errorRedirect($e->getMessage());
-        }
-    }
-
-    // Pre-Authorization
+    // Pre-Authorization (MUST be before /{claim} wildcard)
     #[Get('/pa', name: 'admin.panel.pa.index')]
     public function paIndex(Request $request)
     {
+        $filters = [
+            'search' => $request->input('search'),
+            'panel_id' => $request->input('panel_id'),
+            'status' => $request->input('status'),
+            'type' => $request->input('type'),
+        ];
+
         $preAuthorizations = PreAuthorization::with(['panel', 'patient'])
             ->when($request->input('search'), function ($q, $search) {
                 $q->where('pa_number', 'like', "%{$search}%")
@@ -276,8 +130,14 @@ class PanelClaimController extends Controller
             ->paginate(25);
 
         $panels = Panel::active()->orderBy('panel_name')->get();
+        $statistics = [
+            'pending' => PreAuthorization::where('status', 'pending')->count(),
+            'approved' => PreAuthorization::where('status', 'approved')->count(),
+            'rejected' => PreAuthorization::where('status', 'rejected')->count(),
+            'expired' => PreAuthorization::where('status', 'expired')->count(),
+        ];
 
-        return view('admin.panel.pa.index', compact('preAuthorizations', 'panels'));
+        return view('admin.panel.pa.index', compact('preAuthorizations', 'panels', 'filters', 'statistics'));
     }
 
     #[Get('/pa/create', name: 'admin.panel.pa.create')]
@@ -370,17 +230,128 @@ class PanelClaimController extends Controller
         }
     }
 
-    // Payment Reconciliation
-    #[Get('/reconciliation', name: 'admin.panel.reconciliation.index')]
-    public function reconciliationIndex()
+    #[Post('/pa/{pa}/reject', name: 'admin.panel.pa.reject')]
+    public function paReject(Request $request, PreAuthorization $pa)
     {
-        $paymentAdvices = PaymentAdvice::with(['panel', 'uploadedBy'])
-            ->latest()
-            ->paginate(25);
+        $validated = $request->validate([
+            'rejection_reason' => ['required', 'string'],
+        ]);
+
+        try {
+            $pa->update([
+                'status' => 'rejected',
+                'rejection_reason' => $validated['rejection_reason'],
+                'rejected_at' => now(),
+                'rejected_by' => auth()->id(),
+            ]);
+
+            return $this->successRedirect(
+                'admin.panel.pa.show',
+                __('Pre-Authorization telah ditolak.'),
+                ['pa' => $pa->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
+    }
+
+    // Payment Reconciliation (MUST be before /{claim} wildcard)
+    #[Get('/reconciliation', name: 'admin.panel.reconciliation.index')]
+    public function reconciliationIndex(Request $request)
+    {
+        $filters = [
+            'panel_id' => $request->input('panel_id'),
+            'date_from' => $request->input('date_from'),
+            'date_to' => $request->input('date_to'),
+            'status' => $request->input('status'),
+        ];
 
         $panels = Panel::active()->orderBy('panel_name')->get();
 
-        return view('admin.panel.reconciliation.index', compact('paymentAdvices', 'panels'));
+        // Outstanding claims
+        $outstandingClaims = PanelClaim::with('panel')
+            ->whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+            ->where(function ($q) {
+                $q->whereNull('paid_amount')
+                    ->orWhereRaw('paid_amount < approved_amount');
+            })
+            ->when($filters['panel_id'], fn ($q, $panelId) => $q->where('panel_id', $panelId))
+            ->orderBy('submitted_at')
+            ->paginate(25, ['*'], 'outstanding_page');
+
+        // Recent payments
+        $recentPayments = PaymentAdvice::with('panel')
+            ->latest('payment_date')
+            ->limit(10)
+            ->get();
+
+        // Statistics
+        $statistics = [
+            'outstanding' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->selectRaw('COALESCE(SUM(approved_amount - COALESCE(paid_amount, 0)), 0) as total')
+                ->value('total'),
+            'received_this_month' => PaymentAdvice::whereMonth('payment_date', now()->month)
+                ->whereYear('payment_date', now()->year)
+                ->sum('total_amount'),
+            'claims_pending' => PanelClaim::where('claim_status', PanelClaim::STATUS_APPROVED)
+                ->where(function ($q) {
+                    $q->whereNull('paid_amount')
+                        ->orWhereRaw('paid_amount < approved_amount');
+                })
+                ->count(),
+            'overdue_count' => PanelClaim::where('claim_status', PanelClaim::STATUS_APPROVED)
+                ->where('submitted_at', '<', now()->subDays(60))
+                ->where(function ($q) {
+                    $q->whereNull('paid_amount')
+                        ->orWhereRaw('paid_amount < approved_amount');
+                })
+                ->count(),
+        ];
+
+        // Aging analysis
+        $aging = [
+            '0_30' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->where('submitted_at', '>=', now()->subDays(30))
+                ->selectRaw('COALESCE(SUM(approved_amount - COALESCE(paid_amount, 0)), 0) as total')
+                ->value('total'),
+            '31_60' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->whereBetween('submitted_at', [now()->subDays(60), now()->subDays(30)])
+                ->selectRaw('COALESCE(SUM(approved_amount - COALESCE(paid_amount, 0)), 0) as total')
+                ->value('total'),
+            '61_90' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->whereBetween('submitted_at', [now()->subDays(90), now()->subDays(60)])
+                ->selectRaw('COALESCE(SUM(approved_amount - COALESCE(paid_amount, 0)), 0) as total')
+                ->value('total'),
+            '90_plus' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->where('submitted_at', '<', now()->subDays(90))
+                ->selectRaw('COALESCE(SUM(approved_amount - COALESCE(paid_amount, 0)), 0) as total')
+                ->value('total'),
+        ];
+
+        $agingCount = [
+            '0_30' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->where('submitted_at', '>=', now()->subDays(30))
+                ->count(),
+            '31_60' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->whereBetween('submitted_at', [now()->subDays(60), now()->subDays(30)])
+                ->count(),
+            '61_90' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->whereBetween('submitted_at', [now()->subDays(90), now()->subDays(60)])
+                ->count(),
+            '90_plus' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->where('submitted_at', '<', now()->subDays(90))
+                ->count(),
+        ];
+
+        return view('admin.panel.reconciliation.index', compact(
+            'panels',
+            'filters',
+            'outstandingClaims',
+            'recentPayments',
+            'statistics',
+            'aging',
+            'agingCount'
+        ));
     }
 
     #[Get('/reconciliation/create', name: 'admin.panel.reconciliation.create')]
@@ -454,20 +425,288 @@ class PanelClaimController extends Controller
         }
     }
 
-    // Reports
+    // Reports (MUST be before /{claim} wildcard)
     #[Get('/reports', name: 'admin.panel.reports.index')]
     public function reports(Request $request)
     {
         $filters = [
+            'report_type' => $request->input('report_type', 'summary'),
             'panel_id' => $request->input('panel_id'),
             'date_from' => $request->input('date_from', now()->startOfMonth()->toDateString()),
             'date_to' => $request->input('date_to', now()->endOfMonth()->toDateString()),
         ];
 
         $panels = Panel::active()->orderBy('panel_name')->get();
-        $statistics = $this->claimService->getClaimStatistics($filters);
-        $agingReport = $this->claimService->getAgingReport($filters['panel_id']);
 
-        return view('admin.panel.reports.index', compact('panels', 'filters', 'statistics', 'agingReport'));
+        // Statistics
+        $statistics = [
+            'total_panels' => Panel::active()->count(),
+            'active_gls' => \App\Models\GuaranteeLetter::where('status', 'active')->count(),
+            'total_claims_amount' => PanelClaim::whereMonth('created_at', now()->month)
+                ->whereYear('created_at', now()->year)
+                ->sum('claimable_amount'),
+            'outstanding_amount' => PanelClaim::whereIn('claim_status', [PanelClaim::STATUS_APPROVED])
+                ->selectRaw('COALESCE(SUM(approved_amount - COALESCE(paid_amount, 0)), 0) as total')
+                ->value('total'),
+        ];
+
+        // Panel summary
+        $panelSummary = Panel::withCount(['guaranteeLetters as active_gls' => function ($q) {
+            $q->where('status', 'active');
+        }])
+            ->withCount(['claims as total_claims'])
+            ->withSum('claims as claims_amount', 'claimable_amount')
+            ->withSum(['claims as paid_amount' => function ($q) {
+                $q->where('claim_status', PanelClaim::STATUS_PAID);
+            }], 'paid_amount')
+            ->get()
+            ->map(function ($panel) {
+                $panel->outstanding_amount = ($panel->claims_amount ?? 0) - ($panel->paid_amount ?? 0);
+
+                return $panel;
+            });
+
+        // Monthly trend (last 6 months)
+        $monthlyTrend = [
+            'labels' => [],
+            'claims' => [],
+            'paid' => [],
+        ];
+
+        for ($i = 5; $i >= 0; $i--) {
+            $month = now()->subMonths($i);
+            $monthlyTrend['labels'][] = $month->format('M Y');
+            $monthlyTrend['claims'][] = PanelClaim::whereMonth('created_at', $month->month)
+                ->whereYear('created_at', $month->year)
+                ->sum('claimable_amount');
+            $monthlyTrend['paid'][] = PanelClaim::where('claim_status', PanelClaim::STATUS_PAID)
+                ->whereMonth('paid_at', $month->month)
+                ->whereYear('paid_at', $month->year)
+                ->sum('paid_amount');
+        }
+
+        // Panel type distribution
+        $panelTypeDistribution = [
+            'corporate' => Panel::where('panel_type', 'corporate')->count(),
+            'insurance' => Panel::where('panel_type', 'insurance')->count(),
+            'government' => Panel::where('panel_type', 'government')->count(),
+        ];
+
+        // Claim status distribution
+        $claimStatusDistribution = [
+            'draft' => PanelClaim::where('claim_status', PanelClaim::STATUS_DRAFT)->count(),
+            'submitted' => PanelClaim::where('claim_status', PanelClaim::STATUS_SUBMITTED)->count(),
+            'approved' => PanelClaim::where('claim_status', PanelClaim::STATUS_APPROVED)->count(),
+            'rejected' => PanelClaim::where('claim_status', PanelClaim::STATUS_REJECTED)->count(),
+            'paid' => PanelClaim::where('claim_status', PanelClaim::STATUS_PAID)->count(),
+        ];
+
+        return view('admin.panel.reports.index', compact(
+            'panels',
+            'filters',
+            'statistics',
+            'panelSummary',
+            'monthlyTrend',
+            'panelTypeDistribution',
+            'claimStatusDistribution'
+        ));
+    }
+
+    // Claims CRUD routes with wildcard (MUST be AFTER specific routes)
+    #[Get('/{claim}', name: 'admin.panel.claims.show')]
+    public function show(PanelClaim $claim)
+    {
+        $claim->load([
+            'panel',
+            'patient',
+            'guaranteeLetter',
+            'invoice',
+            'encounter',
+            'preAuthorization',
+            'documents',
+            'rejections',
+            'appeals',
+            'panelEmployee',
+        ]);
+
+        return view('admin.panel.claims.show', compact('claim'));
+    }
+
+    #[Get('/{claim}/edit', name: 'admin.panel.claims.edit')]
+    public function edit(PanelClaim $claim)
+    {
+        $claim->load(['panel', 'patient', 'guaranteeLetter', 'invoice', 'documents']);
+
+        $availableGLs = \App\Models\GuaranteeLetter::where('panel_id', $claim->panel_id)
+            ->where('patient_id', $claim->patient_id)
+            ->where('status', 'active')
+            ->get();
+
+        return view('admin.panel.claims.edit', compact('claim', 'availableGLs'));
+    }
+
+    #[Post('/{claim}/submit', name: 'admin.panel.claims.submit')]
+    public function submit(PanelClaim $claim)
+    {
+        if ($claim->claim_status !== PanelClaim::STATUS_DRAFT) {
+            return $this->errorRedirect('Tuntutan ini tidak dalam status draf.');
+        }
+
+        try {
+            $this->claimService->submitClaim($claim, auth()->id());
+
+            return $this->successRedirect(
+                'admin.panel.claims.show',
+                __('Tuntutan berjaya dihantar.'),
+                ['claim' => $claim->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
+    }
+
+    #[Post('/{claim}/approve', name: 'admin.panel.claims.approve')]
+    public function approve(Request $request, PanelClaim $claim)
+    {
+        $validated = $request->validate([
+            'approved_amount' => ['required', 'numeric', 'min:0'],
+            'panel_remarks' => ['nullable', 'string'],
+        ]);
+
+        try {
+            $this->claimService->approveClaim(
+                $claim,
+                $validated['approved_amount'],
+                $validated['panel_remarks'] ?? null
+            );
+
+            return $this->successRedirect(
+                'admin.panel.claims.show',
+                __('Tuntutan berjaya diluluskan.'),
+                ['claim' => $claim->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
+    }
+
+    #[Post('/{claim}/reject', name: 'admin.panel.claims.reject')]
+    public function reject(Request $request, PanelClaim $claim)
+    {
+        $validated = $request->validate([
+            'rejection_reason' => ['required', 'string'],
+            'panel_remarks' => ['nullable', 'string'],
+        ]);
+
+        try {
+            $this->claimService->rejectClaim(
+                $claim,
+                $validated['rejection_reason'],
+                $validated['panel_remarks'] ?? null,
+                auth()->id()
+            );
+
+            return $this->successRedirect(
+                'admin.panel.claims.show',
+                __('Tuntutan telah ditolak.'),
+                ['claim' => $claim->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
+    }
+
+    #[Post('/{claim}/record-payment', name: 'admin.panel.claims.record-payment')]
+    public function recordPayment(Request $request, PanelClaim $claim)
+    {
+        $validated = $request->validate([
+            'amount' => ['required', 'numeric', 'min:0'],
+            'payment_date' => ['required', 'date'],
+            'reference' => ['nullable', 'string', 'max:100'],
+            'notes' => ['nullable', 'string'],
+        ]);
+
+        try {
+            $claim->update([
+                'paid_amount' => ($claim->paid_amount ?? 0) + $validated['amount'],
+                'paid_at' => $validated['payment_date'],
+                'payment_reference' => $validated['reference'],
+                'claim_status' => ($claim->paid_amount ?? 0) + $validated['amount'] >= $claim->approved_amount
+                    ? PanelClaim::STATUS_PAID
+                    : PanelClaim::STATUS_APPROVED,
+            ]);
+
+            return $this->successRedirect(
+                'admin.panel.claims.show',
+                __('Bayaran berjaya direkod.'),
+                ['claim' => $claim->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
+    }
+
+    #[Post('/{claim}/documents', name: 'admin.panel.claims.attachDocument')]
+    public function attachDocument(Request $request, PanelClaim $claim)
+    {
+        $validated = $request->validate([
+            'document' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:10240'],
+            'document_type' => ['required', 'in:gl_copy,invoice,medical_certificate,lab_report,prescription,pa_approval,referral_letter,other'],
+            'notes' => ['nullable', 'string'],
+        ]);
+
+        try {
+            $this->claimService->attachDocument(
+                $claim,
+                $request->file('document'),
+                $validated['document_type'],
+                $validated['notes'] ?? null,
+                auth()->id()
+            );
+
+            return $this->successRedirect(
+                'admin.panel.claims.show',
+                __('Dokumen berjaya dimuat naik.'),
+                ['claim' => $claim->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
+    }
+
+    #[Delete('/{claim}/documents/{document}', name: 'admin.panel.claims.deleteDocument')]
+    public function deleteDocument(PanelClaim $claim, ClaimDocument $document)
+    {
+        $document->delete();
+
+        return $this->successRedirect(
+            'admin.panel.claims.show',
+            __('Dokumen berjaya dipadam.'),
+            ['claim' => $claim->id]
+        );
+    }
+
+    #[Post('/{claim}/appeal', name: 'admin.panel.claims.appeal')]
+    public function appeal(Request $request, PanelClaim $claim)
+    {
+        $validated = $request->validate([
+            'appeal_reason' => ['required', 'string'],
+            'appealed_amount' => ['nullable', 'numeric', 'min:0'],
+            'supporting_notes' => ['nullable', 'string'],
+            'documents' => ['nullable', 'array'],
+            'documents.*' => ['file', 'mimes:pdf,jpg,jpeg,png', 'max:5120'],
+        ]);
+
+        try {
+            $this->claimService->createAppeal($claim, $validated, auth()->id());
+
+            return $this->successRedirect(
+                'admin.panel.claims.show',
+                __('Rayuan berjaya dihantar.'),
+                ['claim' => $claim->id]
+            );
+        } catch (\Exception $e) {
+            return $this->errorRedirect($e->getMessage());
+        }
     }
 }

@@ -11,6 +11,8 @@ class PaymentAdvice extends Model
 {
     use HasFactory;
 
+    protected $table = 'payment_advices';
+
     protected $fillable = [
         'panel_id',
         'advice_number',

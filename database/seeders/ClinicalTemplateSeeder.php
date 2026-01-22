@@ -246,7 +246,7 @@ class ClinicalTemplateSeeder extends Seeder
         $now = now();
 
         foreach ($templates as $template) {
-            DB::table('clinical_templates')->insert([
+            DB::table('clinical_templates')->insertOrIgnore([
                 'name' => $template['name'],
                 'category' => $template['category'],
                 'chief_complaint_template' => $template['chief_complaint_template'],
