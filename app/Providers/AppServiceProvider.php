@@ -35,6 +35,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+    // Paksa HTTPS jika aplikasi berjalan di server (Production)
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
+        
         Paginator::useBootstrap();
 
         // Register policies
