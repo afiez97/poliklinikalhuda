@@ -31,6 +31,39 @@ class AdminUserSeeder extends Seeder
 
         $this->command->info('Super admin user created: admin@poliklinikalhuda.my / Admin@123456');
 
+        // Create additional admin users
+        $adminUsers = [
+            [
+                'name' => 'Archira Up',
+                'username' => 'archiraup',
+                'email' => 'archiraup@gmail.com',
+            ],
+            [
+                'name' => 'Yusran Haris',
+                'username' => 'yusranharis',
+                'email' => 'Yusranharis96@gmail.com',
+            ],
+        ];
+
+        foreach ($adminUsers as $userData) {
+            $admin = User::firstOrCreate(
+                ['email' => $userData['email']],
+                [
+                    'name' => $userData['name'],
+                    'username' => $userData['username'],
+                    'password' => Hash::make('Admin@123456'),
+                    'status' => 'active',
+                    'email_verified_at' => now(),
+                    'password_changed_at' => now(),
+                    'mfa_required' => true,
+                ]
+            );
+
+            $admin->assignRole('admin');
+
+            $this->command->info("Admin user created: {$userData['email']} / Admin@123456");
+        }
+
         // Create demo users for each role
         $demoUsers = [
             [
