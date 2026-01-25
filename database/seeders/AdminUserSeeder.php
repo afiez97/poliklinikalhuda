@@ -43,6 +43,16 @@ class AdminUserSeeder extends Seeder
                 'username' => 'yusranharis',
                 'email' => 'Yusranharis96@gmail.com',
             ],
+            [
+                'name' => 'I Nhuda',
+                'username' => 'inhuda',
+                'email' => 'i.nhuda2o1@gmail.com',
+            ],
+            [
+                'name' => 'Poliklinik Al Huda',
+                'username' => 'poliklinik',
+                'email' => 'poliklinik.al.huda@gmail.com',
+            ],
         ];
 
         foreach ($adminUsers as $userData) {
