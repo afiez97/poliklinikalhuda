@@ -108,6 +108,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the staff record for this user.
+     */
+    public function staff(): HasOne
+    {
+        return $this->hasOne(Staff::class);
+    }
+
+    /**
      * Get the user who created this user.
      */
     public function creator()

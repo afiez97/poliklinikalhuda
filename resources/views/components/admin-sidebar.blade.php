@@ -30,7 +30,7 @@
                         <ul class="sub-menu" id="temujanji" data-parent="#sidebar-menu">
                             <li><a class="sidenav-item-link" href="{{ route('admin.appointments.calendar') }}">Jadual Temujanji</a></li>
                             <li><a class="sidenav-item-link" href="{{ route('admin.appointments.create') }}">Buat Temujanji Baru</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.appointments') }}">Sejarah Temujanji</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.appointments.index') }}">Sejarah Temujanji</a></li>
                         </ul>
                     </div>
                 </li>
@@ -118,6 +118,20 @@
                     </div>
                 </li>
 
+                <!-- AI Triage -->
+                <li class="has-sub {{ request()->is('admin/triage*') ? 'active' : '' }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="bi bi-heart-pulse"></i>
+                        <span class="nav-text">AI Triage</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse {{ request()->is('admin/triage*') ? 'show' : '' }}">
+                        <ul class="sub-menu" id="triage" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.triage.index') }}">Senarai Triage</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.triage.create') }}">Triage Baru</a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <!-- Surat Rujukan (Akan Datang) -->
                 <li>
                     <a class="sidenav-item-link text-muted" href="javascript:void(0)" title="Akan datang">
@@ -126,17 +140,21 @@
                     </a>
                 </li>
 
-                <!-- Laporan -->
-                <li class="has-sub {{ request()->is('admin/billing/reports*') ? 'active' : '' }}">
+                <!-- Laporan & Analitik -->
+                <li class="has-sub {{ request()->is('admin/reports*') || request()->is('admin/billing/reports*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-bar-chart-line"></i>
-                        <span class="nav-text">Laporan</span> <b class="caret"></b>
+                        <span class="nav-text">Laporan & Analitik</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/billing/reports*') ? 'show' : '' }}">
+                    <div class="collapse {{ request()->is('admin/reports*') || request()->is('admin/billing/reports*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="laporan" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.reports.executive') }}">Dashboard Eksekutif</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.reports.operational') }}">Dashboard Operasi</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.reports.clinical') }}">Dashboard Klinikal</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.reports.pharmacy') }}">Dashboard Farmasi</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.reports.financial') }}">Laporan Kewangan</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.reports.patients') }}">Laporan Pesakit</a></li>
                             <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports.daily') }}">Laporan Harian</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports') }}">Laporan Kewangan</a></li>
-                            <li><a class="sidenav-item-link" href="{{ route('admin.billing.reports.outstanding') }}">Laporan Tertunggak</a></li>
                         </ul>
                     </div>
                 </li>
@@ -175,18 +193,36 @@
                     </div>
                 </li>
 
+                <!-- Pengurusan HR -->
+                <li class="has-sub {{ request()->is('admin/leave*') || request()->is('admin/attendance*') || request()->is('admin/payroll*') ? 'active' : '' }}">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="bi bi-briefcase"></i>
+                        <span class="nav-text">Pengurusan HR</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse {{ request()->is('admin/leave*') || request()->is('admin/attendance*') || request()->is('admin/payroll*') ? 'show' : '' }}">
+                        <ul class="sub-menu" id="hr" data-parent="#sidebar-menu">
+                            <li><a class="sidenav-item-link" href="{{ route('admin.leave.index') }}">Cuti</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.leave.pending') }}">Kelulusan Cuti</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.leave.calendar') }}">Kalendar Cuti</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.attendance.index') }}">Kehadiran</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.payroll.index') }}">Gaji & Slip</a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <!-- Tetapan Sistem -->
-                <li class="has-sub {{ request()->is('admin/settings*') ? 'active' : '' }}">
+                <li class="has-sub {{ request()->is('admin/settings*') || request()->is('admin/audit*') ? 'active' : '' }}">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="bi bi-gear"></i>
                         <span class="nav-text">Tetapan Sistem</span> <b class="caret"></b>
                     </a>
-                    <div class="collapse {{ request()->is('admin/settings*') ? 'show' : '' }}">
+                    <div class="collapse {{ request()->is('admin/settings*') || request()->is('admin/audit*') ? 'show' : '' }}">
                         <ul class="sub-menu" id="tetapan" data-parent="#sidebar-menu">
                             <li><a class="sidenav-item-link" href="{{ route('admin.settings.general') }}">Umum</a></li>
                             <li><a class="sidenav-item-link" href="{{ route('admin.settings.clinic') }}">Maklumat Klinik</a></li>
                             <li><a class="sidenav-item-link" href="{{ route('admin.settings.security') }}">Keselamatan</a></li>
                             <li><a class="sidenav-item-link" href="{{ route('admin.settings.notifications') }}">Notifikasi</a></li>
+                            <li><a class="sidenav-item-link" href="{{ route('admin.audit.index') }}">Log Audit</a></li>
                         </ul>
                     </div>
                 </li>

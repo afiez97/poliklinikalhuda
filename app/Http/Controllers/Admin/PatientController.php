@@ -40,7 +40,16 @@ class PatientController extends Controller
             ->when($request->has_panel !== null, fn ($q) => $q->where('has_panel', $request->has_panel === '1'))
             ->when($request->gender, fn ($q, $gender) => $q->where('gender', $gender));
 
-        $patients = $query->orderBy('created_at', 'desc')->paginate(25)->withQueryString();
+        $perPage = $request->get('per_page', 25);
+        $patients = $query->orderBy('created_at', 'desc')->paginate($perPage)->withQueryString();
+
+        // Return JSON for AJAX requests (Select2)
+        if ($request->wantsJson() || $request->get('format') === 'json') {
+            return response()->json([
+                'data' => $patients->items(),
+                'total' => $patients->total(),
+            ]);
+        }
 
         $statistics = [
             'total' => Patient::count(),

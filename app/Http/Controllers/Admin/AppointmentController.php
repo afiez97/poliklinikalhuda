@@ -40,10 +40,7 @@ class AppointmentController extends Controller
 
         $appointments = $query->orderBy('appointment_date')->orderBy('start_time')->paginate(25)->withQueryString();
 
-        $doctors = Staff::whereHas('position', fn ($q) => $q->where('name', 'like', '%Doktor%'))
-            ->orWhereHas('user.roles', fn ($q) => $q->where('name', 'doktor'))
-            ->with('user')
-            ->get();
+        $doctors = Staff::doctors()->active()->with('user')->get();
 
         $statistics = [
             'total' => Appointment::forDate($date)->count(),
@@ -69,9 +66,7 @@ class AppointmentController extends Controller
             ->get()
             ->groupBy(fn ($a) => $a->appointment_date->format('Y-m-d'));
 
-        $doctors = Staff::whereHas('position', fn ($q) => $q->where('name', 'like', '%Doktor%'))
-            ->with('user')
-            ->get();
+        $doctors = Staff::doctors()->active()->with('user')->get();
 
         return view('admin.appointments.calendar', compact('appointments', 'month', 'doctors', 'doctorId'));
     }
@@ -84,10 +79,7 @@ class AppointmentController extends Controller
             $patient = Patient::find($request->patient_id);
         }
 
-        $doctors = Staff::whereHas('position', fn ($q) => $q->where('name', 'like', '%Doktor%'))
-            ->with('user')
-            ->where('status', 'active')
-            ->get();
+        $doctors = Staff::doctors()->active()->with('user')->get();
 
         return view('admin.appointments.create', compact('patient', 'doctors'));
     }
@@ -162,10 +154,7 @@ class AppointmentController extends Controller
             return $this->errorRedirect('Temujanji ini tidak boleh diedit.');
         }
 
-        $doctors = Staff::whereHas('position', fn ($q) => $q->where('name', 'like', '%Doktor%'))
-            ->with('user')
-            ->where('status', 'active')
-            ->get();
+        $doctors = Staff::doctors()->active()->with('user')->get();
 
         return view('admin.appointments.edit', compact('appointment', 'doctors'));
     }

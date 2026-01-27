@@ -9,7 +9,7 @@
             <p class="breadcrumbs">
                 <span><a href="{{ route('admin.dashboard') }}">Dashboard</a></span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
-                <span><a href="{{ route('admin.appointments') }}">Temujanji</a></span>
+                <span><a href="{{ route('admin.appointments.index') }}">Temujanji</a></span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
                 <span>Buat Baru</span>
             </p>
@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.appointments') }}" class="btn btn-secondary">
+                            <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">
                                 <i class="mdi mdi-arrow-left me-1"></i> Kembali
                             </a>
                             <button type="submit" class="btn btn-primary">

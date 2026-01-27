@@ -53,13 +53,6 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('stats'));
     }
 
-    #[Get('/appointments', name: 'admin.appointments')]
-    #[Middleware('auth')]
-    public function appointments()
-    {
-        return redirect()->route('admin.appointments.index');
-    }
-
     #[Get('/services', name: 'admin.services')]
     #[Middleware('auth')]
     public function services()

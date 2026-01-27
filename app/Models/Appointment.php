@@ -41,6 +41,7 @@ class Appointment extends Model
         'appointment_date' => 'date',
         'start_time' => 'datetime:H:i',
         'end_time' => 'datetime:H:i',
+        'duration_minutes' => 'integer',
         'reminder_sent_at' => 'datetime',
         'cancelled_at' => 'datetime',
         'reminder_sent' => 'boolean',
@@ -119,7 +120,7 @@ class Appointment extends Model
             }
             if (empty($appointment->end_time)) {
                 $startTime = \Carbon\Carbon::parse($appointment->start_time);
-                $appointment->end_time = $startTime->addMinutes($appointment->duration_minutes)->format('H:i');
+                $appointment->end_time = $startTime->addMinutes((int) $appointment->duration_minutes)->format('H:i');
             }
         });
     }

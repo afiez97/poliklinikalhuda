@@ -46,8 +46,9 @@ class UserController extends Controller
             : $this->userService->getPaginatedUsers();
 
         $statistics = $this->userService->getStatistics();
+        $roles = Role::all();
 
-        return view('admin.users.index', compact('users', 'statistics', 'search'));
+        return view('admin.users.index', compact('users', 'statistics', 'search', 'roles'));
     }
 
     /**
@@ -114,9 +115,10 @@ class UserController extends Controller
         $this->authorize('update', $user);
 
         $roles = Role::all();
+        $userRoles = $user->roles->pluck('name')->toArray();
         $statuses = config('security.user_statuses', []);
 
-        return view('admin.users.edit', compact('user', 'roles', 'statuses'));
+        return view('admin.users.edit', compact('user', 'roles', 'userRoles', 'statuses'));
     }
 
     /**

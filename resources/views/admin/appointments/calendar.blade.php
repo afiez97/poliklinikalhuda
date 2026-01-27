@@ -9,13 +9,13 @@
             <p class="breadcrumbs">
                 <span><a href="{{ route('admin.dashboard') }}">Dashboard</a></span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
-                <span><a href="{{ route('admin.appointments') }}">Temujanji</a></span>
+                <span><a href="{{ route('admin.appointments.index') }}">Temujanji</a></span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
                 <span>Kalendar</span>
             </p>
         </div>
         <div>
-            <a href="{{ route('admin.appointments') }}" class="btn btn-outline-secondary me-2">
+            <a href="{{ route('admin.appointments.index') }}" class="btn btn-outline-secondary me-2">
                 <i class="mdi mdi-format-list-bulleted"></i> Senarai
             </a>
             <a href="{{ route('admin.appointments.create') }}" class="btn btn-primary">

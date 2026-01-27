@@ -9,7 +9,7 @@
             <p class="breadcrumbs">
                 <span><a href="{{ route('admin.dashboard') }}">Dashboard</a></span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
-                <span><a href="{{ route('admin.appointments') }}">Temujanji</a></span>
+                <span><a href="{{ route('admin.appointments.index') }}">Temujanji</a></span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
                 <span>{{ $appointment->appointment_no }}</span>
                 <span><i class="mdi mdi-chevron-right"></i></span>
